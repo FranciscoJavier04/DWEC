@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Número</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 5px;
+            margin: 10px 0;
+        }
+        .resultado {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Verifica si el número es par y mayor de 10</h1>
+    
+    <form id="numeroForm">
+        <label for="numero">Introduce un número:</label><br>
+        <input type="number" id="numero" required>
+        <br>
+        <button type="button" onclick="verificarNumero()">Verificar</button>
+    </form>
+
+    <div class="resultado" id="resultado"></div>
+
+    <script>
+        function verificarNumero() {
+            const numero = parseInt(document.getElementById("numero").value);
+            const resultadoDiv = document.getElementById("resultado");
+
+            if (numero % 2 === 0 && numero > 10) {
+                resultadoDiv.innerHTML = "<p style='color:green;'>NÚMERO CORRECTO</p>";
+            } else {
+                resultadoDiv.innerHTML = "<p style='color:red;'>NÚMERO INCORRECTO</p>";
+            }
+        }
+    </script>
+
+</body>
+</html>

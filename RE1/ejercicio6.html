@@ -1,26 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tabla de Multiplicar</title>
 </head>
-
 <body>
-    <h1>Tipo de triángulo</h1>
-    Numero:<input type="text" id="l1"><br>
-    <input type="button" value="MostrarTabla" onclick="mostrarTabla(parseInt(l1.value))">
-    <script>
-        function mostrarTabla(lado1) {
-            for (let i = 1; i <= 10; i++) {
-                document.write("lado1*i")
-            }
-        }
 
+    <h1>Mostrar Tabla de Multiplicar</h1>
+    
+    <form id="tablaForm">
+        <label for="numero">Introduce un número entre 2 y 9:</label><br>
+        <input type="number" id="numero" min="2" max="9" required>
+        <br>
+        <button type="button" onclick="mostrarTabla()">Mostrar</button>
+    </form>
+
+    <div class="resultado" id="resultado"></div>
+
+    <script>
+        function mostrarTabla() {
+            // Obtener el número introducido por el usuario
+            const numero = document.getElementById("numero").value;
+            const resultadoDiv = document.getElementById("resultado");
+
+            // Limpiar el área de resultados anteriores
+            resultadoDiv.innerHTML = "";
+
+            // Validar que el número esté entre 2 y 9
+            if (numero < 2 || numero > 9) {
+                resultadoDiv.innerHTML = "<p>Por favor, introduce un número válido entre 2 y 9.</p>";
+                return;
+            }
+
+            // Crear la tabla de multiplicar
+            let tablaHTML = "<h3>Tabla del " + numero + ":</h3><ul>";
+            for (let i = 1; i <= 10; i++) {
+                tablaHTML += "<li>" + numero + " x " + i + " = " + (numero * i) + "</li>";
+            }
+            tablaHTML += "</ul>";
+
+            // Mostrar la tabla de multiplicar
+            resultadoDiv.innerHTML = tablaHTML;
+        }
     </script>
 
-
 </body>
-
 </html>
