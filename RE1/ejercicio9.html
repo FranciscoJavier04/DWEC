@@ -3,64 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego: Adivina el Número</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        input, button {
-            padding: 5px;
-            margin: 10px 0;
-        }
-        .resultado, .intentos {
-            margin-top: 20px;
-        }
-    </style>
+    <title>Adivina el Número</title>
 </head>
 <body>
 
-    <h1>Juego: Adivina el Número</h1>
+    <h1>Adivina el Número</h1>
     
-    <form id="adivinaForm">
-        <label for="numero">Introduce un número entre 1 y 100:</label><br>
-        <input type="number" id="numero" min="1" max="100" required>
-        <br>
-        <button type="button" onclick="adivinarNumero()">Adivinar</button>
-    </form>
+    <input type="number" id="numero" placeholder="Número entre 1 y 100">
+    <button onclick="adivinarNumero()">Adivinar</button>
 
-    <div class="intentos" id="intentos">Intentos restantes: 10</div>
-    <div class="resultado" id="resultado"></div>
+    <p id="resultado"></p>
+    <p id="intentos">Intentos restantes: 10</p>
 
     <script>
-        // Generar número aleatorio entre 1 y 100
         let numeroCorrecto = Math.floor(Math.random() * 100) + 1;
         let intentosRestantes = 10;
 
         function adivinarNumero() {
-            const numeroUsuario = parseInt(document.getElementById("numero").value);
-            const resultadoDiv = document.getElementById("resultado");
-            const intentosDiv = document.getElementById("intentos");
+            let numeroUsuario = parseInt(document.getElementById("numero").value);
+            let resultado = document.getElementById("resultado");
+            let intentos = document.getElementById("intentos");
 
-            // Validar si aún hay intentos
             if (intentosRestantes > 0) {
                 if (numeroUsuario === numeroCorrecto) {
-                    resultadoDiv.innerHTML = "<p style='color:green;'>¡Felicidades! Has acertado el número " + numeroCorrecto + ".</p>";
-                } else if (numeroUsuario < numeroCorrecto) {
-                    intentosRestantes--;
-                    resultadoDiv.innerHTML = "<p style='color:blue;'>El número es mayor. Inténtalo de nuevo.</p>";
+                    resultado.textContent = "¡Acertaste! El número es " + numeroCorrecto;
                 } else {
                     intentosRestantes--;
-                    resultadoDiv.innerHTML = "<p style='color:blue;'>El número es menor. Inténtalo de nuevo.</p>";
+                    resultado.textContent = numeroUsuario < numeroCorrecto ? "El número es mayor" : "El número es menor";
+                    intentos.textContent = "Intentos restantes: " + intentosRestantes;
                 }
-
-                // Actualizar intentos restantes
-                intentosDiv.innerHTML = "Intentos restantes: " + intentosRestantes;
             }
 
-            // Verificar si se han agotado los intentos
             if (intentosRestantes === 0 && numeroUsuario !== numeroCorrecto) {
-                resultadoDiv.innerHTML = "<p style='color:red;'>HAS PERDIDO!! El número era " + numeroCorrecto + ".</p>";
+                resultado.textContent = "¡Perdiste! El número era " + numeroCorrecto;
             }
         }
     </script>
