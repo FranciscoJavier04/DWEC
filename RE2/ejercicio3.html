@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+
+<body>
+    <script>
+        let multiplos = [];
+        for (let i = 11; i < 3000; i += 11) {
+            multiplos.push(i);
+        }
+
+        console.log("Múltiplos de 11 menores de 3000:");
+        console.log(multiplos);
+
+
+        let suma = 0;
+        for (let i = 0; i < multiplos.length; i++) {
+            suma += multiplos[i];
+        }
+
+
+        console.log("Suma de los múltiplos de 11 menores de 3000: " + suma);
+    </script>
+</body>
+
+</html>
