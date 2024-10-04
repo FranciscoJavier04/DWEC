@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let meses = new Set([
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo",
+            "Junio", "Julio", "Agosto", "Septiembre",
+            "Octubre", "Noviembre", "Diciembre"
+        ]);
+
+
+        meses.delete("Mayo");
+        console.log("Después de eliminar Mayo:", meses.has("Mayo"));
+
+
+        meses.add("NuevoMes");
+        console.log("Después de añadir NuevoMes:", meses.has("NuevoMes"));
+
+
+        console.log("Existe Mayo?", meses.has("Mayo"));
+        console.log("Existe Junio?", meses.has("Junio"));
+
+
+        let arraymeses = Array.from(meses);
+        console.log("Array de meses:", arraymeses);
+
+
+        arraymeses = arraymeses.filter(mes => mes !== "Enero");
+        console.log("Array después de eliminar Enero:", arraymeses);
+        console.log("Conjunto original de meses:", meses);
+
+    </script>
+</body>
+
+</html>

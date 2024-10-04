@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function esPalindromo(cadena) {
+
+            let cadenaLimpia = cadena.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+            let cadenaReversa = cadenaLimpia.split('').reverse().join('');
+
+            if (cadenaLimpia === cadenaReversa) {
+                return "Es palíndromo";
+            } else {
+                return "No es palíndromo";
+            }
+        }
+
+        // Ejemplo de uso:
+        console.log(esPalindromo("Dabale arroz a la zorra el abad"));
+        console.log(esPalindromo("Hola mundo"));
+
+    </script>
+</body>
+
+</html>

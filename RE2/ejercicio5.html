@@ -1,20 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ejercicio5</title>
 </head>
+
 <body>
     <script>
         let letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
 
-        let numeroDni1= "48190645"
-        function calcularLetraDni(numeroDni){
+        let numeroDni1 = "48190645"
+        function calcularLetraDni(numeroDni) {
             let resto = numeroDni % 23;
             return letras[resto];
         }
         console.log("La letra del dni es: " + calcularLetraDni(numeroDni1));
+
+        function verificarDni(dniConLetra) {
+
+            let numeroDni = dniConLetra.slice(0, -1);
+            let letraDni = dniConLetra.slice(-1).toUpperCase();
+
+
+            if (isNaN(numeroDni) || numeroDni.length !== 8) {
+                return "El número de DNI no es válido.";
+            }
+
+
+            let letraCorrecta = calcularLetraDni(numeroDni);
+
+
+            if (letraDni === letraCorrecta) {
+                return "El DNI es correcto.";
+            } else {
+                return `El DNI es incorrecto. La letra correcta debería ser ${letraCorrecta}.`;
+            }
+        }
+
+
+        let dniConLetra = prompt("Introduce tu DNI con letra:");
+
+
+        console.log(verificarDni(dniConLetra));
     </script>
 </body>
+
 </html>
