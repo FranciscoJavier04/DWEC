@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Función para obtener el cuatrimestre actual
+        function obtenerCuatrimestre(mes) {
+            if (mes >= 0 && mes <= 3) {
+                return "primer cuatrimestre";
+            } else if (mes >= 4 && mes <= 7) {
+                return "segundo cuatrimestre";
+            } else {
+                return "tercer cuatrimestre";
+            }
+        }
+
+        // Función para obtener el nombre del día de la semana
+        function obtenerDiaSemana(diaSemana) {
+            let diasSemana = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+            return diasSemana[diaSemana];
+        }
+
+        // Función para obtener el nombre del mes
+        function obtenerMes(mes) {
+            let meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+            return meses[mes];
+        }
+
+        // Función principal
+        function mostrarFechaActual() {
+            const fecha = new Date();
+            const diaSemana = obtenerDiaSemana(fecha.getDay());
+            const dia = fecha.getDate();
+            const mes = obtenerMes(fecha.getMonth());
+            const cuatrimestre = obtenerCuatrimestre(fecha.getMonth());
+            const año = fecha.getFullYear();
+
+
+            console.log(`Estamos en el día ${dia} (${diaSemana}) del mes ${mes} (${mes}) del ${cuatrimestre} del año ${año}`);
+        }
+
+        mostrarFechaActual();
+    </script>
+</body>
+
+</html>
