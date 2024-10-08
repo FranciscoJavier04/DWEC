@@ -1,25 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         let factura = {
-            empresa:{
-                nombre:"FranCompany",
-                direccion:"Calle Pelota 288",
-                telefono:"623499883",
-                NIF:"X12345678"
+            empresa: {
+                nombre: "FranCompany",
+                direccion: "Calle Pelota 288",
+                telefono: "623499883",
+                NIF: "X12345678"
             },
-            cliente:{
-                numeroCliente:1347,
-                DNI:"B12345678",
-                nombre:"Manuel Romero"
+            cliente: {
+                numeroCliente: 1347,
+                DNI: "B12345678",
+                nombre: "Manuel Romero",
+                domicilio: "Avenida Lucena 67",
+                cp: 41560,
+                ciudad: "Estepa",
+                provicia: "Sevilla",
+            },
+            productos: [
+                { descripcion: "Producto 1", precio: 100, cantidad: 2 },
+                { descripcion: "Producto 2", precio: 50, cantidad: 1 },
+                { descripcion: "Producto 3", precio: 25, cantidad: 4 }
+            ],
+            total: 0,
+            formaPago: "Transferencia bancaria",
+
+
+            calcularImporteTotal: function () {
+                this.total = this.productos.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
+            },
+
+
+            mostrarImporteTotal: function () {
+                console.log(`El importe total de la factura es: ${this.total} €`);
             }
-        }
+        };
+
+ 
+        factura.calcularImporteTotal();
+        factura.mostrarImporteTotal();
+
     </script>
 </body>
+
 </html>
