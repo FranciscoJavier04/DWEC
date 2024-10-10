@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Cuadrado {
+          constructor(lado) {
+            this.lado = lado;
+          }
+        
+
+          calcularPerimetro() {
+            return this.lado * 4;
+          }
+        
+
+          calcularArea() {
+            return this.lado * this.lado;
+          }
+        }
+        
+
+        class Cubo extends Cuadrado {
+          constructor(lado) {
+            super(lado); 
+          }
+        
+          calcularPerimetro() {
+
+            return this.lado * 12;
+          }
+        
+
+          calcularArea() {
+
+            return 6 * super.calcularArea();
+          }
+        
+   
+          calcularVolumen() {
+
+            return Math.pow(this.lado, 3);
+          }
+        }
+        
+
+        const cuadrado = new Cuadrado(4);
+        console.log("Perímetro del cuadrado:", cuadrado.calcularPerimetro()); // 16
+        console.log("Área del cuadrado:", cuadrado.calcularArea()); // 16
+        
+        const cubo = new Cubo(4);
+        console.log("Perímetro del cubo:", cubo.calcularPerimetro()); // 48
+        console.log("Área del cubo:", cubo.calcularArea()); // 96
+        console.log("Volumen del cubo:", cubo.calcularVolumen()); // 64
+        </script>
+</body>
+</html>
