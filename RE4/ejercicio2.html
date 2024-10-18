@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const contarPalabras = (subcadena, texto) => {
+            let contador = 0;
+            let posicionLetra = texto.indexOf(subcadena);
+
+            while (posicionLetra !== -1) {
+                contador++;
+
+                posicionLetra = texto.indexOf(subcadena, posicionLetra + subcadena.lenght);
+            }
+
+            return contador;
+        }
+
+        console.log(contarPalabras("estoy en el parque porque estoy aburrido"))
+    </script>
+</body>
+
+</html>

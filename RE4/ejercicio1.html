@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function invertirCadena(cadena){
+            let arrayCaracteres = Array.from(cadena);
+
+            let invertido = [];
+
+            for(let caracter of arrayCaracteres ){
+
+                invertido.unshift(caracter);
+            }
+
+            return invertido.join("");
+        }
+        console.log(invertirCadena("Miguel Angel"));
+    </script>
+</body>
+</html>
