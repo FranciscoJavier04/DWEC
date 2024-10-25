@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function calcularAniosDesdeFecha(fecha) {
+
+    const fechaEntrada = new Date(fecha);
+    const fechaActual = new Date();
+
+    
+    let aniosDiferencia = fechaActual.getFullYear() - fechaEntrada.getFullYear();
+
+
+    const mesActual = fechaActual.getMonth();
+    const mesEntrada = fechaEntrada.getMonth();
+    const diaActual = fechaActual.getDate();
+    const diaEntrada = fechaEntrada.getDate();
+
+    if (mesActual < mesEntrada || (mesActual === mesEntrada && diaActual < diaEntrada)) {
+        aniosDiferencia--;
+    }
+
+    return aniosDiferencia;
+}
+
+
+const fecha = "2010-10-25"; 
+const aniosPasados = calcularAniosDesdeFecha(fecha);
+console.log(`Han pasado ${aniosPasados} años desde ${fecha}.`);
+
+    </script>
+</body>
+</html>

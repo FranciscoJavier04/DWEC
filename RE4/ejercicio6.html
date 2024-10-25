@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function contarVocalesConsonantes(texto) {
+   
+    const textoLimpio = texto.toLowerCase().replace(/\s+/g, '');
+
+
+    const vocales = 'aeiou';
+
+ 
+    let contadorVocales = 0;
+    let contadorConsonantes = 0;
+
+
+    for (let i = 0; i < textoLimpio.length; i++) {
+        const letra = textoLimpio[i];
+
+        if (/[a-z]/.test(letra)) {
+            if (vocales.includes(letra)) {
+                contadorVocales++;
+            } else {
+                contadorConsonantes++;
+            }
+        }
+    }
+
+    return `Vocales: ${contadorVocales}, Consonantes: ${contadorConsonantes}`;
+}
+
+// Ejemplo de uso:
+console.log(contarVocalesConsonantes("Hola Mundo"));
+
+    </script>
+</body>
+</html>
