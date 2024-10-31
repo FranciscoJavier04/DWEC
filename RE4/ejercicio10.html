@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio10</title>
+</head>
+
+<body>
+    <script>
+        class Pelicula {
+            static generosAceptados = [
+                "Action", "Adult", "Adventure", "Animation", "Biography", "Comedy",
+                "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film Noir",
+                "Game-Show", "History", "Horror", "Musical", "Music", "Mystery",
+                "News", "Reality-TV", "Romance", "Sci-Fi", "Short", "Sport",
+                "Talk-Show", "Thriller", "War", "Western"
+            ];
+            constructor(id, titulo, anio, pais, género, calificacion) {
+                this.id = id;
+                this.titulo = titulo;
+                this.anio = anio;
+                this.pais = pais;
+                this.género = género;
+                this.calificacion = calificacion;
+            }
+            static validarID(id) {
+                return /^[A-Za-z]{2}\d{7}$/.test(id);
+            }
+
+            static validarTitulo(titulo) {
+                return titulo.length <= 100;
+            }
+
+            static validarAnio(anio) {
+                return /^\d{4}$/.test(anio);
+            }
+
+            static validarArray(arr) {
+                return Array.isArray(arr);
+            }
+
+            static validarGenero(generos) {
+                if (!Array.isArray(generos)) return false;
+                return generos.every(gen => Pelicula.generosAceptados.includes(gen));
+            }
+
+            static validarCalificacion(calificacion) {
+                return typeof calificacion === "number" && calificacion >= 0 && calificacion <= 10;
+            }
+
+            static generosPermitidos() {
+                return Pelicula.generosAceptados;
+            }
+
+            fichaTecnica() {
+                return `
+                Título: ${this.titulo}
+                Director: ${this.director}
+                Año: ${this.anio}
+                País: ${this.pais.join(", ")}
+                Géneros: ${this.genero.join(", ")}
+                Calificación: ${this.calificacion}
+    `;
+            }
+
+        }
+    </script>
+</body>
+
+</html>
