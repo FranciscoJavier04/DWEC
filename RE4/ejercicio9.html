@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio9</title>
+</head>
+<body>
+    <script>
+        function ascendenteDescendente(array){
+            return{
+                asc:[...array].sort((a,b) => a -b ),
+                desc:[...array].sort((a,b) => b -a ),
+            };
+        }
+        const resultado = ascendenteDescendente([28,4,8,23,9]);
+        console.log(resultado);
+    </script>
+</body>
+</html>

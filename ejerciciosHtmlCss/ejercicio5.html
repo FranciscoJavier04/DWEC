@@ -3,38 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio4</title>
     <link rel="stylesheet" href="ejercicio5.css">
+    <title>Aviso de Cookies</title>
+
 </head>
 <body>
-    <div class="container">
-        <div class="cabecera">
-            Cabecera
-        </div>
-        <div class="menu">
-            Menu
-        </div>
-        <div class="contenedor">
-            <div class="izquierda">
-             <img src="https://placehold.co/400">
-            </div>
-            <div class="derecha">
-                <div class="item item1">1 (Texto)</div>
-                <div class="item item2">2 (Foto+Texto)</div>
-                <div class="item item3">3 (Foto+Texto)</div>
-                <div class="item item4">4 (Texto)</div>
-                <div class="item item5">5 Texto</div>
-                <div class="item item6">6 Texto</div>
-            </div>
-        </div>
-        <div class="footer">
-            Pie de página  
-        </div>
+
+
+    <div>
+        <h1>Bienvenido a nuestro sitio web</h1>
+        <p>Esta es una página de ejemplo que incluye un aviso de cookies.</p>
+        <input type="submit" value="Ok">
     </div>
+
+
+    <div id="cookie-banner" class="cookie-banner">
+        <p>Usamos cookies para mejorar tu experiencia en nuestro sitio. Puedes aceptar o rechazar el uso de cookies.</p>
+        <button id="accept-cookies" class="cookie-btn">Aceptar</button>
+        <button id="reject-cookies" class="cookie-btn">Rechazar</button>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cookieBanner = document.getElementById("cookie-banner");
+            const acceptCookiesBtn = document.getElementById("accept-cookies");
+            const rejectCookiesBtn = document.getElementById("reject-cookies");
+
+      
+            const userChoice = localStorage.getItem("cookieConsent");
+
+            if (!userChoice) {
+
+                cookieBanner.classList.add("show");
+            }
+
+
+            acceptCookiesBtn.addEventListener("click", function () {
+                localStorage.setItem("cookieConsent", "accepted");
+                hideCookieBanner();
+            });
+
+
+            rejectCookiesBtn.addEventListener("click", function () {
+                localStorage.setItem("cookieConsent", "rejected");
+                hideCookieBanner();
+            });
+
+            function hideCookieBanner() {
+                cookieBanner.classList.remove("show");
+            }
+        });
+    </script>
 </body>
-<div id="cookie-consent" class="cookie-consent">
-    <p>Este sitio utiliza cookies para mejorar la experiencia del usuario. Al continuar navegando, aceptas nuestra <a href="#">política de cookies</a>.</p>
-    <button id="accept-cookies">Aceptar</button>
-    <button id="reject-cookies">Rechazar</button>
-</div>
 </html>
