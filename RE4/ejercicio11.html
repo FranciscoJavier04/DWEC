@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // Clase base: Habitacion
+class Habitacion {
+    constructor(numero, capacidad, servicios) {
+        this.numero = numero;             // Número de habitación
+        this.capacidad = capacidad;       // Capacidad de personas
+        this.servicios = servicios;       // Número de servicios
+    }
+
+    // Método para calcular el precio de la habitación
+    calcularPrecio() {
+        const precioPorPersona = 24;      // Precio por persona
+        const precioPorServicio = 3;      // Precio por servicio
+
+        // Calcular el precio total
+        const precioTotal = (this.capacidad * precioPorPersona) + (this.servicios * precioPorServicio);
+        return precioTotal;
+    }
+}
+
+// Clase derivada: HabitacionHotel
+class HabitacionHotel extends Habitacion {
+    constructor(numero, capacidad, servicios, director, categoria, numHabsEstandar, numHabsSuite) {
+        super(numero, capacidad, servicios); // Llamada al constructor de la clase base
+        this.director = director;             // Director del hotel
+        this.categoria = categoria;           // Número de estrellas del hotel
+        this.numHabsEstandar = numHabsEstandar; // Número de habitaciones estándar
+        this.numHabsSuite = numHabsSuite;     // Número de habitaciones suite
+    }
+
+    // Método para calcular el precio de la habitación en el hotel
+    calcularPrecio() {
+        const precioBase = super.calcularPrecio(); // Llama al método de la clase base
+        const incrementoPorCategoria = (this.categoria - 1) * 0.05; // Incremento del 5% por estrella
+
+        // Calcular el precio total considerando el incremento por categoría
+        const precioFinal = precioBase * (1 + incrementoPorCategoria);
+        return precioFinal;
+    }
+
+    // Método para calcular la recaudación total del hotel
+    calcularRecaudacionHotel() {
+        const precioEstandar = new HabitacionHotel(0, 2, 2, this.director, this.categoria, 0, 0).calcularPrecio();
+        const precioSuite = new HabitacionHotel(0, 2, 5, this.director, this.categoria, 0, 0).calcularPrecio();
+
+        // Calcular la recaudación total
+        const recaudacionTotal = (precioEstandar * this.numHabsEstandar) + (precioSuite * this.numHabsSuite);
+        return recaudacionTotal;
+    }
+}
+
+// Ejemplo de uso:
+const hotel = new HabitacionHotel(101, 2, 2, "Juan Pérez", 3, 10, 5);
+console.log("Precio de la habitación:", hotel.calcularPrecio().toFixed(2) + " €");
+console.log("Recaudación total del hotel:", hotel.calcularRecaudacionHotel().toFixed(2) + " €");
+
+</script>    
+</body>
+</html>
