@@ -1,0 +1,11 @@
+// Bordes redondeados para dispositivos grandes
+@media (min-width: 992px) {
+    $enable-rounded: true;
+    $border-radius: 0.5rem;
+}
+
+// Bordes cuadrados para dispositivos medianos y pequeños
+@media (max-width: 991.98px) {
+    $enable-rounded: false;
+    $border-radius: 0;
+}

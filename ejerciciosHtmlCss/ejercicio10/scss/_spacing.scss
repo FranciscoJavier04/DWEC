@@ -1,0 +1,6 @@
+// Reducir espaciado en dispositivos pequeños y medianos
+@media (max-width: 768px) {
+    $spacer: 0.5rem;
+    $spacer-y: 0.5rem;
+    $spacer-x: 0.5rem;
+}

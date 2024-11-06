@@ -1,0 +1,14 @@
+// Logotipo con altura fija
+.navbar-brand img {
+    height: 120px;
+}
+
+// Ajustes de color en dispositivos pequeños y medianos
+@media (max-width: 768px) {
+    .navbar {
+        background-color: $dark;
+        .nav-link {
+            color: $light !important;
+        }
+    }
+}
