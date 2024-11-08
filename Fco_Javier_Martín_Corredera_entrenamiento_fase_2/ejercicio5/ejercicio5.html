@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviso de Cookies</title>
+  <link rel="stylesheet" href="ejercicio5.css">
+</head>
+<body>
+
+  <!-- Cartel de cookies -->
+  <div id="cookie-consent-banner" class="cookie-banner">
+    <div class="cookie-banner-content">
+      <p>Usamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra <a href="/politica-de-privacidad">Política de Privacidad</a>.</p>
+      <button id="accept-cookies" class="cookie-button">Aceptar</button>
+      <button id="reject-cookies" class="cookie-button">Rechazar</button>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div id="main-content" class="main-content">
+    <h1>Bienvenido a nuestra página</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur malesuada augue nec nisi interdum, sit amet lacinia felis tristique. Fusce ac sem vel velit hendrerit feugiat sit amet ac elit. Sed porttitor est ac enim suscipit, id interdum odio tempor. Etiam malesuada feugiat nisl, a pharetra enim dapibus ac. Nam pharetra leo non dui gravida, at eleifend tortor mollis.</p>
+    <p>Phasellus ullamcorper elit vitae nulla vehicula, nec mollis purus fermentum. Integer volutpat, lorem ac volutpat facilisis, lorem ante bibendum purus, ac egestas elit erat a velit.</p>
+
+    <!-- Botón para comprobar la interacción -->
+    <button id="test-button" class="cookie-button">Botón de prueba</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      if (!localStorage.getItem('cookies-accepted')) {
+
+        document.getElementById('cookie-consent-banner').style.display = 'flex';
+
+        document.getElementById('main-content').style.pointerEvents = 'none';
+      } else {
+
+        document.getElementById('main-content').style.pointerEvents = 'auto';
+      }
+
+      
+      document.getElementById('accept-cookies').addEventListener('click', function() {
+  
+        localStorage.setItem('cookies-accepted', 'true');
+  
+        document.getElementById('cookie-consent-banner').style.display = 'none';
+
+        document.getElementById('main-content').style.pointerEvents = 'auto';
+      });
+
+
+      document.getElementById('reject-cookies').addEventListener('click', function() {
+
+        localStorage.setItem('cookies-accepted', 'false');
+
+        document.getElementById('cookie-consent-banner').style.display = 'none';
+
+        document.getElementById('main-content').style.pointerEvents = 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>

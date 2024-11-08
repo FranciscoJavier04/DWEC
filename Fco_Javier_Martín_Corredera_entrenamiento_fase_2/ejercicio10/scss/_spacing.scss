@@ -1,0 +1,18 @@
+// _spacing.scss
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+
+body {
+    margin: $spacing-xs;
+}
+
+.navbar, .container, .card {
+    margin-bottom: $spacing-sm;
+}
+
+@media (max-width: 767px) {
+    .container, .card {
+        margin-bottom: $spacing-xs;
+    }
+}

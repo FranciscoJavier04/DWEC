@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -10,121 +10,130 @@
 <body>
     <script>
         class Pelicula {
-  static generosAceptados = [
-    "Action", "Adult", "Adventure", "Animation", "Biography", "Comedy",
-    "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film Noir",
-    "Game-Show", "History", "Horror", "Musical", "Music", "Mystery",
-    "News", "Reality-TV", "Romance", "Sci-Fi", "Short", "Sport",
-    "Talk-Show", "Thriller", "War", "Western"
-  ];
+            static generosAceptados = [
+                "Action", "Adult", "Adventure", "Animation", "Biography", "Comedy",
+                "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film Noir",
+                "Game-Show", "History", "Horror", "Musical", "Music", "Mystery",
+                "News", "Reality-TV", "Romance", "Sci-Fi", "Short", "Sport",
+                "Talk-Show", "Thriller", "War", "Western"
+            ];
 
-  constructor(id, titulo, director, anio, pais, genero, calificacion) {
-    // Validaciones
-    if (!Pelicula.validarID(id)) throw new Error("ID inválido. Debe tener 9 caracteres, los primeros 2 letras y los 7 restantes números.");
-    if (!Pelicula.validarTitulo(titulo)) throw new Error("Título inválido. No debe superar los 100 caracteres.");
-    if (!Pelicula.validarAnio(anio)) throw new Error("Año inválido. Debe ser un número entero de 4 dígitos.");
-    if (!Pelicula.validarArray(pais)) throw new Error("País inválido. Debe ser un array.");
-    if (!Pelicula.validarGenero(genero)) throw new Error("Género inválido. Debe estar en la lista de géneros aceptados.");
-    if (!Pelicula.validarCalificacion(calificacion)) throw new Error("Calificación inválida. Debe ser un número entre 0 y 10.");
+            constructor(id, titulo, director, anio, pais, genero, calificacion) {
+                if (!Pelicula.revisarID(id)) {
+                    throw new Error("ID inválido. Debe tener 9 caracteres, con 2 letras al inicio y luego 7 números.");
+                }
+                if (!Pelicula.revisarTitulo(titulo)) {
+                    throw new Error("Título inválido. No debe pasar de 100 caracteres.");
+                }
+                if (!Pelicula.revisarAnio(anio)) {
+                    throw new Error("Año inválido. Debe ser un número de 4 dígitos.");
+                }
+                if (!Pelicula.revisarArray(pais)) {
+                    throw new Error("País inválido. Debe ser un arreglo.");
+                }
+                if (!Pelicula.revisarGenero(genero)) {
+                    throw new Error("Género inválido. Debe estar en la lista de géneros permitidos.");
+                }
+                if (!Pelicula.revisarCalificacion(calificacion)) {
+                    throw new Error("Calificación inválida. Debe ser un número entre 0 y 10.");
+                }
 
-    this.id = id;
-    this.titulo = titulo;
-    this.director = director;
-    this.anio = anio;
-    this.pais = pais;
-    this.genero = genero;
-    this.calificacion = calificacion;
-  }
+                this.id = id;
+                this.titulo = titulo;
+                this.director = director;
+                this.anio = anio;
+                this.pais = pais;
+                this.genero = genero;
+                this.calificacion = calificacion;
+            }
 
-  static validarID(id) {
-    return /^[A-Za-z]{2}\d{7}$/.test(id);
-  }
+            static revisarID(id) {
+                return /^[A-Za-z]{2}\d{7}$/.test(id);
+            }
 
-  static validarTitulo(titulo) {
-    return titulo.length <= 100;
-  }
+            static revisarTitulo(titulo) {
+                return titulo.length <= 100;
+            }
 
-  static validarAnio(anio) {
-    return /^\d{4}$/.test(anio);
-  }
+            static revisarAnio(anio) {
+                return /^\d{4}$/.test(anio);
+            }
 
-  static validarArray(arr) {
-    return Array.isArray(arr);
-  }
+            static revisarArray(arr) {
+                return Array.isArray(arr);
+            }
 
-  static validarGenero(generos) {
-    if (!Array.isArray(generos)) return false;
-    return generos.every(gen => Pelicula.generosAceptados.includes(gen));
-  }
+            static revisarGenero(generos) {
+                if (!Array.isArray(generos)) return false;
+                return generos.every(gen => Pelicula.generosAceptados.includes(gen));
+            }
 
-  static validarCalificacion(calificacion) {
-    return typeof calificacion === "number" && calificacion >= 0 && calificacion <= 10;
-  }
+            static revisarCalificacion(calificacion) {
+                return typeof calificacion === "number" && calificacion >= 0 && calificacion <= 10;
+            }
 
-  static generosPermitidos() {
-    return Pelicula.generosAceptados;
-  }
+            static mostrarGeneros() {
+                return Pelicula.generosAceptados;
+            }
 
-  fichaTecnica() {
-    return `
-      Título: ${this.titulo}
-      Director: ${this.director}
-      Año: ${this.anio}
-      País: ${this.pais.join(", ")}
-      Géneros: ${this.genero.join(", ")}
-      Calificación: ${this.calificacion}
-    `;
-  }
-}
+            fichaPelicula() {
+                return `
+                    Título: ${this.titulo}
+                    Director: ${this.director}
+                    Año: ${this.anio}
+                    País: ${this.pais.join(", ")}
+                    Géneros: ${this.genero.join(", ")}
+                    Calificación: ${this.calificacion}
+                `;
+            }
+        }
 
-const peliculasData = [
-  {
-    id: "AA1234567",
-    titulo: "Indiana Jones y la ultima cruzada",
-    director: "Spilberg",
-    anio: 1989,
-    pais: ["USA"],
-    genero: ["Action", "Adventure"],
-    calificacion: 8.8
-  },
-  {
-    id: "BB2345678",
-    titulo: "Parasite",
-    director: "Bong Joon-ho",
-    anio: 2019,
-    pais: ["South Korea"],
-    genero: ["Drama", "Thriller"],
-    calificacion: 8.6
-  },
-  {
-    id: "CC3456789",
-    titulo: "The Godfather",
-    director: "Francis Ford Coppola",
-    anio: 1972,
-    pais: ["USA"],
-    genero: ["Crime", "Drama"],
-    calificacion: 9.2
-  }
-];
+        const datosPeliculas = [
+            {
+                id: "AA1234567",
+                titulo: "Indiana Jones y la ultima cruzada",
+                director: "Spilberg",
+                anio: 1989,
+                pais: ["USA"],
+                genero: ["Action", "Adventure"],
+                calificacion: 8.8
+            },
+            {
+                id: "BB8765432",
+                titulo: "Joker",
+                director: "Todd Phillips",
+                anio: 2019,
+                pais: ["USA"],
+                genero: ["Drama", "Thriller"],
+                calificacion: 8.6
+            },
+            {
+                id: "CC3456789",
+                titulo: "Fast and furious 5",
+                director: "Vin Diesel",
+                anio: 2010,
+                pais: ["USA"],
+                genero: ["Crime", "Action"],
+                calificacion: 9.2
+            }
+        ];
 
-// Crear instancias y mostrar ficha técnica
-peliculasData.forEach(data => {
-  try {
-    const pelicula = new Pelicula(
-      data.id,
-      data.titulo,
-      data.director,
-      data.anio,
-      data.pais,
-      data.genero,
-      data.calificacion
-    );
-    console.log(pelicula.fichaTecnica());
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
+        datosPeliculas.forEach(data => {
+            try {
+                const pelicula = new Pelicula(
+                    data.id,
+                    data.titulo,
+                    data.director,
+                    data.anio,
+                    data.pais,
+                    data.genero,
+                    data.calificacion
+                );
+                console.log(pelicula.fichaPelicula());
+            } catch (error) {
+                console.error(error.message);
+            }
+        });
     </script>
 </body>
 

@@ -1,0 +1,26 @@
+// _navbar.scss
+.navbar {
+    img {
+        height: 120px;
+    }
+    background-color: $primary;
+    .navbar-toggler-icon {
+        background-color: $secondary;
+    }
+
+    .navbar-nav .nav-link {
+        color: $light;
+        &:hover {
+            color: $dark;
+        }
+    }
+
+    @media (max-width: 767px) {
+        background-color: $secondary;
+        .navbar-nav .nav-link {
+            color: $light;
+        }
+    }
+}
+
+

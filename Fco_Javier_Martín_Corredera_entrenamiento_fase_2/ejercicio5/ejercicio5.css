@@ -1,0 +1,51 @@
+/* Estilos del cartel de cookies */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cookie-banner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cookie-button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .cookie-button:hover {
+    background-color: #45a049;
+  }
+  
+  .cookie-button:focus {
+    outline: none;
+  }
+  
+  
+  .main-content {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  
+  .main-content[style*="pointer-events: none"] {
+    opacity: 0.5;
+  }
+  
