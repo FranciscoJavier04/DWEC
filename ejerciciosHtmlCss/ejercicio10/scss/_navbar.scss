@@ -1,14 +1,26 @@
-// Logotipo con altura fija
-.navbar-brand img {
-    height: 120px;
-}
+// _navbar.scss
+.navbar {
+    img {
+        height: 120px;
+    }
+    background-color: $primary;
+    .navbar-toggler-icon {
+        background-color: $secondary;
+    }
 
-// Ajustes de color en dispositivos pequeños y medianos
-@media (max-width: 768px) {
-    .navbar {
-        background-color: $dark;
-        .nav-link {
-            color: $light !important;
+    .navbar-nav .nav-link {
+        color: $light;
+        &:hover {
+            color: $dark;
+        }
+    }
+
+    @media (max-width: 767px) {
+        background-color: $secondary;
+        .navbar-nav .nav-link {
+            color: $light;
         }
     }
 }
+
+

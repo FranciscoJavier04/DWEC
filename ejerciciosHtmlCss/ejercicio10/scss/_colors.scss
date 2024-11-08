@@ -1,16 +1,9 @@
-// Variables de color personalizadas
-$color-azul-claro: #68A8B0;
-$color-rojo: #DE5047;
-$color-gris-oscuro: #444850;
-$color-gris-medio: #777D79;
-$color-verde: #62A887;
-
-// Asignación de colores a las variables de Bootstrap
-$primary: $color-azul-claro;
-$secondary: $color-gris-oscuro;
-$success: $color-verde;
-$info: $color-gris-medio;
-$warning: #F0A500;  // Color ejemplo de advertencia
-$danger: $color-rojo;
-$light: #F8F9FA;     // Color claro
-$dark: #212529;      // Color oscuro
+// _colors.scss
+$primary: #68A8B0;
+$secondary: #DE5047;
+$success: #62A887;
+$info: #444850;
+$warning: #777D79;
+$danger: #FF0000; 
+$light: #F0F0F0;
+$dark: #333333;

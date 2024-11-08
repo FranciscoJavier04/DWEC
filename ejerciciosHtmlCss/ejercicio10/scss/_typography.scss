@@ -1,22 +1,18 @@
-// Variables de fuentes
-$font-main: 'Arial', sans-serif;
-$font-secondary: 'Georgia', serif;
+// _typography.scss
+$font-primary: 'Arial', sans-serif;
+$font-secondary: 'Helvetica', sans-serif;
 
-// Aplicación de fuentes
 body {
-    font-family: $font-main;
+    font-family: $font-primary;
+    font-size: 16px;
 }
 
-.navbar, .card-title {
+h5.card-title, .navbar-nav .nav-link {
     font-family: $font-secondary;
 }
 
-// Tamaños de fuente para dispositivos pequeños y medianos
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     body {
-        font-size: 0.9rem;
-    }
-    .navbar, .card-title {
-        font-size: 1rem;
+        font-size: 14px;  // Disminuir tamaño en dispositivos pequeños
     }
 }

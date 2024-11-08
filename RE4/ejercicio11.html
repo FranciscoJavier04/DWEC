@@ -10,15 +10,15 @@
     // Clase base: Habitacion
 class Habitacion {
     constructor(numero, capacidad, servicios) {
-        this.numero = numero;             // Número de habitación
-        this.capacidad = capacidad;       // Capacidad de personas
-        this.servicios = servicios;       // Número de servicios
+        this.numero = numero;             
+        this.capacidad = capacidad;       
+        this.servicios = servicios;      
     }
 
     // Método para calcular el precio de la habitación
     calcularPrecio() {
-        const precioPorPersona = 24;      // Precio por persona
-        const precioPorServicio = 3;      // Precio por servicio
+        const precioPorPersona = 24;      
+        const precioPorServicio = 3;      
 
         // Calcular el precio total
         const precioTotal = (this.capacidad * precioPorPersona) + (this.servicios * precioPorServicio);
@@ -29,17 +29,17 @@ class Habitacion {
 // Clase derivada: HabitacionHotel
 class HabitacionHotel extends Habitacion {
     constructor(numero, capacidad, servicios, director, categoria, numHabsEstandar, numHabsSuite) {
-        super(numero, capacidad, servicios); // Llamada al constructor de la clase base
-        this.director = director;             // Director del hotel
-        this.categoria = categoria;           // Número de estrellas del hotel
-        this.numHabsEstandar = numHabsEstandar; // Número de habitaciones estándar
-        this.numHabsSuite = numHabsSuite;     // Número de habitaciones suite
+        super(numero, capacidad, servicios); 
+        this.director = director;             
+        this.categoria = categoria;           
+        this.numHabsEstandar = numHabsEstandar; 
+        this.numHabsSuite = numHabsSuite;     
     }
 
     // Método para calcular el precio de la habitación en el hotel
     calcularPrecio() {
-        const precioBase = super.calcularPrecio(); // Llama al método de la clase base
-        const incrementoPorCategoria = (this.categoria - 1) * 0.05; // Incremento del 5% por estrella
+        const precioBase = super.calcularPrecio(); 
+        const incrementoPorCategoria = (this.categoria - 1) * 0.05; 
 
         // Calcular el precio total considerando el incremento por categoría
         const precioFinal = precioBase * (1 + incrementoPorCategoria);

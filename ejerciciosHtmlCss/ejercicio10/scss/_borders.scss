@@ -1,11 +1,13 @@
-// Bordes redondeados para dispositivos grandes
-@media (min-width: 992px) {
-    $enable-rounded: true;
-    $border-radius: 0.5rem;
+// _borders.scss
+$border-radius-lg: 0.375rem;  // Borde redondeado en pantallas grandes
+$border-radius-sm: 0;  // Borde cuadrado en pantallas pequeñas
+
+* {
+    border-radius: $border-radius-sm;  // Por defecto borde cuadrado
 }
 
-// Bordes cuadrados para dispositivos medianos y pequeños
-@media (max-width: 991.98px) {
-    $enable-rounded: false;
-    $border-radius: 0;
+@media (min-width: 992px) {
+    * {
+        border-radius: $border-radius-lg;  // Borde redondeado en pantallas grandes
+    }
 }
