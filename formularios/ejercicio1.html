@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Validación</title>
+    <script>
+        function validarFormulario(event) {
+            event.preventDefault(); // Evita el envío del formulario si hay errores
+            const nombre = document.getElementById('nombre').value.trim();
+            const sexo = document.querySelector('input[name="sexo"]:checked');
+
+            let errores = '';
+
+            if (nombre === '') {
+                errores += 'El campo de nombre no puede estar vacío.\n';
+            }
+
+            if (!sexo) {
+                errores += 'Debe seleccionar un sexo.\n';
+            }
+
+            if (errores) {
+                alert(errores);
+            } else {
+                alert('Formulario enviado correctamente.');
+                document.getElementById('formulario').submit(); // Enviar formulario si no hay errores
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Formulario de Validación</h1>
+    <form id="formulario" onsubmit="validarFormulario(event)">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br><br>
+
+        <label>Sexo:</label><br>
+        <input type="radio" id="hombre" name="sexo" value="hombre">
+        <label for="hombre">Hombre</label><br>
+        <input type="radio" id="mujer" name="sexo" value="mujer">
+        <label for="mujer">Mujer</label><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Textarea con Límite</title>
+    <script>
+        function actualizarContador(event) {
+            const textarea = document.getElementById('textarea');
+            const contador = document.getElementById('contador');
+            const maxCaracteres = 100;
+
+            const texto = textarea.value;
+            const longitud = texto.length;
+
+            if (longitud >= maxCaracteres && event.keyCode !== 8 && event.keyCode !== 46 && 
+                event.keyCode !== 37 && event.keyCode !== 39) {
+                event.preventDefault();
+            }
+
+            contador.textContent = `Caracteres escritos: ${longitud} / ${maxCaracteres}`;
+        }
+
+        function limitarEntrada(event) {
+            const textarea = document.getElementById('textarea');
+            const maxCaracteres = 100;
+
+            if (textarea.value.length >= maxCaracteres && 
+                event.keyCode !== 8 && event.keyCode !== 46 && 
+                event.keyCode !== 37 && event.keyCode !== 39) {
+                event.preventDefault();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Textarea con Límite de Caracteres</h1>
+    <textarea id="textarea" rows="5" cols="50" onkeypress="limitarEntrada(event)" onkeyup="actualizarContador(event)"></textarea>
+    <p id="contador">Caracteres escritos: 0 / 100</p>
+</body>
+</html>
