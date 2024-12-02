@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Salario Final</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        label {
+            margin-bottom: 10px;
+            display: block;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #resultado {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Calculadora de Salario Final</h1>
+    
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" placeholder="Introduce tu nombre">
+    
+    <label for="edad">Edad:</label>
+    <input type="number" id="edad" placeholder="Introduce tu edad">
+    
+    <label for="salario">Salario Base (€):</label>
+    <input type="number" id="salario" placeholder="Introduce tu salario base">
+    
+    <button onclick="calcularSalario()">Calcular Salario Final</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function calcularSalario() {
+            // Obtener los valores de los campos
+            const nombre = document.getElementById("nombre").value;
+            const edad = parseInt(document.getElementById("edad").value);
+            const salarioBase = parseFloat(document.getElementById("salario").value);
+            
+            let salarioFinal = salarioBase;
+            
+            // Calcular el salario final según las reglas
+            if (salarioBase > 2000) {
+                salarioFinal = salarioBase; // No se hace ningún ajuste
+            } else if (salarioBase >= 1000 && salarioBase <= 2000) {
+                if (edad > 50) {
+                    salarioFinal = salarioBase * 1.10; // Incremento del 10%
+                } else {
+                    salarioFinal = salarioBase * 1.05; // Incremento del 5%
+                }
+            } else if (salarioBase < 1000) {
+                if (edad > 60) {
+                    salarioFinal = salarioBase * 1.20; // Incremento del 20%
+                } else if (edad >= 50 && edad <= 60) {
+                    salarioFinal = salarioBase * 1.15; // Incremento del 15%
+                } else {
+                    salarioFinal = salarioBase * 1.075; // Incremento del 7.5%
+                }
+            }
+
+            // Mostrar el resultado
+            const resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerHTML = `
+                <h3>Resultado para ${nombre}:</h3>
+                <p>Salario Base: €${salarioBase.toFixed(2)}</p>
+                <p>Salario Final: €${salarioFinal.toFixed(2)}</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>
