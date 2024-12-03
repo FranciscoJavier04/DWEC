@@ -1,0 +1,38 @@
+</head>
+<style>
+    div{
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+    }
+    .rojo{
+        background-color: red;
+    }
+    .verde{
+        background-color: green;
+    }
+    .yellow{
+        background-color: yellow;
+    }
+    .gray{
+        background-color: gray;
+    }
+</style>
+<body>
+    <h1>Evento "onMouseEnter" "onmouseOut y fondos"</h1>
+    <div id="dRojo" class="rojo"></div>
+    <div id="dVerde" class="verde"></div>
+    <div id="dAmarillo" class="yellow"></div>
+    <div id="dGris" class="gray"></div>
+    <script>
+        document.getElementById("dRojo").onmouseenter=function(){document.body.style.backgroundColor="red"};
+        document.getElementById("dRojo").onmouseout=function(){document.body.style.backgroundColor="white"};
+        document.getElementById("dVerde").onmouseenter=function(){document.body.style.backgroundColor="green"};
+        document.getElementById("dVerde").onmouseout=function(){document.body.style.backgroundColor="white"};
+        document.getElementById("dAmarillo").onmouseenter=function(){document.body.style.backgroundColor="yellow"};
+        document.getElementById("dAmarillo").onmouseout=function(){document.body.style.backgroundColor="white"};
+        document.getElementById("dGris").onmouseenter=function(){document.body.style.backgroundColor="gray"};
+        document.getElementById("cGris").onmouseout=function(){document.body.style.backgroundColor="white"};
+    </script>
+</body>
+</html>
