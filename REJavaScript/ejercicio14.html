@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesador de Texto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .salida {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .salida p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Procesador de Texto</h1>
+    <p>Introduce un texto en el cuadro de abajo y pulsa el botón para procesarlo:</p>
+    <textarea id="textoInput" placeholder="Escribe tu texto aquí..."></textarea>
+    <button onclick="procesarTexto()">Procesar Texto</button>
+
+    <div class="salida" id="salida"></div>
+
+    <script>
+        function procesarTexto() {
+            const texto = document.getElementById("textoInput").value.trim();
+            const salidaDiv = document.getElementById("salida");
+
+            if (!texto) {
+                salidaDiv.innerHTML = "<p>Por favor, introduce un texto para procesar.</p>";
+                return;
+            }
+
+            // Dividir el texto en palabras
+            const palabras = texto.split(/\s+/);
+            const numeroDePalabras = palabras.length;
+            const primeraPalabra = palabras[0];
+            const ultimaPalabra = palabras[palabras.length - 1];
+            const palabrasReversas = palabras.map(palabra => palabra.split('').reverse().join(''));
+            const palabrasOrdenadas = [...palabras].sort((a, b) => a.localeCompare(b, 'es'));
+            const palabrasOrdenadasInversas = [...palabrasOrdenadas].reverse();
+
+            // Mostrar resultados
+            salidaDiv.innerHTML = `
+                <p><strong>Número de palabras:</strong> ${numeroDePalabras}</p>
+                <p><strong>Primera palabra:</strong> ${primeraPalabra}</p>
+                <p><strong>Última palabra:</strong> ${ultimaPalabra}</p>
+                <p><strong>Palabras al revés:</strong> ${palabrasReversas.join(', ')}</p>
+                <p><strong>Palabras ordenadas alfabéticamente:</strong> ${palabrasOrdenadas.join(', ')}</p>
+                <p><strong>Palabras en orden inverso alfabético:</strong> ${palabrasOrdenadasInversas.join(', ')}</p>
+            `;
+        }
+    </script>
+</body>
+
+</html>

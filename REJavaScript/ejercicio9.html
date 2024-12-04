@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Conversor de distancia y peso</h1>
+    KM:<input type="text" id="CKm" onfocus="limpiar('CM')"></input>
+    <button type="submit" id="BCD" onclick="distancia()">Convertir distancia</button>
+    Metros:<input type="text" id="CM" onfocus="limpiar('CKm')"></input><br>
+    <hr>
+    KG:<input type="text" id="CKG" onfocus="limpiar('CG')"></input>
+    <button type="submit" id="BCP" onclick="peso()">Convertir peso</button>
+    Gramos:<input type="text" id="CG" onfocus="limpiar('CKG')"></input><br>
+</body>
+<script>
+    function distancia() {
+        let kmC = document.getElementById("CKm");
+        let mC = document.getElementById("CM");
+
+        if (kmC.value) {
+            const km = parseFloat(kmC.value);
+            if (isNaN(km)) {
+                alert("Introduce un número válido");
+                return;
+            }
+            mC.value = (km * 1000);
+        }
+        else if (mC.value) {
+            const m = parseFloat(mC.value);
+            if (isNaN(m)) {
+                alert("Introduce un número válido");
+            }
+            kmC.value = (m / 1000);
+        }
+    }
+    function peso() {
+
+        let kgC = document.getElementById("CKG");
+        let gC = document.getElementById("CG");
+
+        if (kgC.value) {
+            const kg = parseFloat(kgC.value);
+            if (isNaN(kg)) {
+                alert("Introduce un número válido");
+            }
+            gC.value = (kg * 1000);
+        }
+        else if (gC.value) {
+            const g = parseFloat(gC.value);
+            if (isNaN(g)) {
+                alert("Introduce un número válido");
+            }
+            kgC.value = (g / 1000);
+        }
+    }
+    function limpiar(id) {
+        document.getElementById(id).value = '';
+    }
+</script>
+
+</html>

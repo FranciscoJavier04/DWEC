@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Velocidad</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center; 
+            background-color: #333; 
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .velocidad {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .instructions {
+            font-size: 18px;
+            color: #bbb; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="velocidad" id="velocidad">Velocidad 0</div>
+
+        <div class="instructions">Usa las teclas de flecha arriba y abajo para cambiar la velocidad.</div>
+    </div>
+
+    <script>
+
+        let velocidad = 0;
+
+
+        function actualizarVelocidad() {
+            document.getElementById("velocidad").textContent = `Velocidad ${velocidad}`;
+        }
+
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "ArrowUp") {
+
+                if (velocidad < 100) {
+                    velocidad++;
+                    actualizarVelocidad(); 
+                }
+            } else if (event.key === "ArrowDown") {
+
+                if (velocidad > 0) {
+                    velocidad--;
+                    actualizarVelocidad(); 
+                }
+            }
+        });
+
+
+        actualizarVelocidad();
+    </script>
+
+</body>
+</html>

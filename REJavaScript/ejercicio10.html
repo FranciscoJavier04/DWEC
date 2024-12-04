@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Párrafos</title>
+</head>
+<style>
+    p {
+        display: none;
+        margin: 10px 0;
+    }
+</style>
+
+<body>
+    <h1>Mostrar Párrafos uno a uno</h1>
+
+    <p class="P1" id="P1">Primer Párrafo</p>
+    <p class="P2" id="P2">Segundo Párrafo</p>
+    <p class="P3" id="P3">Tercer Párrafo</p>
+    <p class="P4" id="P4">Cuarto Párrafo</p>
+    <p class="P5" id="P5">Quinto Párrafo</p>
+    <p class="P6" id="P6">Sexto Párrafo</p>
+    <p class="P7" id="P7">Séptimo Párrafo</p>
+    <p class="P8" id="P8">Octavo Párrafo</p>
+    <p class="P9" id="P9">Noveno Párrafo</p>
+    <p class="P10" id="P10">Décimo Párrafo</p>
+
+    <button id="mParrafo" onclick="mostrarParrafo()">Mostrar Siguiente Párrafo</button>
+
+    <script>
+        let parrafoActual = 1;
+
+        function mostrarParrafo() {
+
+            const parrafo = document.getElementById(`P${parrafoActual}`);
+
+            if (parrafo) {
+                parrafo.style.display = "block";
+                parrafoActual++;
+            } else {
+                document.getElementById("mParrafo").disabled = true;
+                alert("Ya no hay más párrafos.");
+            }
+        }
+    </script>
+</body>
+
+</html>

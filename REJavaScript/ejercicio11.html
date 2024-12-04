@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Párrafos con Hover</title>
+    <style>
+        p {
+            cursor: pointer;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Párrafos interactivos</h1>
+
+    <p id="p1" onmouseover="mostrarCompleto(1)" onmouseout="mostrarPrimeraPalabra(1)">Este es el primer párrafo.</p>
+    <p id="p2" onmouseover="mostrarCompleto(2)" onmouseout="mostrarPrimeraPalabra(2)">El segundo párrafo es interesante.</p>
+    <p id="p3" onmouseover="mostrarCompleto(3)" onmouseout="mostrarPrimeraPalabra(3)">Aquí está el tercer párrafo.</p>
+    <p id="p4" onmouseover="mostrarCompleto(4)" onmouseout="mostrarPrimeraPalabra(4)">Cuarto párrafo con algo de texto.</p>
+    <p id="p5" onmouseover="mostrarCompleto(5)" onmouseout="mostrarPrimeraPalabra(5)">Quinto párrafo para probar.</p>
+    <p id="p6" onmouseover="mostrarCompleto(6)" onmouseout="mostrarPrimeraPalabra(6)">Este es el sexto párrafo.</p>
+    <p id="p7" onmouseover="mostrarCompleto(7)" onmouseout="mostrarPrimeraPalabra(7)">Séptimo párrafo por aquí.</p>
+    <p id="p8" onmouseover="mostrarCompleto(8)" onmouseout="mostrarPrimeraPalabra(8)">Octavo párrafo disponible.</p>
+    <p id="p9" onmouseover="mostrarCompleto(9)" onmouseout="mostrarPrimeraPalabra(9)">Noveno párrafo interesante.</p>
+    <p id="p10" onmouseover="mostrarCompleto(10)" onmouseout="mostrarPrimeraPalabra(10)">Décimo párrafo al final.</p>
+
+    <script>
+        const parrafosOriginales = {
+            1: "Este es el primer párrafo.",
+            2: "El segundo párrafo es interesante.",
+            3: "Aquí está el tercer párrafo.",
+            4: "Cuarto párrafo con algo de texto.",
+            5: "Quinto párrafo para probar.",
+            6: "Este es el sexto párrafo.",
+            7: "Séptimo párrafo por aquí.",
+            8: "Octavo párrafo disponible.",
+            9: "Noveno párrafo interesante.",
+            10: "Décimo párrafo al final."
+        };
+
+        function mostrarCompleto(id) {
+            const parrafo = document.getElementById(`p${id}`);
+            parrafo.textContent = parrafosOriginales[id];
+        }
+
+
+        function mostrarPrimeraPalabra(id) {
+            const parrafo = document.getElementById(`p${id}`);
+            const primeraPalabra = parrafosOriginales[id].split(' ')[0];
+            parrafo.textContent = primeraPalabra + "...";
+        }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            for (let id in parrafosOriginales) {
+                mostrarPrimeraPalabra(id);
+            }
+        });
+    </script>
+</body>
+
+</html>
