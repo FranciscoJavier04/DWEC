@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo Punto</title>
+</head>
+<body>
+    <h1>Prueba de la clase Punto</h1>
+    <script>
+        class Punto {
+            constructor(x, y) {
+
+                this.x = x;
+                this.y = y;
+            }
+
+            cambiar(nuevoX, nuevoY) {
+                this.x = nuevoX;
+                this.y = nuevoY;
+            }
+
+
+            iguales(otroPunto) {
+                return this.x === otroPunto.x && this.y === otroPunto.y;
+            }
+
+  
+            sumar(otroPunto) {
+                return new Punto(this.x + otroPunto.x, this.y + otroPunto.y);
+            }
+
+
+            distancia(otroPunto) {
+                return Math.sqrt(
+                    Math.pow(otroPunto.x - this.x, 2) + Math.pow(otroPunto.y - this.y, 2)
+                );
+            }
+        }
+
+
+        const punto1 = new Punto(2, 3);
+        const punto2 = new Punto(5, 7);
+
+
+        punto1.cambiar(4, 6);
+        console.log(`Punto1 cambiado: (${punto1.x}, ${punto1.y})`);
+
+
+        console.log(`Son iguales: ${punto1.iguales(punto2)}`);
+
+
+        const punto3 = punto1.sumar(punto2);
+        console.log(`Suma de puntos: (${punto3.x}, ${punto3.y})`);
+
+        console.log(`Distancia entre puntos: ${punto1.distancia(punto2)}`);
+    </script>
+</body>
+</html>

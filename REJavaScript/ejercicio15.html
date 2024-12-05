@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCM y MCD</title>
+</head>
+<body>
+    <h1>Cálculo de MCD y MCM</h1>
+    <p>Abre la consola del navegador para ver los resultados de las funciones `mcd` y `mcm`.</p>
+
+    <script>
+
+        Math.mcd = function(a, b) {
+
+            if (!Number.isInteger(a) || !Number.isInteger(b) || a <= 0 || b <= 0) {
+                throw new Error("Los valores deben ser enteros positivos.");
+            }
+
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        };
+
+
+        Math.mcm = function(a, b) {
+
+            if (!Number.isInteger(a) || !Number.isInteger(b) || a <= 0 || b <= 0) {
+                throw new Error("Los valores deben ser enteros positivos.");
+            }
+
+            return (a * b) / Math.mcd(a, b);
+        };
+
+        console.log("MCD de 24 y 36:", Math.mcd(24, 36)); 
+        console.log("MCM de 24 y 36:", Math.mcm(24, 36));
+    </script>
+</body>
+</html>
