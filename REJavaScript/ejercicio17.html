@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Fracción {
+            constructor(numerador, denominador) {
+                if (denominador === 0) {
+                    throw new Error("El denominador no puede ser cero.");
+                }
+                this.numerador = numerador;
+                this.denominador = denominador;
+            }
+
+            getNumerador() {
+                return this.numerador;
+            }
+
+            getDenominador() {
+                return this.denominador;
+            }
+
+            setNumerador(nuevoNumerador) {
+                this.numerador = nuevoNumerador;
+            }
+
+            setDenominador(nuevoDenominador) {
+                if (nuevoDenominador === 0) {
+                    throw new Error("El denominador no puede ser cero.");
+                }
+                this.denominador = nuevoDenominador;
+            }
+
+
+            imprimirFracción() {
+                return `${this.numerador}/${this.denominador}`;
+            }
+
+
+            simplificar() {
+                const mcd = (a, b) => (b === 0 ? a : mcd(b, a % b));
+                const divisor = mcd(this.numerador, this.denominador);
+                return new Fracción(this.numerador / divisor, this.denominador / divisor);
+            }
+
+
+            multiplicarF(otraFracción) {
+                const nuevoNumerador = this.numerador * otraFracción.getNumerador();
+                const nuevoDenominador = this.denominador * otraFracción.getDenominador();
+                const resultado = new Fracción(nuevoNumerador, nuevoDenominador);
+                return resultado.simplificar();
+            }
+
+
+            dividirF(otraFracción) {
+                const nuevoNumerador = this.numerador * otraFracción.getDenominador();
+                const nuevoDenominador = this.denominador * otraFracción.getNumerador();
+                if (nuevoDenominador === 0) {
+                    throw new Error("La división no puede tener un denominador igual a cero.");
+                }
+                const resultado = new Fracción(nuevoNumerador, nuevoDenominador);
+                return resultado.simplificar();
+            }
+        }
+
+
+        const fracción1 = new Fracción(2, 3);
+        const fracción2 = new Fracción(4, 5);
+
+        console.log("Fracción 1:", fracción1.imprimirFracción());
+        console.log("Fracción 2:", fracción2.imprimirFracción());
+
+        const producto = fracción1.multiplicarF(fracción2);
+        console.log("Producto:", producto.imprimirFracción());
+
+        const cociente = fracción1.dividirF(fracción2);
+        console.log("Cociente:", cociente.imprimirFracción());
+
+        const fracciónSimplificada = fracción1.simplificar();
+        console.log("Fracción simplificada:", fracciónSimplificada.imprimirFracción());
+
+    </script>
+</body>
+
+</html>
