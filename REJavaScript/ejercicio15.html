@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>MCD y MCM Calculadora</h1>
+    <p>Introduce dos números</p>
+
+    <input type="number" id="num1">
+    <input type="number" id="num2">
+    <button onclick="calcular()">Calcular</button>
+    <div class="output" id="resultados"></div>
+
+    <script>
+
+        Math.mcd = function (a,b){
+            if (b===0){
+                return a;
+            }
+            return Math.mcd(b, a%b);
+
+        }
+        Math.mcm = function (a, b) {
+            return (a * b) / Math.mcd(a, b);
+        };
+
+        function calcular(){
+            const num1 = parseInt(document.getElementById('num1').value,10);
+            const num2 = parseInt(document.getElementById('num2').value,10);
+            if (isNaN(num1) || isNaN(num2) || num1 <= 0 || num2 <= 0) {
+                resultadosDiv.innerHTML = "<p>Por favor, introduce números válidos mayores que cero.</p>";
+                return;
+            }
+
+            const mcd = Math.mcd(num1, num2);
+            const mcm = Math.mcm(num1, num2);
+
+            resultadosDiv.innerHTML = `
+                <p><strong>Números:</strong> ${num1} y ${num2}</p>
+                <p><strong>MCD (Máximo Común Divisor):</strong> ${mcd}</p>
+                <p><strong>MCM (Mínimo Común Múltiplo):</strong> ${mcm}</p>
+            `;
+        }
+
+1    </script>
+
+</body>
+
+</html>
