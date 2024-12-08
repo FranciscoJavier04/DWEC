@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+    <title>REPARACIONES COMARES</title>
+    <style>
+    input[type=number] {
+        width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Centro de Reparaciones IES Marqués de Comares</h1>
+    <table> 
+    <tr>
+    <td width="800">
+            <h2>Solicutud de Reparación</h2>
+            <form name="formulario1" action="#" method="get">
+                   <label for="apellido1">Apellidos: </label>
+                   <input type="text" name="apellido1" id="apellido1" size="40" maxlength="40">
+                   <label for="nombre1">Nombre: </label>
+                   <input type="text" name="nombre1" id="nombre1">
+                   <br/> <br/>
+                   <label for="telefono">Teléfono: </label>
+                   <input type="text" name="telefono" id="telefono" size="10" maxlength="9">
+                   <label for="numserire">Nº serie equipo: </label>
+                   <input type="text" name="numserie" id="numserie" size="30" maxlength="30">
+                   <br/> <br/>
+                   <label for="clasereparacion">Tipo de reparación: </label>
+                   <input type="radio" name="clasereparacion" value="sobremesa"> Ordenador de sobremesa
+                   <input type="radio" name="clasereparacion" value="portatil"> Ordenador portátil
+                   <input type="radio" name="clasereparacion" value="immpresora"> Impresora
+                   <br/> <br/>
+                      <label for="obtencion1">Antigüedad: </label>
+                   <input type="number" name="antiguedad" id="antiguedad" >
+                   <br/> <br/>
+                   <label for="select1">Tipo avería: </label>
+                   <select name="tipoaveria" id="tipoaveria">
+                   <option>hardware</option>
+                   <option>software</option>
+                   </select>
+                   <br/> <br/>
+                   <label for="sintomas">Síntoms avería: </label><br>
+                   <input type="checkbox" name="nohacenada" value="nohacenada" id="nohacenada"> No hace nada<br>
+                   <input type="checkbox" name="pitaynoenciende" value="pitaynoenciende" id="pitaynoenciende"> Pita y no enciende<br>
+                   <input type="checkbox" name="arrancayseapaga" value="arrancayseapaga" id="arrancayseapaga"> Arranca pero al rato se apaga<br>
+                   <input type="checkbox" name="novasistemaoperativo" value="novasistemaoperativo" id="novasistemaoperativo"> El sistema operativo no llega a arrancar<br>
+                   <input type="checkbox" name="pantallazoazul" value="pantallazoazul" id="pantallazoazul"> Pantallazo azul<br>
+                   <br/> <br/>
+                   <label for="observaciones1">Observaaciones: </label><br>
+                   <textarea name="observaciones1" id="observaciones1" rows="10" cols="50">Indique si tiene alguna observación que crea importante que debamos conocer...</textarea>
+                   <br/> <br/>
+                   <h2>Datos para próximos accesos:</h2><br>
+                   <label for="Usuario">Usuario</label>
+                   <input type="text" id="usuario"><br>
+                   <label for="Password" >Contraseña:</label>
+                   <input type="password" id="password"><br>
+                   <p></p>
+                   <input type="submit" value="Enviar" id="Enviar1">
+                   <input type="reset" id="Reset1" value="Limpiar">
+                </form>
+    </td>
+    
+   
+    </tr>
+    </table>
+    <script>
+        // a) Mostrar por consola los síntomas de avería seleccionados
+function mostrarSintomasSeleccionados() {
+    const checkboxes = document.querySelectorAll('#nohacenada, #pitaynoenciende, #arrancayseapaga, #novasistemaoperativo, #pantallazoazul');
+    const sintomasSeleccionados = [];
+
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            sintomasSeleccionados.push(checkbox.nextSibling.textContent.trim());
+        }
+    });
+
+    console.log('Síntomas seleccionados:', sintomasSeleccionados);
+}
+
+// b) Permitir texto blanco sobre fondo negro en el área de texto
+document.getElementById('observaciones1').addEventListener('focus', function () {
+    this.style.backgroundColor = 'black';
+    this.style.color = 'white';
+});
+
+document.getElementById('observaciones1').addEventListener('blur', function () {
+    this.style.backgroundColor = '';
+    this.style.color = '';
+});
+
+// c) Agregar campos de marca y modelo para portátiles
+const reparacionRadios = document.querySelectorAll('input[name="clasereparacion"]');
+reparacionRadios.forEach(radio => {
+    radio.addEventListener('change', function () {
+        const tipoReparacion = this.value;
+        const antiguedadLabel = document.querySelector('label[for="antiguedad"]');
+
+        // Remover campos existentes
+        const camposAdicionales = document.getElementById('campos-adicionales');
+        if (camposAdicionales) camposAdicionales.remove();
+
+        if (tipoReparacion === 'portatil') {
+            const container = document.createElement('div');
+            container.id = 'campos-adicionales';
+
+            const labelMarca = document.createElement('label');
+            labelMarca.textContent = 'Marca: ';
+            const inputMarca = document.createElement('input');
+            inputMarca.type = 'text';
+            inputMarca.name = 'marca';
+
+            const labelModelo = document.createElement('label');
+            labelModelo.textContent = ' Modelo: ';
+            const inputModelo = document.createElement('input');
+            inputModelo.type = 'text';
+            inputModelo.name = 'modelo';
+
+            container.appendChild(labelMarca);
+            container.appendChild(inputMarca);
+            container.appendChild(labelModelo);
+            container.appendChild(inputModelo);
+
+            antiguedadLabel.parentNode.insertBefore(container, antiguedadLabel);
+        }
+    });
+});
+
+// d) Validar que los campos obligatorios estén rellenos
+document.getElementById('Enviar1').addEventListener('click', function (event) {
+    const nombre = document.getElementById('nombre1').value.trim();
+    const apellido = document.getElementById('apellido1').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const numSerie = document.getElementById('numserie').value.trim();
+    const tipoReparacion = document.querySelector('input[name="clasereparacion"]:checked');
+    const sintomas = Array.from(document.querySelectorAll('input[type="checkbox"]')).some(checkbox => checkbox.checked);
+
+    if (!nombre || !apellido || !telefono || !numSerie || !tipoReparacion || !sintomas) {
+        event.preventDefault();
+        alert('Por favor, complete todos los campos obligatorios.');
+    }
+});
+
+// e) Validar el formato de la contraseña
+document.getElementById('password').addEventListener('blur', function () {
+    const regex = /^_\d{3}[A-Z][a-z]_$/;
+    const password = this.value;
+
+    if (!regex.test(password)) {
+        alert('La contraseña debe comenzar con un guión bajo, seguido de tres números, una letra mayúscula, una letra minúscula y terminar con otro guión bajo.');
+    }
+});
+
+    </script>
+</body>
+</html>

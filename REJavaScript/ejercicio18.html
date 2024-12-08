@@ -91,8 +91,8 @@
         <div class="form-box">
             <h2>Matriculación en el ciclo de grado superior DAW</h2>
             <form onsubmit="validar()" id="formDaw">
-                <label>Apellidos:<input type="text" id="Dapellidos" required></label>
-                <label>Nombre:<input type="text" id="Dnombre" required></label>
+                <label>Apellidos:<input type="text" id="Dapellidos" pattern="^[^\d]*$" title="No se permiten números" required></label>
+                <label>Nombre:<input type="text" id="Dnombre" pattern="^[^\d]*$" title="No se permiten números" required></label>
                 <label>Domicilio:<input type="text" id="Ddomicilio" required></label>
                 <label>Sexo:</label>
                 <label><input type="radio" id="DHombre" name="sexo" value="Hombre"> Hombre</label>
@@ -129,13 +129,13 @@
         <div class="form-box">
             <h2>Matriculación en el ciclo de grado superior SMR</h2>
             <form onsubmit="validar()" id="formSMR">
-                <label>Apellidos:<input type="text" id="Dapellidos" required></label>
-                <label>Nombre:<input type="text" id="Dnombre" required></label>
-                <label>Domicilio:<input type="text" id="Ddomicilio" required></label>
+                <label>Apellidos:<input type="text" id="SMapellidos" pattern="^[^\d]*$" title="No se permiten números" required></label>
+                <label>Nombre:<input type="text" id="SMnombre" pattern="^[^\d]*$" title="No se permiten números" required></label>
+                <label>Domicilio:<input type="text" id="SMdomicilio" required></label>
                 <label>Sexo:</label>
-                <label><input type="radio" id="DHombre" name="sexo" value="Hombre"> Hombre</label>
-                <label><input type="radio" id="DMujer" name="sexo" value="Mujer"> Mujer</label>
-                <label>Edad:<input type="number" id="Dedad"></label>
+                <label><input type="radio" id="SMHombre" name="sexo" value="Hombre"> Hombre</label>
+                <label><input type="radio" id="SMMujer" name="sexo" value="Mujer"> Mujer</label>
+                <label>Edad:<input type="number" id="SMedad"></label>
                 <label>Curso:
                     <select>
                         <option>1ºSMR</option>
@@ -154,7 +154,7 @@
                 <label><input type="checkbox" name="opcion" value="9"> Sistemas Operativos en Red</label>
                 <label><input type="checkbox" name="opcion" value="10"> Empresa e iniciativa emprendedora</label>
                 <label>Observaciones:
-                    <textarea id="Dobservaciones" placeholder="Indique si tiene alguna observación..."></textarea>
+                    <textarea id="SMobservaciones" placeholder="Indique si tiene alguna observación..."></textarea>
                 </label>
                 <div class="form-actions">
                     <button type="submit">Enviar</button>
@@ -165,22 +165,23 @@
     </div>
     <script>
         function validar() {
-            let esValido=true
+            let esValido = true;
 
             const edad = document.getElementById("Dedad").value;
             if (edad < 16 || edad > 99) {
                 alert("La edad debe ser mayor de 15 años y menor de 100");
-                esValido=false
+                esValido = false;
             }
-            
-            if(!esValido){
+
+            if (!esValido) {
                 event.preventDefault();
             }
         }
+
         function limpiar(id) {
             const formulario = document.getElementById(id);
             formulario.reset();
-    }
+        }
     </script>
 </body>
 

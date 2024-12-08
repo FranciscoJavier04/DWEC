@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        class Carta {
+            static Palo = [
+                'Corazones', 'Diamantes', 'Picas', 'Trébol'
+            ]
+            static Valor = [
+                "as", '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'
+            ]
+
+            // Constructor de la clase Carta
+            constructor(palo, valor) {
+                if (palo < 1 || palo > 4) {
+                    throw new Error('Palo debe estar entre 1 y 4');
+                }
+                if (valor < 1 || valor > 13) {
+                    throw new Error('Valor debe estar entre 1 y 13');
+                }
+
+                this.palo = palo; // Número del palo (1-4)
+                this.valor = valor; // Número del valor (1-13)
+            }
+
+            // Método para obtener el nombre del palo
+            getNombrePalo() {
+                return Carta.Palos[this.palo - 1];
+            }
+
+            // Método para obtener el nombre del valor
+            getNombreValor() {
+                return Carta.Valores[this.valor - 1];
+            }
+
+            // Método para representar la carta como una cadena
+            toString() {
+                return `${this.getNombreValor()} de ${this.getNombrePalo()}`;
+            }
+            nombreCarta() {
+                const nombreValor = Carta.Valores[this.valor - 1];
+                const nombrePalo = Carta.Palos[this.palo - 1];
+                return `${nombreValor} de ${nombrePalo}`;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

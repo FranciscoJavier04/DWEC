@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hundir la Flota</title>
+</head>
+<body>
+    <script>
+        var tablero = Array.from({ length: 10 }, () => Array(10).fill(0));
+
+        function colocarPortaaviones() {
+            colocarBarco(4);
+        }
+
+        function colocarAcorazados() {
+            for (let i = 0; i < 2; i++) {
+                colocarBarco(3);
+            }
+        }
+
+        function colocarDestructores() {
+            for (let i = 0; i < 3; i++) {
+                colocarBarco(2); 
+            }
+        }
+
+        function colocarFragatas() {
+            for (let i = 0; i < 4; i++) {
+                colocarBarco(1);
+            }
+        }
+
+        function colocarBarco(tamano) {
+            let colocado = false;
+
+            while (!colocado) {
+                let fila = Math.floor(Math.random() * 10);
+                let columna = Math.floor(Math.random() * 10);
+                let orientacion = Math.random() > 0.5; 
+
+                if (verificarEspacioLibre(fila, columna, tamano, orientacion)) {
+                    agregarBarcoAlTablero(fila, columna, tamano, orientacion);
+                    colocado = true;
+                }
+            }
+        }
+
+        function verificarEspacioLibre(fila, columna, tamano, orientacion) {
+            if (orientacion) { // Horizontal
+                if (columna + tamano > 10) return false;
+                for (let i = 0; i < tamano; i++) {
+                    if (tablero[fila][columna + i] !== 0) return false;
+                }
+            } else { // Vertical
+                if (fila + tamano > 10) return false;
+                for (let i = 0; i < tamano; i++) {
+                    if (tablero[fila + i][columna] !== 0) return false;
+                }
+            }
+            return true;
+        }
+
+        function agregarBarcoAlTablero(fila, columna, tamano, orientacion) {
+            if (orientacion) { // Horizontal
+                for (let i = 0; i < tamano; i++) {
+                    tablero[fila][columna + i] = tamano;
+                }
+            } else { // Vertical
+                for (let i = 0; i < tamano; i++) {
+                    tablero[fila + i][columna] = tamano;
+                }
+            }
+        }
+
+        function mostrarTablero() {
+            document.write("<table border='1' style='width: 60%; height: 60%; border-collapse: collapse;'>");
+            for (let i = 0; i < tablero.length; i++) {
+                document.write('<tr>');
+                for (let j = 0; j < tablero[i].length; j++) {
+                    let color = 'white';
+                    switch (tablero[i][j]) {
+                        case 1: color = 'purple'; break;
+                        case 2: color = 'yellow'; break;
+                        case 3: color = 'green'; break;
+                        case 4: color = 'blue'; break;
+                    }
+                    document.write(`<td style="background-color: ${color}; text-align: center;">${tablero[i][j]}</td>`);
+                }
+                document.write('</tr>');
+            }
+            document.write('</table>');
+        }
+
+        function inicializarTablero() {
+            colocarPortaaviones();
+            colocarAcorazados();
+            colocarDestructores();
+            colocarFragatas();
+            mostrarTablero();
+        }
+
+        inicializarTablero();
+    </script>
+</body>
+</html>
