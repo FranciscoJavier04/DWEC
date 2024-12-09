@@ -1,58 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Clase Carta</title>
 </head>
 
 <body>
 
     <script>
+        // Definición de la clase Carta
         class Carta {
-            static Palo = [
+            // Atributos estáticos que representan los palos y valores posibles
+            static Palos = [
                 'Corazones', 'Diamantes', 'Picas', 'Trébol'
-            ]
-            static Valor = [
-                "as", '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'
-            ]
+            ];
+            static Valores = [
+                "As", '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'
+            ];
 
-            // Constructor de la clase Carta
+            /**
+             * Constructor de la clase Carta.
+             * @param {number} palo - Índice del palo (1 a 4).
+             * @param {number} valor - Índice del valor (1 a 13).
+             */
             constructor(palo, valor) {
+                // Validar que el índice del palo esté en el rango válido
                 if (palo < 1 || palo > 4) {
                     throw new Error('Palo debe estar entre 1 y 4');
                 }
+                // Validar que el índice del valor esté en el rango válido
                 if (valor < 1 || valor > 13) {
                     throw new Error('Valor debe estar entre 1 y 13');
                 }
 
+                // Asignar los valores al objeto
                 this.palo = palo; // Número del palo (1-4)
                 this.valor = valor; // Número del valor (1-13)
             }
 
-            // Método para obtener el nombre del palo
+            /**
+             * Obtiene el nombre del palo basado en el índice.
+             * @returns {string} Nombre del palo.
+             */
             getNombrePalo() {
-                return Carta.Palos[this.palo - 1];
+                return Carta.Palos[this.palo - 1]; // Convertir índice a nombre
             }
 
-            // Método para obtener el nombre del valor
+            /**
+             * Obtiene el nombre del valor basado en el índice.
+             * @returns {string} Nombre del valor.
+             */
             getNombreValor() {
-                return Carta.Valores[this.valor - 1];
+                return Carta.Valores[this.valor - 1]; // Convertir índice a nombre
             }
 
-            // Método para representar la carta como una cadena
+            /**
+             * Representa la carta como una cadena.
+             * @returns {string} Representación de la carta en formato "Valor de Palo".
+             */
             toString() {
                 return `${this.getNombreValor()} de ${this.getNombrePalo()}`;
             }
-            nombreCarta() {
-                const nombreValor = Carta.Valores[this.valor - 1];
-                const nombrePalo = Carta.Palos[this.palo - 1];
-                return `${nombreValor} de ${nombrePalo}`;
-            }
         }
 
+        // Ejemplo de uso de la clase
+        try {
+            const carta = new Carta(1, 1); // Crear una carta (As de Corazones)
+            console.log(carta.toString()); // Imprime: "As de Corazones"
+
+            const carta2 = new Carta(3, 13); // Crear otra carta (Rey de Picas)
+            console.log(carta2.toString()); // Imprime: "K de Picas"
+        } catch (error) {
+            console.error(error.message); // Maneja errores si los índices son inválidos
+        }
     </script>
+
 </body>
 
 </html>

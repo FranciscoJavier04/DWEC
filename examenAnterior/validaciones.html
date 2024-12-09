@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Validaciones</title>
+    <style>
+        .error { color: red; font-size: 0.9em; }
+        input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+        }
+        .form-container { width: 300px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Formulario de Registro</h2>
+    <form id="registrationForm" action="#" method="POST" onsubmit="return validarFormulario()">
+        <label for="nombre">Nombre Completo:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <span id="errorNombre" class="error"></span>
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required>
+        <span id="errorEmail" class="error"></span>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" required>
+        <span id="errorTelefono" class="error"></span>
+
+        <label for="edad">Edad (mayor de 18):</label>
+        <input type="number" id="edad" name="edad" required>
+        <span id="errorEdad" class="error"></span>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        <span id="errorPassword" class="error"></span>
+
+        <label for="confirmarPassword">Confirmar Contraseña:</label>
+        <input type="password" id="confirmarPassword" name="confirmarPassword" required>
+        <span id="errorConfirmarPassword" class="error"></span>
+
+        <button type="submit">Registrar</button>
+    </form>
+</div>
+
+<script>
+    function validarFormulario() {
+        let esValido = true;
+
+        // Validación de nombre
+        const nombre = document.getElementById("nombre").value;
+        if (nombre === "") {
+            document.getElementById("errorNombre").innerText = "El nombre es obligatorio.";
+            esValido = false;
+        } else {
+            document.getElementById("errorNombre").innerText = "";
+        }
+
+        // Validación de email
+        const email = document.getElementById("email").value;
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!email.match(emailPattern)) {
+            document.getElementById("errorEmail").innerText = "Por favor, ingresa un correo electrónico válido.";
+            esValido = false;
+        } else {
+            document.getElementById("errorEmail").innerText = "";
+        }
+
+        // Validación de teléfono (solo números, 10 dígitos)
+        const telefono = document.getElementById("telefono").value;
+        const telefonoPattern = /^[0-9]{10}$/;
+        if (!telefono.match(telefonoPattern)) {
+            document.getElementById("errorTelefono").innerText = "El teléfono debe tener 10 dígitos numéricos.";
+            esValido = false;
+        } else {
+            document.getElementById("errorTelefono").innerText = "";
+        }
+
+        // Validación de edad (mayor de 18)
+        const edad = document.getElementById("edad").value;
+        if (edad < 18 || edad === "") {
+            document.getElementById("errorEdad").innerText = "Debes ser mayor de 18 años.";
+            esValido = false;
+        } else {
+            document.getElementById("errorEdad").innerText = "";
+        }
+
+        // Validación de contraseña
+        const password = document.getElementById("password").value;
+        if (password.length < 6) {
+            document.getElementById("errorPassword").innerText = "La contraseña debe tener al menos 6 caracteres.";
+            esValido = false;
+        } else {
+            document.getElementById("errorPassword").innerText = "";
+        }
+
+        // Validación de confirmación de contraseña
+        const confirmarPassword = document.getElementById("confirmarPassword").value;
+        if (confirmarPassword !== password) {
+            document.getElementById("errorConfirmarPassword").innerText = "Las contraseñas no coinciden.";
+            esValido = false;
+        } else {
+            document.getElementById("errorConfirmarPassword").innerText = "";
+        }
+
+        return esValido;  // Si alguna validación falla, retorna false para evitar el envío del formulario
+    }
+</script>
+
+</body>
+</html>

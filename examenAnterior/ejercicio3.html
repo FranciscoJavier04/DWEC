@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,16 @@
 </head>
 <body>
     <h1>Generador de Quiniela Aleatoria</h1>
+    <!-- Formulario para introducir el número de dobles -->
     <form id="quinielaForm">
+        <!-- Campo para ingresar el número de dobles entre 0 y 14 -->
         <label for="numDobles">Número de dobles:</label>
         <input type="number" id="numDobles" name="numDobles" min="0" max="14" required>
+        <!-- Botón para enviar el formulario y generar la quiniela -->
         <button type="submit">Generar Quiniela</button>
     </form>
     <br>
+    <!-- Tabla para mostrar los resultados de la quiniela -->
     <table border="1">
         <thead>
             <tr>
@@ -21,55 +25,75 @@
             </tr>
         </thead>
         <tbody id="quinielaTableBody">
+            <!-- Aquí se insertarán las filas dinámicamente -->
         </tbody>
     </table>
 
     <script>
+        /**
+         * Función para generar una quiniela aleatoria con dobles.
+         * @param {number} numDobles - Cantidad de partidos con resultados dobles.
+         * @returns {Array} - Arreglo con los resultados de la quiniela.
+         */
         function quiniela(numDobles) {
+            // Opciones de resultados: 1 (local), X (empate), 2 (visitante)
             const resultados = ["1", "X", "2"];
-            const quiniela = Array(14).fill(null).map(() => resultados[Math.floor(Math.random() * resultados.length)]);
+            // Crear un arreglo de 14 resultados aleatorios
+            const quiniela = Array(14).fill(null).map(() => 
+                resultados[Math.floor(Math.random() * resultados.length)]
+            );
             
-            // Seleccionar aleatoriamente `numDobles` índices únicos para los dobles
+            // Generar índices únicos para aplicar los dobles
             const doblesIndices = new Set();
             while (doblesIndices.size < numDobles) {
-                doblesIndices.add(Math.floor(Math.random() * 14));
+                doblesIndices.add(Math.floor(Math.random() * 14)); // Índices entre 0 y 13
             }
 
-            // Aplicar dobles en los índices seleccionados
+            // Añadir dobles a los índices seleccionados
             doblesIndices.forEach(index => {
+                // Filtrar las opciones que no son iguales al resultado actual
                 const opciones = resultados.filter(res => res !== quiniela[index]);
+                // Seleccionar aleatoriamente una opción para el doble
                 const doble = opciones[Math.floor(Math.random() * opciones.length)];
+                // Combinar el resultado original con el doble
                 quiniela[index] = `${quiniela[index]}/${doble}`;
             });
 
             return quiniela;
         }
 
+        // Manejo del evento de envío del formulario
         document.getElementById("quinielaForm").addEventListener("submit", function (event) {
-            event.preventDefault();
+            event.preventDefault(); // Evitar que el formulario recargue la página
             
+            // Obtener el número de dobles introducido por el usuario
             const numDobles = parseInt(document.getElementById("numDobles").value, 10);
+            // Validar que el número de dobles esté entre 0 y 14
             if (isNaN(numDobles) || numDobles < 0 || numDobles > 14) {
                 alert("Por favor, introduce un número válido de dobles (entre 0 y 14).");
-                return;
+                return; // Detener la ejecución si el número es inválido
             }
 
+            // Generar los resultados de la quiniela con la función quiniela()
             const resultadosQuiniela = quiniela(numDobles);
             const tableBody = document.getElementById("quinielaTableBody");
             
-            // Limpiar la tabla antes de añadir nuevos datos
+            // Limpiar el contenido de la tabla antes de agregar nuevos resultados
             tableBody.innerHTML = "";
 
+            // Agregar cada resultado a la tabla como una nueva fila
             resultadosQuiniela.forEach((resultado, index) => {
-                const row = document.createElement("tr");
-                const partidoCell = document.createElement("td");
-                const resultadoCell = document.createElement("td");
+                const row = document.createElement("tr"); // Crear una fila
+                const partidoCell = document.createElement("td"); // Celda para el partido
+                const resultadoCell = document.createElement("td"); // Celda para el resultado
                 
-                partidoCell.textContent = `Partido ${index + 1}`;
-                resultadoCell.textContent = resultado;
+                partidoCell.textContent = `Partido ${index + 1}`; // Texto: Número del partido
+                resultadoCell.textContent = resultado; // Texto: Resultado del partido
                 
+                // Añadir las celdas a la fila
                 row.appendChild(partidoCell);
                 row.appendChild(resultadoCell);
+                // Añadir la fila a la tabla
                 tableBody.appendChild(row);
             });
         });

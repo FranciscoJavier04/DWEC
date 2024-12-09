@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <title>EJ18 - RC - BSR</title>
+        <style>
+            span {
+                color: red;
+                text-transform: uppercase;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Centro Educativo IES Marqués de Comares</h1>
+            </div>
+            <div class="col-12 col-md-6">
+                <h2 class="text-center">Matriculación en el ciclo de grado superior DAW</h2>
+                <form id="form1">
+                    <fieldset class="p-3">
+                        <div>
+                            <label for="inputApellidosF1" class="form-label">Apellidos</label>
+                            <input type="text" id="inputApellidosF1" class="form-control" required>
+                            <span id="errorApellidosF1"></span>
+                        </div>
+                        <div>
+                            <label for="inputNombreF1" class="form-label">Nombre</label>
+                            <input type="text" id="inputNombreF1" class="form-control" required>
+                            <span id="errorNombreF1"></span>
+                        </div>
+                        <div>
+                            <label for="inputEdadF1" class="form-label">Edad</label>
+                            <input type="number" id="inputEdadF1" class="form-control" required>
+                        </div>
+                        <div>
+                            <label for="inputDomicilioF1" class="form-label">Domicilio</label>
+                            <input type="text" id="inputDomicilioF1" class="form-control" required>
+                            <span id="errorDomicilioF1"></span>
+                        </div>
+                        <div>
+                            <p>Sexo:</p>
+                            <div class="form-check">
+                                <input type="radio" id="radioHombreF1" name="sexo" value="h" class="form-check-input" required>
+                                <label for="radioHombreF1" class="form-check-label">Hombre</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" id="radioMujerF1" name="sexo" value="m" class="form-check-input" required>
+                                <label for="radioMujerF1" class="form-check-label">Mujer</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="curso" class="form-label">Curso</label>
+                            <select name="curso" class="form-select">
+                                <option value="1" selected>1º</option>
+                                <option value="2">2º</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p>Modulos en que se matricula:</p>
+                            <div id="checks1F1">
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkED" name="modulos[]" value="ED" class="form-check-input">
+                                    <label for="checkED" class="form-check-label">Entornos de Desarrollo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkBBDD" name="modulos[]" value="BBDD" class="form-check-input">
+                                    <label for="checkBBDD" class="form-check-label">Bases de Datos</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkPRO" name="modulos[]" value="PRO" class="form-check-input">
+                                    <label for="checkPRO" class="form-check-label">Programación</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkISO" name="modulos[]" value="ISO" class="form-check-input">
+                                    <label for="checkISO" class="form-check-label">Implantación de Sistemas Operativos</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkFOLF1" name="modulos[]" value="FOL" class="form-check-input">
+                                    <label for="checkFOLF1" class="form-check-label">Formación y Orientación Laboral</label>
+                                </div>
+                            </div>
+                            <div id="checks2F1">
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkDWEC" name="modulos[]" value="DWEC" class="form-check-input">
+                                    <label for="checkDWEC" class="form-check-label">Desarrollo Web en Entorno Cliente</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkDWES" name="modulos[]" value="DWES" class="form-check-input">
+                                    <label for="checkDWES" class="form-check-label">Desarrollo Web en Entorno Servidor</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkDAW" name="modulos[]" value="DAW" class="form-check-input">
+                                    <label for="checkDAW" class="form-check-label">Despliegue de Aplicaciones Web</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkDIW" name="modulos[]" value="DIW" class="form-check-input">
+                                    <label for="checkDIW" class="form-check-label">Desarrollo de Interfaces Web</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkEIEF1" name="modulos[]" value="EIE" class="form-check-input">
+                                    <label for="checkEIEF1" class="form-check-label">Empresas e Iniciativa Emprendedora</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="textarea">Observaciones:</label>
+                            <textarea id="textareaF1" class="form-control"></textarea>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-12 col-md-6">
+                <h2 class="text-center">Matriculación en el ciclo de grado medio SMR</h2>
+                <form id="form2">
+                    <fieldset class="p-3">
+                        <div>
+                            <label for="inputApellidosF2" class="form-label">Apellidos</label>
+                            <input type="text" id="inputApellidosF2" class="form-control" required>
+                            <span id="errorApellidosF2"></span>
+                        </div>
+                        <div>
+                            <label for="inputNombreF2" class="form-label">Nombre</label>
+                            <input type="text" id="inputNombreF2" class="form-control" required>
+                            <span id="errorNombreF2"></span>
+                        </div>
+                        <div>
+                            <label for="inputEdadF2" class="form-label">Edad</label>
+                            <input type="number" id="inputEdadF2" class="form-control" required>
+                        </div>
+                        <div>
+                            <label for="inputDomicilioF2" class="form-label">Domicilio</label>
+                            <input type="text" id="inputDomicilioF2" class="form-control" required>
+                            <span id="errorDomicilioF2"></span>
+                        </div>
+                        <div>
+                            <p>Sexo:</p>
+                            <div class="form-check">
+                                <input type="radio" id="radioHombreF2" name="sexo" value="h" class="form-check-input" required>
+                                <label for="radioHombreF2" class="form-check-label">Hombre</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" id="radioMujerF2" name="sexo" value="m" class="form-check-input" required>
+                                <label for="radioMujerF2" class="form-check-label">Mujer</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="curso" class="form-label">Curso</label>
+                            <select name="curso" class="form-select">
+                                <option value="1" selected>1º</option>
+                                <option value="2">2º</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p>Módulos en los que se matricula</p>
+                            <div id="checks1F2">
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkAO" name="modulos[]" value="AO" class="form-check-input">
+                                    <label for="checkAO" class="form-check-label">Aplicaciones Ofimáticas</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkRL" name="modulos[]" value="RL" class="form-check-input">
+                                    <label for="checkRL" class="form-check-label">Redes Locales</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkSOM" name="modulos[]" value="SOM" class="form-check-input">
+                                    <label for="checkSOM" class="form-check-label">Sistemas Operativos Monopuesto</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkMME" name="modulos[]" value="MME" class="form-check-input">
+                                    <label for="checkMME" class="form-check-label">Montaje y Mantenimiento de Equipos</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkFOLF2" name="modulos[]" value="FOL" class="form-check-input">
+                                    <label for="checkFOLF2" class="form-check-label">Formación y Orientación Laboral</label>
+                                </div>       
+                            </div>
+                            <div id="checks2F2">
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkAW" name="modulos[]" value="AW" class="form-check-input">
+                                    <label for="checkAW" class="form-check-label">Aplicaciones Web</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkSI" name="modulos[]" value="SI" class="form-check-input">
+                                    <label for="checkSI" class="form-check-label">Seguridad Informática</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkSR" name="modulos[]" value="SR" class="form-check-input">
+                                    <label for="checkSR" class="form-check-label">Servicios en Red</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkSOR" name="modulos[]" value="SOR" class="form-check-input">
+                                    <label for="checkSOR" class="form-check-label">Sistemas Operativos en Red</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="checkEIEF2" name="modulos[]" value="EIE" class="form-check-input">
+                                    <label for="checkEIEF2" class="form-check-label">Empresas e Iniciativa Emprendedora</label>
+                                </div>  
+                            </div>
+                        </div>
+                        <div>
+                            <label for="textarea">Observaciones:</label>
+                            <textarea id="textareaF2" class="form-control"></textarea>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </fieldset>
+                </form>  
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <button onclick="reset()" class="btn btn-danger">Restablecer</button>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="ej18.js"></script>
+    </body>
+</html>
