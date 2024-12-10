@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz Aleatoria y Modificada</title>
+    <style>
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Matriz Original</h2>
+    <table id="matrizOriginal"></table>
+
+    <h2>Matriz Modificada</h2>
+    <table id="matrizModificada"></table>
+
+    <script>
+        // Crear una matriz de 10x10 con números aleatorios entre 10 y 80
+        function generarMatriz() {
+            let matriz = [];
+            for (let i = 0; i < 10; i++) {
+                matriz[i] = [];
+                for (let j = 0; j < 10; j++) {
+                    matriz[i][j] = Math.floor(Math.random() * (80 - 10 + 1)) + 10;
+                }
+            }
+            return matriz;
+        }
+
+        // Función para intercambiar las posiciones de los números en las posiciones pares e impares
+        function modificarMatriz(matriz) {
+            let matrizModificada = [];
+            for (let i = 0; i < matriz.length; i++) {
+                let filaModificada = [...matriz[i]];
+                for (let j = 0; j < filaModificada.length - 1; j += 2) {
+                    // Intercambiar los valores en posiciones pares e impares
+                    let temp = filaModificada[j];
+                    filaModificada[j] = filaModificada[j + 1];
+                    filaModificada[j + 1] = temp;
+                }
+                matrizModificada.push(filaModificada);
+            }
+            return matrizModificada;
+        }
+
+        // Función para mostrar la matriz en la página web
+        function mostrarMatriz(matriz, id) {
+            let tabla = document.getElementById(id);
+            tabla.innerHTML = ''; // Limpiar contenido previo
+            for (let i = 0; i < matriz.length; i++) {
+                let fila = document.createElement('tr');
+                for (let j = 0; j < matriz[i].length; j++) {
+                    let celda = document.createElement('td');
+                    celda.textContent = matriz[i][j];
+                    fila.appendChild(celda);
+                }
+                tabla.appendChild(fila);
+            }
+        }
+
+        // Generar la matriz original y la modificada
+        let matrizOriginal = generarMatriz();
+        let matrizModificada = modificarMatriz(matrizOriginal);
+
+        // Mostrar las matrices en la página
+        mostrarMatriz(matrizOriginal, 'matrizOriginal');
+        mostrarMatriz(matrizModificada, 'matrizModificada');
+    </script>
+
+</body>
+</html>

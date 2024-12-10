@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Constructor de un objeto "Animal"
+function Animal(nombre) {
+  this.nombre = nombre;
+}
+
+Animal.prototype.saludar = function() {
+  console.log("Hola, soy " + this.nombre);
+};
+
+// Constructor de un objeto "Perro" que hereda de "Animal"
+function Perro(nombre, raza) {
+  // Llamar al constructor de "Animal"
+  Animal.call(this, nombre);
+  this.raza = raza;
+}
+
+// Establecer que "Perro" hereda de "Animal"
+Perro.prototype = Object.create(Animal.prototype);
+Perro.prototype.constructor = Perro;
+
+// Añadir un método específico a "Perro"
+Perro.prototype.ladrar = function() {
+  console.log("¡Guau!");
+};
+
+// Crear una instancia de "Perro"
+const miPerro = new Perro("Rex", "Pastor Alemán");
+
+miPerro.saludar();  // Hola, soy Rex
+miPerro.ladrar();   // ¡Guau!
+function convertirAMayusculas(texto) {
+  return texto.toUpperCase();
+}
+function convertirAMinusculas(texto) {
+  return texto.toLowerCase();
+}
+
+    </script>
+</body>
+</html>

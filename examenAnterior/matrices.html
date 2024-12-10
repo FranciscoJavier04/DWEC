@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Ejercicio 1: Sumar Todos los Elementos de una Matriz
+function sumarMatriz(matriz) {
+    return matriz.reduce((suma, fila) => suma + fila.reduce((acc, num) => acc + num, 0), 0);
+}
+
+// Pruebas - Ejercicio 1
+console.log("\nEjercicio 1: Sumar Todos los Elementos de una Matriz");
+console.log(sumarMatriz([[1, 2], [3, 4]])); // 10
+console.log(sumarMatriz([[5, 10], [15, 20]])); // 50
+
+// Ejercicio 2: Transponer una Matriz
+function transponerMatriz(matriz) {
+    return matriz[0].map((_, colIndex) => matriz.map(row => row[colIndex]));
+}
+
+// Pruebas - Ejercicio 2
+console.log("\nEjercicio 2: Transponer una Matriz");
+console.log(transponerMatriz([[1, 2, 3], [4, 5, 6]])); // [[1, 4], [2, 5], [3, 6]]
+
+// Ejercicio 3: Generar una Matriz de Tamaño NxM
+function generarMatriz(n, m, valorInicial = 0) {
+    return Array.from({ length: n }, () => Array(m).fill(valorInicial));
+}
+
+// Pruebas - Ejercicio 3
+console.log("\nEjercicio 3: Generar una Matriz de Tamaño NxM");
+console.log(generarMatriz(2, 3, 1)); // [[1, 1, 1], [1, 1, 1]]
+console.log(generarMatriz(4, 4)); // [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+
+// Ejercicio 4: Determinar si una Matriz es Cuadrada
+function esCuadrada(matriz) {
+    return matriz.length === matriz[0].length;
+}
+
+// Pruebas - Ejercicio 4
+console.log("\nEjercicio 4: Determinar si una Matriz es Cuadrada");
+console.log(esCuadrada([[1, 2], [3, 4]])); // true
+console.log(esCuadrada([[1, 2, 3], [4, 5, 6]])); // false
+
+// Ejercicio 5: Encontrar el Elemento Máximo en una Matriz
+function maximoMatriz(matriz) {
+    return Math.max(...matriz.flat());
+}
+
+// Pruebas - Ejercicio 5
+console.log("\nEjercicio 5: Encontrar el Elemento Máximo en una Matriz");
+console.log(maximoMatriz([[1, 2], [3, 4]])); // 4
+console.log(maximoMatriz([[10, 20], [5, 15]])); // 20
+
+// Ejercicio 6: Calcular la Suma de Cada Fila
+function sumaPorFila(matriz) {
+    return matriz.map(fila => fila.reduce((suma, num) => suma + num, 0));
+}
+
+// Pruebas - Ejercicio 6
+console.log("\nEjercicio 6: Calcular la Suma de Cada Fila");
+console.log(sumaPorFila([[1, 2], [3, 4]])); // [3, 7]
+console.log(sumaPorFila([[5, 5, 5], [10, 10, 10]])); // [15, 30]
+
+// Ejercicio 7: Rotar una Matriz 90 Grados
+function rotarMatriz90(matriz) {
+    return matriz[0].map((_, colIndex) => matriz.map(row => row[colIndex]).reverse());
+}
+
+// Pruebas - Ejercicio 7
+console.log("\nEjercicio 7: Rotar una Matriz 90 Grados");
+console.log(rotarMatriz90([[1, 2], [3, 4]])); // [[3, 1], [4, 2]]
+
+// Ejercicio 8: Identificar si una Matriz es Simétrica
+function esSimetrica(matriz) {
+    if (!esCuadrada(matriz)) return false;
+    for (let i = 0; i < matriz.length; i++) {
+        for (let j = 0; j < matriz[i].length; j++) {
+            if (matriz[i][j] !== matriz[j][i]) return false;
+        }
+    }
+    return true;
+}
+
+// Pruebas - Ejercicio 8
+console.log("\nEjercicio 8: Identificar si una Matriz es Simétrica");
+console.log(esSimetrica([[1, 2, 3], [2, 1, 4], [3, 4, 1]])); // true
+console.log(esSimetrica([[1, 0], [1, 1]])); // false
+
+// Ejercicio 9: Multiplicar Dos Matrices
+function multiplicarMatrices(matrizA, matrizB) {
+    const filasA = matrizA.length;
+    const columnasA = matrizA[0].length;
+    const columnasB = matrizB[0].length;
+
+    if (columnasA !== matrizB.length) {
+        throw new Error("Las matrices no se pueden multiplicar");
+    }
+
+    const resultado = Array.from({ length: filasA }, () => Array(columnasB).fill(0));
+
+    for (let i = 0; i < filasA; i++) {
+        for (let j = 0; j < columnasB; j++) {
+            for (let k = 0; k < columnasA; k++) {
+                resultado[i][j] += matrizA[i][k] * matrizB[k][j];
+            }
+        }
+    }
+
+    return resultado;
+}
+
+// Pruebas - Ejercicio 9
+console.log("\nEjercicio 9: Multiplicar Dos Matrices");
+console.log(
+    multiplicarMatrices(
+        [[1, 2, 3], [4, 5, 6]],
+        [[7, 8], [9, 10], [11, 12]]
+    )
+); // [[58, 64], [139, 154]]
+
+// Ejercicio 10: Encontrar los Elementos en la Diagonal Principal
+function diagonalPrincipal(matriz) {
+    if (!esCuadrada(matriz)) return [];
+    return matriz.map((fila, index) => fila[index]);
+}
+
+// Pruebas - Ejercicio 10
+console.log("\nEjercicio 10: Encontrar los Elementos en la Diagonal Principal");
+console.log(diagonalPrincipal([[1, 2, 3], [4, 5, 6], [7, 8, 9]])); // [1, 5, 9]
+console.log(diagonalPrincipal([[5, 0], [0, 5]])); // [5, 5]
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Ejercicio 1: Verificar Palíndromo
+function esPalindromo(texto) {
+    const limpio = texto.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const invertido = limpio.split("").reverse().join("");
+    return limpio === invertido;
+}
+
+// Pruebas - Ejercicio 1
+console.log("Ejercicio 1: Verificar Palíndromo");
+console.log(esPalindromo("Anita lava la tina")); // true
+console.log(esPalindromo("Hola mundo")); // false
+
+// Ejercicio 2: Número Más Grande en un Array
+function numeroMasGrande(array) {
+    return Math.max(...array);
+}
+
+// Pruebas - Ejercicio 2
+console.log("\nEjercicio 2: Número Más Grande en un Array");
+console.log(numeroMasGrande([3, 7, 1, 15, 8])); // 15
+
+// Ejercicio 3: FizzBuzz
+function fizzBuzz(n) {
+    for (let i = 1; i <= n; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            console.log("FizzBuzz");
+        } else if (i % 3 === 0) {
+            console.log("Fizz");
+        } else if (i % 5 === 0) {
+            console.log("Buzz");
+        } else {
+            console.log(i);
+        }
+    }
+}
+
+// Pruebas - Ejercicio 3
+console.log("\nEjercicio 3: FizzBuzz");
+fizzBuzz(15);
+
+// Ejercicio 4: Invertir una Cadena
+function invertirCadena(texto) {
+    return texto.split("").reverse().join("");
+}
+
+// Pruebas - Ejercicio 4
+console.log("\nEjercicio 4: Invertir una Cadena");
+console.log(invertirCadena("Hola")); // "aloH"
+console.log(invertirCadena("JavaScript")); // "tpircSavaJ"
+
+// Ejercicio 5: Sumar Elementos de un Array
+function sumaArray(array) {
+    return array.reduce((acumulador, valor) => acumulador + valor, 0);
+}
+
+// Pruebas - Ejercicio 5
+console.log("\nEjercicio 5: Sumar Elementos de un Array");
+console.log(sumaArray([1, 2, 3, 4, 5])); // 15
+
+// Ejercicio 6: Contar Vocales en una Cadena
+function contarVocales(cadena) {
+    const vocales = "aeiouAEIOU";
+    return cadena.split("").filter(char => vocales.includes(char)).length;
+}
+
+// Pruebas - Ejercicio 6
+console.log("\nEjercicio 6: Contar Vocales en una Cadena");
+console.log(contarVocales("Hola Mundo")); // 4
+console.log(contarVocales("JavaScript")); // 3
+
+// Ejercicio 7: Encontrar Duplicados en un Array
+function encontrarDuplicados(array) {
+    const duplicados = [];
+    const conteo = {};
+
+    for (const num of array) {
+        conteo[num] = (conteo[num] || 0) + 1;
+        if (conteo[num] === 2) {
+            duplicados.push(num);
+        }
+    }
+
+    return duplicados;
+}
+
+// Pruebas - Ejercicio 7
+console.log("\nEjercicio 7: Encontrar Duplicados en un Array");
+console.log(encontrarDuplicados([1, 2, 3, 2, 4, 5, 1])); // [2, 1]
+console.log(encontrarDuplicados([6, 7, 8, 9])); // []
+
+// Ejercicio 8: Generar Números Fibonacci
+function generarFibonacci(n) {
+    const fib = [0, 1];
+    for (let i = 2; i < n; i++) {
+        fib.push(fib[i - 1] + fib[i - 2]);
+    }
+    return fib.slice(0, n);
+}
+
+// Pruebas - Ejercicio 8
+console.log("\nEjercicio 8: Generar Números Fibonacci");
+console.log(generarFibonacci(5)); // [0, 1, 1, 2, 3]
+console.log(generarFibonacci(10)); // [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+// Ejercicio 9: Ordenar un Array de Menor a Mayor
+function ordenarArray(array) {
+    return array.sort((a, b) => a - b);
+}
+
+// Pruebas - Ejercicio 9
+console.log("\nEjercicio 9: Ordenar un Array de Menor a Mayor");
+console.log(ordenarArray([5, 3, 8, 1, 2])); // [1, 2, 3, 5, 8]
+
+// Ejercicio 10: Contar Palabras en un Texto
+function contarPalabras(texto) {
+    const palabras = texto.split(/\s+/); // Divide por espacios
+    return palabras.length;
+}
+
+// Pruebas - Ejercicio 10
+console.log("\nEjercicio 10: Contar Palabras en un Texto");
+console.log(contarPalabras("Hola, cómo estás?")); // 3
+console.log(contarPalabras("Este es un ejercicio de JavaScript.")); // 6
+
+// Ejercicio 11: Números Primos en un Rango
+function numerosPrimos(hasta) {
+    const esPrimo = num => {
+        if (num < 2) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false;
+        }
+        return true;
+    };
+
+    const primos = [];
+    for (let i = 2; i <= hasta; i++) {
+        if (esPrimo(i)) primos.push(i);
+    }
+    return primos;
+}
+
+// Pruebas - Ejercicio 11
+console.log("\nEjercicio 11: Números Primos en un Rango");
+console.log(numerosPrimos(10)); // [2, 3, 5, 7]
+console.log(numerosPrimos(20)); // [2, 3, 5, 7, 11, 13, 17, 19]
+
+// Ejercicio 12: Verificar un Anagrama
+function esAnagrama(palabra1, palabra2) {
+    const limpiar = str => str.toLowerCase().replace(/[^a-z]/g, "");
+    const ordenar = str => limpiar(str).split("").sort().join("");
+    return ordenar(palabra1) === ordenar(palabra2);
+}
+
+// Pruebas - Ejercicio 12
+console.log("\nEjercicio 12: Verificar un Anagrama");
+console.log(esAnagrama("Listen", "Silent")); // true
+console.log(esAnagrama("Hola", "Halo")); // false
+
+// Ejercicio 13: Encontrar la Palabra Más Larga
+function palabraMasLarga(texto) {
+    const palabras = texto.split(/\s+/);
+    return palabras.reduce((longest, palabra) =>
+        palabra.length > longest.length ? palabra : longest, "");
+}
+
+// Pruebas - Ejercicio 13
+console.log("\nEjercicio 13: Encontrar la Palabra Más Larga");
+console.log(palabraMasLarga("El desarrollo de software es increíble.")); // "increíble"
+
+// Ejercicio 14: Filtrar Números Impares
+function filtrarImpares(array) {
+    return array.filter(num => num % 2 !== 0);
+}
+
+// Pruebas - Ejercicio 14
+console.log("\nEjercicio 14: Filtrar Números Impares");
+console.log(filtrarImpares([1, 2, 3, 4, 5, 6])); // [1, 3, 5]
+
+// Ejercicio 15: Factorial de un Número
+function factorial(num) {
+    if (num === 0 || num === 1) return 1;
+    return num * factorial(num - 1);
+}
+
+// Pruebas - Ejercicio 15
+console.log("\nEjercicio 15: Factorial de un Número");
+console.log(factorial(5)); // 120
+console.log(factorial(7)); // 5040
+
+// Ejercicio 16: Encontrar el Segundo Número Más Grande
+function segundoMasGrande(array) {
+    const unicos = [...new Set(array)];
+    unicos.sort((a, b) => b - a);
+    return unicos[1] || null;
+}
+
+// Pruebas - Ejercicio 16
+console.log("\nEjercicio 16: Encontrar el Segundo Número Más Grande");
+console.log(segundoMasGrande([10, 5, 8, 8, 2])); // 8
+console.log(segundoMasGrande([1])); // null
+
+// Ejercicio 17: Eliminar Duplicados en un Array
+function eliminarDuplicados(array) {
+    return [...new Set(array)];
+}
+
+// Pruebas - Ejercicio 17
+console.log("\nEjercicio 17: Eliminar Duplicados en un Array");
+console.log(eliminarDuplicados([1, 2, 2, 3, 4, 4])); // [1, 2, 3, 4]
+
+// Ejercicio 18: Sumar Dígitos de un Número
+function sumaDigitos(num) {
+    return num.toString().split("").reduce((suma, digito) => suma + Number(digito), 0);
+}
+
+// Pruebas - Ejercicio 18
+console.log("\nEjercicio 18: Sumar Dígitos de un Número");
+console.log(sumaDigitos(123)); // 6
+console.log(sumaDigitos(4567)); // 22
+
+// Ejercicio 19: Encontrar la Mediana de un Array
+function encontrarMediana(array) {
+    const ordenado = [...array].sort((a, b) => a - b);
+    const mitad = Math.floor(ordenado.length / 2);
+
+    if (ordenado.length % 2 === 0) {
+        return (ordenado[mitad - 1] + ordenado[mitad]) / 2;
+    } else {
+        return ordenado[mitad];
+    }
+}
+
+// Pruebas - Ejercicio 19
+console.log("\nEjercicio 19: Encontrar la Mediana de un Array");
+console.log(encontrarMediana([1, 3, 2])); // 2
+console.log(encontrarMediana([1, 2, 3, 4])); // 2.5
+
+// Ejercicio 20: Determinar si un Array Está Ordenado
+function estaOrdenado(array) {
+    for (let i = 1; i < array.length; i++) {
+        if (array[i - 1] > array[i]) return false;
+    }
+    return true;
+}
+
+// Pruebas - Ejercicio 20
+console.log("\nEjercicio 20: Determinar si un Array Está Ordenado");
+console.log(estaOrdenado([1, 2, 3, 4])); // true
+console.log(estaOrdenado([3, 1, 4, 2])); // false
+
+// Ejercicio 21: Contar Ocurrencias de Elementos en un Array
+function contarOcurrencias(array) {
+    const conteo = {};
+    for (const item of array) {
+        conteo[item] = (conteo[item] || 0) + 1;
+    }
+    return conteo;
+}
+
+// Pruebas - Ejercicio 21
+console.log("\nEjercicio 21: Contar Ocurrencias de Elementos en un Array");
+console.log(contarOcurrencias([1, 2, 2, 3, 3, 3])); // {1: 1, 2: 2, 3: 3}
+
+// Ejercicio 22: Encontrar el Elemento Más Frecuente
+function masFrecuente(array) {
+    const conteo = contarOcurrencias(array);
+    let maxFrecuencia = 0;
+    let elemento = null;
+
+    for (const [key, value] of Object.entries(conteo)) {
+        if (value > maxFrecuencia) {
+            maxFrecuencia = value;
+            elemento = key;
+        }
+    }
+
+    return elemento;
+}
+
+// Pruebas - Ejercicio 22
+console.log("\nEjercicio 22: Encontrar el Elemento Más Frecuente");
+console.log(masFrecuente([1, 2, 3, 3, 2, 2])); // 2
+console.log(masFrecuente(["a", "b", "a", "a", "b", "c"])); // "a"
+
+// Ejercicio 23: Generar una Pirámide de Niveles
+function generarPiramide(niveles) {
+    const piramide = [];
+    for (let i = 1; i <= niveles; i++) {
+        piramide.push(" ".repeat(niveles - i) + "*".repeat(i * 2 - 1));
+    }
+    return piramide;
+}
+
+// Pruebas - Ejercicio 23
+console.log("\nEjercicio 23: Generar una Pirámide de Niveles");
+console.log(generarPiramide(5).join("\n"));
+/*
+    *
+   ***
+  *****
+ *******
+*********
+*/
+
+// Ejercicio 24: Generar una Secuencia de Pares hasta N
+function generarPares(n) {
+    const pares = [];
+    for (let i = 0; i <= n; i += 2) {
+        pares.push(i);
+    }
+    return pares;
+}
+
+// Pruebas - Ejercicio 24
+console.log("\nEjercicio 24: Generar una Secuencia de Pares hasta N");
+console.log(generarPares(10)); // [0, 2, 4, 6, 8, 10]
+
+// Ejercicio 25: Capitalizar Palabras en una Cadena
+function capitalizarPalabras(texto) {
+    return texto
+        .split(" ")
+        .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase())
+        .join(" ");
+}
+
+// Pruebas - Ejercicio 25
+console.log("\nEjercicio 25: Capitalizar Palabras en una Cadena");
+console.log(capitalizarPalabras("hola mundo desde javascript")); // "Hola Mundo Desde Javascript"
+
+// Ejercicio 26: Número de Fibonacci N-ésimo
+function fibonacci(n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+// Pruebas - Ejercicio 26
+console.log("\nEjercicio 26: Número de Fibonacci N-ésimo");
+console.log(fibonacci(5)); // 5
+console.log(fibonacci(10)); // 55
+
+// Ejercicio 27: Verificar si una Cadena es un Substring
+function esSubstring(cadena, subcadena) {
+    return cadena.includes(subcadena);
+}
+
+// Pruebas - Ejercicio 27
+console.log("\nEjercicio 27: Verificar si una Cadena es un Substring");
+console.log(esSubstring("Hola Mundo", "Mundo")); // true
+console.log(esSubstring("JavaScript", "Java")); // true
+console.log(esSubstring("Python", "Java")); // false
+
+// Ejercicio 28: Calcular el Promedio de un Array
+function calcularPromedio(array) {
+    if (array.length === 0) return 0;
+    return array.reduce((a, b) => a + b, 0) / array.length;
+}
+
+// Pruebas - Ejercicio 28
+console.log("\nEjercicio 28: Calcular el Promedio de un Array");
+console.log(calcularPromedio([10, 20, 30])); // 20
+console.log(calcularPromedio([7, 14, 21, 28])); // 17.5
+
+// Ejercicio 29: Contar Elementos Mayores a un Valor Dado
+function contarMayores(array, valor) {
+    return array.filter(num => num > valor).length;
+}
+
+// Pruebas - Ejercicio 29
+console.log("\nEjercicio 29: Contar Elementos Mayores a un Valor Dado");
+console.log(contarMayores([1, 3, 5, 7, 9], 4)); // 3
+console.log(contarMayores([10, 20, 30], 25)); // 1
+
+// Ejercicio 30: Generar una Tabla de Multiplicar
+function tablaDeMultiplicar(numero, hasta = 10) {
+    const tabla = [];
+    for (let i = 1; i <= hasta; i++) {
+        tabla.push(`${numero} x ${i} = ${numero * i}`);
+    }
+    return tabla;
+}
+
+// Pruebas - Ejercicio 30
+console.log("\nEjercicio 30: Generar una Tabla de Multiplicar");
+console.log(tablaDeMultiplicar(5).join("\n"));
+/*
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+...
+*/
+// Ejercicio 31: Verificar si Todos los Elementos de un Array Son Iguales
+function todosIguales(array) {
+    return array.every(item => item === array[0]);
+}
+
+// Pruebas - Ejercicio 31
+console.log("\nEjercicio 31: Verificar si Todos los Elementos de un Array Son Iguales");
+console.log(todosIguales([1, 1, 1, 1])); // true
+console.log(todosIguales([1, 2, 1, 1])); // false
+
+// Ejercicio 32: Encontrar el Elemento Más Largo en un Array
+function elementoMasLargo(array) {
+    return array.reduce((masLargo, item) =>
+        item.length > masLargo.length ? item : masLargo, "");
+}
+
+// Pruebas - Ejercicio 32
+console.log("\nEjercicio 32: Encontrar el Elemento Más Largo en un Array");
+console.log(elementoMasLargo(["casa", "elefante", "avión"])); // "elefante"
+
+// Ejercicio 33: Comprobar Si Dos Arrays Son Iguales
+function arraysIguales(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+    return arr1.every((value, index) => value === arr2[index]);
+}
+
+// Pruebas - Ejercicio 33
+console.log("\nEjercicio 33: Comprobar Si Dos Arrays Son Iguales");
+console.log(arraysIguales([1, 2, 3], [1, 2, 3])); // true
+console.log(arraysIguales([1, 2, 3], [3, 2, 1])); // false
+
+// Ejercicio 34: Encontrar Todos los Números Negativos en un Array
+function encontrarNegativos(array) {
+    return array.filter(num => num < 0);
+}
+
+// Pruebas - Ejercicio 34
+console.log("\nEjercicio 34: Encontrar Todos los Números Negativos en un Array");
+console.log(encontrarNegativos([1, -2, 3, -4, 5])); // [-2, -4]
+
+// Ejercicio 35: Contar Letras en una Cadena
+function contarLetras(cadena) {
+    const conteo = {};
+    for (const char of cadena.replace(/\s+/g, "").toLowerCase()) {
+        conteo[char] = (conteo[char] || 0) + 1;
+    }
+    return conteo;
+}
+
+// Pruebas - Ejercicio 35
+console.log("\nEjercicio 35: Contar Letras en una Cadena");
+console.log(contarLetras("Hola Mundo")); // { h: 1, o: 2, l: 1, a: 1, m: 1, u: 1, n: 1, d: 1 }
+
+// Ejercicio 36: Generar un Patrón de Triángulo Invertido
+function generarTrianguloInvertido(niveles) {
+    const triangulo = [];
+    for (let i = niveles; i >= 1; i--) {
+        triangulo.push("*".repeat(i));
+    }
+    return triangulo;
+}
+
+// Pruebas - Ejercicio 36
+console.log("\nEjercicio 36: Generar un Patrón de Triángulo Invertido");
+console.log(generarTrianguloInvertido(5).join("\n"));
+/*
+*****
+****
+***
+**
+*
+*/
+
+// Ejercicio 37: Calcular el Producto de un Array
+function productoArray(array) {
+    return array.reduce((producto, num) => producto * num, 1);
+}
+
+// Pruebas - Ejercicio 37
+console.log("\nEjercicio 37: Calcular el Producto de un Array");
+console.log(productoArray([1, 2, 3, 4])); // 24
+console.log(productoArray([5, 10, 2])); // 100
+
+// Ejercicio 38: Verificar si un Número Es Par o Impar
+function esPar(numero) {
+    return numero % 2 === 0 ? "Par" : "Impar";
+}
+
+// Pruebas - Ejercicio 38
+console.log("\nEjercicio 38: Verificar si un Número Es Par o Impar");
+console.log(esPar(10)); // "Par"
+console.log(esPar(15)); // "Impar"
+
+// Ejercicio 39: Generar un Número Aleatorio entre Dos Valores
+function numeroAleatorioEntre(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Pruebas - Ejercicio 39
+console.log("\nEjercicio 39: Generar un Número Aleatorio entre Dos Valores");
+console.log(numeroAleatorioEntre(1, 10)); // Número aleatorio entre 1 y 10
+console.log(numeroAleatorioEntre(20, 30)); // Número aleatorio entre 20 y 30
+
+// Ejercicio 40: Remover un Elemento de un Array por su Valor
+function removerElemento(array, elemento) {
+    return array.filter(item => item !== elemento);
+}
+
+// Pruebas - Ejercicio 40
+console.log("\nEjercicio 40: Remover un Elemento de un Array por su Valor");
+console.log(removerElemento([1, 2, 3, 4], 3)); // [1, 2, 4]
+console.log(removerElemento(["a", "b", "c"], "b")); // ["a", "c"]
+
+    </script>
+</body>
+</html>

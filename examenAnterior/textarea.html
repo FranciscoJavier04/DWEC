@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validación de caracteres</title>
+</head>
+<body>
+  <textarea id="miTextarea" placeholder="Escribe solo letras y números..."></textarea>
+  <button onclick="validarTextarea()">Validar</button>
+
+  <script>
+    function validarTextarea() {
+      var textarea = document.getElementById('miTextarea');
+      var valor = textarea.value;
+
+      // Expresión regular que permite solo letras y números
+      var regex = /^[a-zA-Z0-9]*$/;
+
+      // Si el valor no coincide con la expresión regular, muestra la alerta
+      if (!regex.test(valor)) {
+        alert('¡Error! Solo se permiten letras y números.');
+      } else {
+        alert('El texto es válido.');
+      }
+    }
+  </script>
+</body>
+</html>
+
+</body>
+</html>

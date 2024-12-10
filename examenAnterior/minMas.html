@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convertir Texto</title>
+  <style>
+    input {
+      margin-top: 10px;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Convertir texto a mayúsculas o minúsculas</h2>
+
+  <input type="text" id="inputTexto" value="Hola Mundo">
+  <br>
+
+  <select id="selectConversion">
+    <option value="mayusculas">Convertir a mayúsculas</option>
+    <option value="minusculas">Convertir a minúsculas</option>
+  </select>
+
+  <h3>Texto convertido:</h3>
+  <p id="textoConvertido"></p>
+
+  <script>
+    // Función para convertir el texto a mayúsculas
+    function convertirAMayusculas(texto) {
+      return texto.toUpperCase();
+    }
+
+    // Función para convertir el texto a minúsculas
+    function convertirAMinusculas(texto) {
+      return texto.toLowerCase();
+    }
+
+    // Función que maneja el cambio en el <select>
+    function manejarSeleccion() {
+      const textoOriginal = document.getElementById('inputTexto').value;
+      const opcionSeleccionada = document.getElementById('selectConversion').value;
+      let textoConvertido;
+
+      if (opcionSeleccionada === 'mayusculas') {
+        textoConvertido = convertirAMayusculas(textoOriginal);
+      } else if (opcionSeleccionada === 'minusculas') {
+        textoConvertido = convertirAMinusculas(textoOriginal);
+      }
+
+      // Mostrar el texto convertido
+      document.getElementById('textoConvertido').textContent = textoConvertido;
+    }
+
+    // Llamar a la función cada vez que cambie la selección
+    document.getElementById('selectConversion').addEventListener('change', manejarSeleccion);
+
+    // Llamar a la función al cargar la página para inicializar el texto convertido
+    manejarSeleccion();
+  </script>
+
+</body>
+</html>
