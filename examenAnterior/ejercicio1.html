@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Obtén los elementos del formulario
+const formulario = document.getElementById('formulario');
+const identificador = document.getElementById('identificador');
+const nombre = document.getElementById('nombre');
+const especie = document.getElementById('especie');
+const tipo = document.getElementById('tipo');
+const cuidados = document.getElementById('cuidados');
+
+// Expresión regular para validar el identificador
+const patronIdentificador = /^[0-5]{2}[A-Z]{3}[_-][a-z]{2}$/;
+
+// Agrega un evento de envío al formulario
+formulario.addEventListener('submit', (e) => {
+    // Verifica que todos los campos sean obligatorios
+    if (!identificador.value || !nombre.value || !especie.value || !tipo.value || !cuidados.value) {
+        alert('Todos los campos son obligatorios');
+        e.preventDefault(); // Evita el envío del formulario
+        return;
+    }
+
+    // Verifica que el identificador siga el patrón
+    if (!patronIdentificador.test(identificador.value)) {
+        alert('El identificador de la planta no sigue el patrón correcto: dos dígitos menores de 6, tres letras mayúsculas, un guión bajo o alto y dos letras minúsculas.');
+        e.preventDefault(); // Evita el envío del formulario
+    }
+});
+// Agregar eventos a los elementos de tipo de planta, cuidados especiales y nivel de luz
+document.querySelectorAll('input[name="tipoPlanta"], input[name="cuidados"], #nivelLuz').forEach(element => {
+            element.addEventListener('click', mostrarAdvertencia);
+        });
+    </script>
+</body>
+</html>

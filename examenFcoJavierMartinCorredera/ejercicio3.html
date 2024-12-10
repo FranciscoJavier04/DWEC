@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            background-color: red;
+            color: white;
+        }
+
+        #selectConversion {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="parrafo">Párrafo del examen para trabajar con los botones del documento</p><br>
+    <select id="selectConversion">
+        <option value="mayusculas">Convertir a mayúsculas</option>
+        <option value="minusculas">Convertir a minúsculas</option>
+    </select><br>
+    <button onclick="invertirPalabras()">Invertir Palabras</button>
+    <button onclick="crearBoton()">Crear Botón</button>
+    <button onclick="convertir()">Convertir mayúsculas/minúsculas</button>
+    <script>
+        function invertirPalabras() {
+            const parrafo = document.getElementById('parrafo');
+            const palabras = parrafo.innerText.split(' ');
+            const palabrasInvertidas = palabras.reverse().join(' ');
+            parrafo.innerText = palabrasInvertidas;
+        }
+
+        function crearBoton() {
+            const nuevoBoton = document.createElement("button");
+            nuevoBoton.innerText = "Ocultar Botón";
+            nuevoBoton.onclick = function () {
+                nuevoBoton.style.display = 'none';
+            };
+            document.body.appendChild(nuevoBoton);
+        }
+
+        function convertir() {
+            const select = document.getElementById('selectConversion');
+            select.style.display = 'block';
+        }
+
+        function convertirAMayusculas(texto) {
+            return texto.toUpperCase();
+        }
+
+        function convertirAMinusculas(texto) {
+            return texto.toLowerCase();
+        }
+
+        function manejarSeleccion() {
+            const textoOriginal = document.getElementById('parrafo').textContent;
+            const opcionSeleccionada = document.getElementById('selectConversion').value;
+            let textoConvertido;
+
+            if (opcionSeleccionada === 'mayusculas') {
+                textoConvertido = convertirAMayusculas(textoOriginal);
+            } else if (opcionSeleccionada === 'minusculas') {
+                textoConvertido = convertirAMinusculas(textoOriginal);
+            }
+
+            document.getElementById('parrafo').textContent = textoConvertido;
+        }
+
+        document.getElementById('selectConversion').addEventListener('change', manejarSeleccion);
+
+        function cambiarFondoYColor() {
+            const parrafo = document.getElementById('parrafo');
+            parrafo.style.backgroundColor = "yellow";
+            parrafo.style.color = "blue";
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "F12") {
+                cambiarFondoYColor();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardines Comares</title>
+    <style>
+        .advertencia {
+            display: none;
+            background-color: red;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Jardines IES Marqués de Comares</h1>
+    <form id="formulario" action="#" method="post">
+
+        Identificador Planta: <input type="text" id="identificadorPlanta" required><br>
+        Nombre Planta: <input type="text" id="nombrePlanta" required><br>
+        Nombre Especie: <input type="text" id="especiePlanta" required><br>
+        Observaciones interesantes:<br>
+        <textarea id="observacionesPlanta" rows="4" ></textarea>
+        <br>
+        <br>
+
+        <div onclick="mostraradvertencia()">Tipo de Planta:<br>
+            <input type="radio" id="arbol" name="tipoPlanta" value="Árbol">Árbol<br>
+            <input type="radio" id="arbusto" name="tipoPlanta" value="Arbusto">Arbusto<br>
+            <input type="radio" id="flor" name="tipoPlanta" value="Flor">Flor
+            <br>
+        </div>
+        <br>
+
+        <div onclick="mostraradvertencia()">Cuidados Especiales:<br>
+            <input type="checkbox" id="riegoRegular" name="cuidados" value="Riego Regular">Riego Regular<br>
+            <input type="checkbox" id="sombra" name="cuidados" value="Sombra">Necesita sombra<br>
+            <input type="checkbox" id="fertilizacion" name="cuidados" value="Fertilización">Fertilización
+            <br>
+        </div>
+        <br>
+
+        Nivel de Luz:<br>
+        <select id="nivelLuz" name="nivelLuz" onclick="mostraradvertencia()">
+            <option value="Baja">Baja</option>
+            <option value="Media">Media</option>
+            <option value="Alta">Alta</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Enviar</button>
+        <button type="button" onclick="document.getElementById('formulario').reset();">Limpiar</button>
+    </form>
+
+    <div id="advertencia" class="advertencia">
+        Puedes escribir en el textarea las observaciones que desees.
+    </div>
+
+    <script>
+        document.getElementById('formulario').addEventListener('submit', function (e) {
+            const identificador = document.getElementById('identificadorPlanta');
+            const nombre = document.getElementById('nombrePlanta');
+            const especie = document.getElementById('especiePlanta');
+            const tipoPlanta = document.querySelector('input[name="tipoPlanta"]:checked');
+            const cuidados = document.querySelectorAll('input[name="cuidados"]:checked');
+            const observaciones = document.getElementById('observacionesPlanta');
+            const advertencia = document.getElementById('advertencia');
+
+            const patronIdentificador = /^[0-5]{2}[A-Z]{3}[_-][a-z]{2}$/;
+
+            if (!identificador.value || !nombre.value || !especie.value || !tipoPlanta) {
+                alert('Todos los campos son obligatorios');
+                e.preventDefault();
+                return;
+            }
+
+            /*if (!patronIdentificador.test(identificador.value)) {
+                alert('El identificador de la planta no sigue el patrón correcto: dos dígitos menores de 6, tres letras mayúsculas, un guión bajo o alto y dos letras minúsculas.');
+                e.preventDefault();
+                return;
+            }*/
+
+            if (cuidados.length === 0) {
+                alert('Debes seleccionar al menos un cuidado especial.');
+                e.preventDefault();
+            }
+            var textarea = document.getElementById('observacionesPlanta');
+            var valor = textarea.value;
+
+            var valido = /^[a-zA-Z0-9]*$/;
+
+            if (!valido.test(valor)) {
+                alert('El campo observaciones solo permite letras y números.');
+                e.preventDefault();
+            }
+        });
+        function mostraradvertencia() {
+            const observaciones = document.getElementById('observacionesPlanta');
+            const advertencia = document.getElementById('advertencia');
+
+            if (observaciones.value.trim() === '') {
+                advertencia.style.display = 'block';
+            } else {
+                advertencia.style.display = 'none';
+            }
+        }
+
+    </script>
+</body>
+
+</html>

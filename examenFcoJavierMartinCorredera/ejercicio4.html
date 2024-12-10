@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Planta {
+            constructor(nombre, tipo, riego) {
+                this.nombre = nombre;
+                this.tipo = tipo;
+                this.riego = riego;
+            }
+            getNombre() {
+                return this.nombre;
+            }
+            getTipo() {
+                return this.tipo; 
+            }
+            getRiego() {
+                return this.riego; 
+            }
+
+            informacion() {
+                return `
+                Nombre: ${this.getNombre()} 
+                Tipo: ${this.getTipo()}
+                Riego: ${this.getRiego()}
+                `;
+            }
+        }
+
+        class Arbusto extends Planta {
+            constructor(nombre, tipo, riego, altura) {
+                super(nombre, tipo, riego);
+                this.altura = altura;
+            }
+
+            getAltura() {
+                return this.altura;
+            }
+
+            informacion() {
+                return `
+                ${super.informacion()} 
+                Altura: ${this.getAltura()}
+                `;
+            }
+        }
+        class Árbol extends Planta{
+            constructor(nombre,tipo,riego,edad){
+                super(nombre, tipo, riego);
+                this.edad = edad;
+            }
+            getEdad(){
+                return this.edad
+            }
+            informacion(){
+                return `
+                ${super.informacion()} 
+                Edad: ${this.getEdad()}
+                `;
+            }
+        }
+
+        const planta = new Planta("Hiedra", "Larga", "Riego diario");
+        console.log(planta.informacion());
+
+        const arbusto = new Arbusto("Arbustin", "Bajo", "Riego semanal", "2 metros");
+        console.log(arbusto.informacion());
+
+        const arbol = new Árbol("Pino","Mediano", "Riego Mensual", "10 años")
+        console.log(arbol.informacion());
+
+    </script>
+</body>
+
+</html>
