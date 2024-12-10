@@ -34,10 +34,12 @@
                     <br/><br/>
                     <!-- Opciones de tipo de reparación con botones de radio -->
                     <label for="clasereparacion">Tipo de reparación: </label>
-                    <input type="radio" name="clasereparacion" value="sobremesa"> Ordenador de sobremesa
-                    <input type="radio" name="clasereparacion" value="portatil"> Ordenador portátil
-                    <input type="radio" name="clasereparacion" value="immpresora"> Impresora
-                    <br/><br/>
+                    <input type="radio" name="clasereparacion" value="sobremesa" onclick="ordenadorPortatil()"> Ordenador de sobremesa
+                    <input type="radio" name="clasereparacion" value="portatil" onclick="ordenadorPortatil()"> Ordenador portátil
+                    <input type="radio" name="clasereparacion" value="immpresora" onclick="ordenadorPortatil()"> Impresora
+                    <br/>
+                    <section id="portatil"></section>
+                    <br/>
                     <!-- Entrada para antigüedad del equipo -->
                     <label for="obtencion1">Antigüedad: </label>
                     <input type="number" name="antiguedad" id="antiguedad" >
@@ -171,6 +173,15 @@ Indique si tiene alguna observación que crea importante que debamos conocer...
                 alert('La contraseña debe comenzar con un guión bajo, seguido de tres números, una letra mayúscula, una letra minúscula y terminar con otro guión bajo.');
             }
         });
+        function ordenadorPortatil() {
+        var clases = document.getElementsByName("clasereparacion");
+        var clase = document.getElementById("portatil");
+        clase.innerHTML = "";
+        if (clases[1].checked) {
+          clase.innerHTML += "<p>HOLAAAAAA</p>";
+          clase.innerHTML += "<p>HOLAAAAAA2</p>";
+        }
+      }
 
     </script>
 </body>

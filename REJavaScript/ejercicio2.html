@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio2</title>
+</head>
+<body>
+    <script>
+        function colorRandom() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`; 
+        }
+        function pNumero() {
+            const entrada = prompt("Introduzca un número");
+            
+            if (!isNaN(entrada) && entrada.trim() !== '') {
+                alert("Número válido");
+            } else {
+                alert("Número inválido");
+            }
+        }
+        document.body.style.backgroundColor = colorRandom();
+        pNumero();
+    </script>
+    <h1>Bienvenido, Introduzca un número y la página se cambiará de color</h1>
+</body>
+</html>
