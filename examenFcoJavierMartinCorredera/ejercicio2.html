@@ -6,14 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matriz Aleatoria y Modificada</title>
     <style>
-        table {
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
         td {
             padding: 5px;
-            text-align: center;
-            border: 1px solid #ccc;
+            border: 1px solid #000000;
         }
     </style>
 </head>
@@ -37,21 +32,6 @@
             return matriz;
         }
 
-        function modificarMatriz(matriz) {
-            let matrizModificada = [];
-            for (let i = 0; i < matriz.length; i++) {
-                let filaModificada = [...matriz[i]];
-                for (let j = 0; j < filaModificada.length - 1; j += 2) {
-                    let temp = filaModificada[j];
-                    filaModificada[j] = filaModificada[j + 1];
-                    filaModificada[j + 1] = temp;
-                }
-                matrizModificada.push(filaModificada);
-            }
-            return matrizModificada;
-        }
-
-
         function mostrarMatriz(matriz, id) {
             let tabla = document.getElementById(id);
             tabla.innerHTML = '';
@@ -66,6 +46,19 @@
             }
         }
 
+        function modificarMatriz(matriz) {
+            let matrizModificada = [];
+            for (let i = 0; i < matriz.length; i++) {
+                let filaModificada = [...matriz[i]];
+                for (let j = 0; j < filaModificada.length - 1; j += 2) {
+                    let temporal = filaModificada[j];
+                    filaModificada[j] = filaModificada[j + 1];
+                    filaModificada[j + 1] = temporal;
+                }
+                matrizModificada.push(filaModificada);
+            }
+            return matrizModificada;
+        }
 
         let matrizOriginal = generarMatriz();
         let matrizModificada = modificarMatriz(matrizOriginal);

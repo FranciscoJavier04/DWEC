@@ -57,8 +57,8 @@
         </select>
         <br><br>
 
-        <button type="submit">Enviar</button>
-        <button type="button" onclick="document.getElementById('formulario').reset();">Limpiar</button>
+        <button type="submit" id="enviar">Enviar</button>
+        <button type="button" id="limpiar">Limpiar</button>
     </form>
 
     <div id="advertencia" class="advertencia">
@@ -83,18 +83,17 @@
                 return;
             }
 
-            /*if (!patronIdentificador.test(identificador.value)) {
+            if (!patronIdentificador.test(identificador.value)) {
                 alert('El identificador de la planta no sigue el patrón correcto: dos dígitos menores de 6, tres letras mayúsculas, un guión bajo o alto y dos letras minúsculas.');
                 e.preventDefault();
                 return;
-            }*/
+            }
 
             if (cuidados.length === 0) {
                 alert('Debes seleccionar al menos un cuidado especial.');
                 e.preventDefault();
             }
-            var textarea = document.getElementById('observacionesPlanta');
-            var valor = textarea.value;
+            var valor = observaciones.value;
 
             var valido = /^[a-zA-Z0-9]*$/;
 
@@ -102,7 +101,9 @@
                 alert('El campo observaciones solo permite letras y números.');
                 e.preventDefault();
             }
+            
         });
+
         function mostraradvertencia() {
             const observaciones = document.getElementById('observacionesPlanta');
             const advertencia = document.getElementById('advertencia');
@@ -113,7 +114,23 @@
                 advertencia.style.display = 'none';
             }
         }
+        
+        addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                const botonID = event.target.id;
 
+                switch (botonID) {
+                    case 'enviar':
+                        const formulario = document.getElementById('formulario')
+                        console.log(formulario);
+                        break;
+
+                    case 'limpiar':
+                    document.getElementById('formulario').reset();
+                    break;
+                }
+            }
+        });
     </script>
 </body>
 
