@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Equipos de Fútbol</title>
+</head>
+
+<body>
+    <h1>CRUD Equipos de Fútbol</h1>
+    <section class="crud">
+        <div>
+            <h2 class="crud-titulo">Agregar Equipo</h2>
+            <form class="crud-form">
+                <input type="text" name="equipo" placeholder="Nombre del equipo" required>
+                <br>
+                <input type="text" name="entrenador" placeholder="Entrenador" required>
+                <br>
+                <input type="text" name="jugador_destacado" placeholder="Jugador destacado" required>
+                <br>
+                <input type="number" name="posicion_tabla" placeholder="Posición en la tabla" required>
+                <br>
+                <input type="submit" value="Enviar">
+                <input type="hidden" name="id">
+            </form>
+        </div>
+        <div>
+            <h2>Equipos de Fútbol</h2>
+            <table class="crud-table" border=1>
+                <thead>
+                    <tr>
+                        <th>Equipo</th>
+                        <th>Entrenador</th>
+                        <th>Jugador Destacado</th>
+                        <th>Posición en la Tabla</th>
+                        <th>Operación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <template id="crud-template">
+        <tr>
+            <td class="equipo"></td>
+            <td class="entrenador"></td>
+            <td class="jugador_destacado"></td>
+            <td class="posicion_tabla"></td>
+            <td>
+                <button class="edit" id="editar">Editar</button>
+                <button class="delete" id="borrar">Eliminar</button>
+            </td>
+        </tr>
+    </template>
+    <script src="js/crudFutbol.js">
+    </script>
+</body>
+
+</html>
