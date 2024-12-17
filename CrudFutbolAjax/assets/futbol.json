@@ -1,77 +1,76 @@
 {
-    "primera_division": [
-      {
-        "id": "1",
-        "equipo": "Real Madrid",
-        "entrenador": "Carlo Ancelotti",
-        "jugador_destacado": "Vinícius Jr.",
-        "posicion_tabla": "1"
-      },
-      {
-        "id": "2",
-        "equipo": "FC Barcelona",
-        "entrenador": "Xavi Hernández",
-        "jugador_destacado": "Robert Lewandowski",
-        "posicion_tabla": "2"
-      },
-      {
-        "id": "3",
-        "equipo": "Atlético de Madrid",
-        "entrenador": "Diego Simeone",
-        "jugador_destacado": "Antoine Griezmann",
-        "posicion_tabla": "3"
-      },
-      {
-        "id": "4",
-        "equipo": "Sevilla FC",
-        "entrenador": "José Luis Mendilibar",
-        "jugador_destacado": "Youssef En-Nesyri",
-        "posicion_tabla": "12"
-      },
-      {
-        "id": "5",
-        "equipo": "Real Sociedad",
-        "entrenador": "Imanol Alguacil",
-        "jugador_destacado": "Mikel Oyarzabal",
-        "posicion_tabla": "4"
-      }
-    ],
-    "segunda_division": [
-      {
-        "id": "1",
-        "equipo": "Granada CF",
-        "entrenador": "Paco López",
-        "jugador_destacado": "Myrto Uzuni",
-        "posicion_tabla": "1"
-      },
-      {
-        "id": "2",
-        "equipo": "Las Palmas",
-        "entrenador": "García Pimienta",
-        "jugador_destacado": "Jonathan Viera",
-        "posicion_tabla": "2"
-      },
-      {
-        "id": "3",
-        "equipo": "Levante UD",
-        "entrenador": "Javier Calleja",
-        "jugador_destacado": "José Luis Morales",
-        "posicion_tabla": "3"
-      },
-      {
-        "id": "4",
-        "equipo": "Real Zaragoza",
-        "entrenador": "Fran Escribá",
-        "jugador_destacado": "Iván Azón",
-        "posicion_tabla": "8"
-      },
-      {
-        "id": "5",
-        "equipo": "Málaga CF",
-        "entrenador": "Pepe Mel",
-        "jugador_destacado": "Rubén Castro",
-        "posicion_tabla": "15"
-      }
-    ]
-  }
-  
+  "primera_division": [
+    {
+      "equipo": "Real Madrid",
+      "entrenador": "Carlo Ancelotti",
+      "jugador_destacado": "Vinícius Jr.",
+      "posicion_tabla": "1",
+      "id": "1"
+    },
+    {
+      "equipo": "FC Barcelona",
+      "entrenador": "Hansi Flick",
+      "jugador_destacado": "Robert Lewandowski",
+      "posicion_tabla": "2",
+      "id": "2"
+    },
+    {
+      "id": "3",
+      "equipo": "Atlético de Madrid",
+      "entrenador": "Diego Simeone",
+      "jugador_destacado": "Antoine Griezmann",
+      "posicion_tabla": "3"
+    },
+    {
+      "id": "4",
+      "equipo": "Sevilla FC",
+      "entrenador": "José Luis Mendilibar",
+      "jugador_destacado": "Youssef En-Nesyri",
+      "posicion_tabla": "12"
+    },
+    {
+      "id": "5",
+      "equipo": "Real Sociedad",
+      "entrenador": "Imanol Alguacil",
+      "jugador_destacado": "Mikel Oyarzabal",
+      "posicion_tabla": "4"
+    }
+  ],
+  "segunda_division": [
+    {
+      "id": "1",
+      "equipo": "Granada CF",
+      "entrenador": "Paco López",
+      "jugador_destacado": "Myrto Uzuni",
+      "posicion_tabla": "1"
+    },
+    {
+      "id": "2",
+      "equipo": "Las Palmas",
+      "entrenador": "García Pimienta",
+      "jugador_destacado": "Jonathan Viera",
+      "posicion_tabla": "2"
+    },
+    {
+      "id": "3",
+      "equipo": "Levante UD",
+      "entrenador": "Javier Calleja",
+      "jugador_destacado": "José Luis Morales",
+      "posicion_tabla": "3"
+    },
+    {
+      "id": "4",
+      "equipo": "Real Zaragoza",
+      "entrenador": "Fran Escribá",
+      "jugador_destacado": "Iván Azón",
+      "posicion_tabla": "8"
+    },
+    {
+      "id": "5",
+      "equipo": "Málaga CF",
+      "entrenador": "Pepe Mel",
+      "jugador_destacado": "Rubén Castro",
+      "posicion_tabla": "15"
+    }
+  ]
+}

@@ -28,7 +28,7 @@ const ajax = (options) => {
 
 const getAll = () => {
     ajax({
-        url: "http://localhost:5555/equipos",
+        url: "http://localhost:5555/primera_division",
         success: (respuesta) => {
             respuesta.forEach((el) => {
                 $template.querySelector(".equipo").textContent = el.equipo;
@@ -63,7 +63,7 @@ d.addEventListener("submit", (e) => {
 
         if (!e.target.id.value) {
             ajax({
-                url: "http://localhost:5555/equipos",
+                url: "http://localhost:5555/primera_division",
                 method: "POST",
                 success: (respuesta) => location.reload(),
                 error: (err) => {
@@ -78,7 +78,7 @@ d.addEventListener("submit", (e) => {
             });
         } else {
             ajax({
-                url: `http://localhost:5555/equipos/${e.target.id.value}`,
+                url: `http://localhost:5555/primera_division/${e.target.id.value}`,
                 method: "PUT",
                 success: (respuesta) => location.reload(),
                 error: (err) => $form.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`),
@@ -114,7 +114,7 @@ d.addEventListener("click", (e) => {
 
         if (isDelete) {
             ajax({
-                url: `http://localhost:5555/equipos/${e.target.dataset.id}`,
+                url: `http://localhost:5555/primera_division/${e.target.dataset.id}`,
                 method: "DELETE",
                 success: (respuesta) => location.reload(),
                 error: (err) => alert(err),
