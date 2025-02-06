@@ -1,0 +1,14 @@
+<div class="espacio">
+Inicio de Sesión:<br>
+<form #formulario="ngForm" (ngSubmit)="login(formulario)">
+    <div>
+        DNI Usuario:<input type="text"  name="usuario" ngModel><br>
+    </div> 
+    <div>
+        Password: <input type="passwrod"  name="password" ngModel> <br>
+    </div>
+    <div>
+        <button type="submit" value="Enviar" >Enviar</button>
+    </div>
+</form>
+</div>
