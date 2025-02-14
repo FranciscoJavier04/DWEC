@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">MiApp</a>
+    <a class="navbar-brand" href="/">MiApp</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,19 +8,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/">Inicio</a>
+          <a class="nav-link" routerLink="/acerca">Equipos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/acerca">Acerca</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/contacto">Contacto</a>
+          <a class="nav-link" routerLink="/contacto">Futbolistas</a>
         </li>
       </ul>
       <!-- Botones de Login y Registro -->
-      <div class="d-flex">
-        <a href="/login" class="btn btn-outline-dark">Iniciar Sesión</a>
-        <a href="/registro" class="btn btn-outline-success">Registrarse</a>
+      <div class="gap-3 d-flex justify-content-center">
+        <a href="/login" class="px-4 py-2 btn btn-outline-danger fs-5">Iniciar Sesión</a>
+        <a href="/registro" class="px-4 py-2 btn btn-outline-success fs-5">Registrarse</a>
       </div>
     </div>
   </div>
