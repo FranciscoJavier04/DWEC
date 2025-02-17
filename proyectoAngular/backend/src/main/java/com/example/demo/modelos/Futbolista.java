@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 
+
+
 /**
  * The persistent class for the futbolista database table.
  * 
@@ -14,13 +16,24 @@ import java.util.List;
 @NamedQuery(name="Futbolista.findAll", query="SELECT f FROM Futbolista f")
 public class Futbolista implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	
+
+	public Futbolista(int edad, Date fechaNac, int idUsuario, String nacionalidad, String nombre, Club club) {
+		super();
+		this.edad = edad;
+		this.fechaNac = fechaNac;
+		this.idUsuario = idUsuario;
+		this.nacionalidad = nacionalidad;
+		this.nombre = nombre;
+		this.club = club;
+	}
 
 	@Id
 	private int id;
 
 	private int edad;
-
-	private String equipo;
+	
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_nac")
@@ -33,9 +46,10 @@ public class Futbolista implements Serializable {
 
 	private String nombre;
 
-	//bi-directional many-to-many association to Posicione
-	@ManyToMany(mappedBy="futbolistas")
-	private List<Posicione> posiciones;
+	//bi-directional many-to-one association to Club
+	@ManyToOne
+	@JoinColumn(name="id_club")
+	private Club club;
 
 	public Futbolista() {
 	}
@@ -54,14 +68,6 @@ public class Futbolista implements Serializable {
 
 	public void setEdad(int edad) {
 		this.edad = edad;
-	}
-
-	public String getEquipo() {
-		return this.equipo;
-	}
-
-	public void setEquipo(String equipo) {
-		this.equipo = equipo;
 	}
 
 	public Date getFechaNac() {
@@ -96,12 +102,12 @@ public class Futbolista implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<Posicione> getPosiciones() {
-		return this.posiciones;
+	public Club getClub() {
+		return this.club;
 	}
 
-	public void setPosiciones(List<Posicione> posiciones) {
-		this.posiciones = posiciones;
+	public void setClub(Club club) {
+		this.club = club;
 	}
 
 }

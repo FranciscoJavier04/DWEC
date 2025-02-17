@@ -13,6 +13,19 @@ import jakarta.persistence.*;
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	public Usuario(byte admin, String aficiones, String apellidos, String email, String nombre, String pais,
+			String password, String sexo) {
+		super();
+		this.admin = admin;
+		this.aficiones = aficiones;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.nombre = nombre;
+		this.pais = pais;
+		this.password = password;
+		this.sexo = sexo;
+	}
+
 	private byte admin;
 
 	private String aficiones;
@@ -32,8 +45,16 @@ public class Usuario implements Serializable {
 
 	private String sexo;
 
+	
+
+	
+
 	public Usuario() {
+		super();
 	}
+
+	
+
 
 	public byte getAdmin() {
 		return this.admin;
