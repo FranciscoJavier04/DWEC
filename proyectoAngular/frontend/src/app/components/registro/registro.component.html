@@ -1,11 +1,7 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
-  <div class="p-4 shadow-lg card" style="width: 25rem;">
+  <div class="p-4 shadow-lg card " style="width: 25rem;">
     <h2 class="mb-4 text-center">Registro</h2>
     <form>
-      <div class="mb-3">
-        <label for="name" class="form-label">Nombre Completo:</label>
-        <input type="text" id="name" name="name" class="form-control" required>
-      </div>
       <div class="mb-3">
         <label for="email" class="form-label">Correo Electrónico:</label>
         <input type="email" id="email" name="email" class="form-control" required>
@@ -14,6 +10,52 @@
         <label for="password" class="form-label">Contraseña:</label>
         <input type="password" id="password" name="password" class="form-control" required>
       </div>
+      <div class="mb-3">
+        <label for="cpassword" class="form-label">Confirmar Contraseña:</label>
+        <input type="password" id="cpassword" name="cpassword" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre:</label>
+        <input type="text" id="name" name="name" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="apellidos" class="form-label">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="sexo" class="form-label">Sexo:</label>
+        <div>
+          <input type="radio" id="masculino" name="sexo" value="masculino" required>
+          <label for="masculino">Masculino</label>
+        </div>
+        <div>
+          <input type="radio" id="femenino" name="sexo" value="femenino" required>
+          <label for="femenino">Femenino</label>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="pais" class="form-label">País:</label>
+        <select id="pais" name="pais" class="form-control" required>
+          <option value="espania">España</option>
+          <option value="alemania">Alemania</option>
+          <option value="francia">Francia</option>
+          <option value="italia">Italia</option>
+          <option value="inglaterra">Inglaterra</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="aficiones" class="form-label">Aficiones:</label>
+        <select id="aficiones" name="aficiones[]" class="form-control" multiple required>
+          <option value="leer">Leer</option>
+          <option value="deporte">Deporte</option>
+          <option value="musica">Música</option>
+          <option value="cine">Cine</option>
+          <option value="viajar">Viajar</option>
+        </select>
+      </div>
+
+
       <button type="submit" class="btn btn-success w-100">Registrarse</button>
     </form>
     <p class="mt-3 text-center">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
