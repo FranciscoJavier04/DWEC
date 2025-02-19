@@ -1,6 +1,26 @@
-<nav class="navbar">
-  <ul class="navbar-links">
-    <li><a class="btn" href="/login">Login</a></li>
-    <li><a class="btn" href="/registro">Iniciar Sesión</a></li>
-  </ul>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow">
+  <div class="container-fluid">
+    <!-- Sección izquierda: Logo + Clubs -->
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="/assets/logo.png" alt="Logo" width="60" height="60" class="me-2">
+    </a>
+    <a class="navbar-brand text-light fw-semibold" href="/clubs">Clubs</a>
+
+    <!-- Botón para móviles -->
+    <button class="navbar-toggler border-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Sección derecha: Login + Registro -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="btn btn-outline-light me-2 fw-semibold" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-primary fw-semibold text-white" href="/registro">Iniciar Sesión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
