@@ -1,0 +1,65 @@
+<form #registroForm="ngForm" (ngSubmit)="onSubmit(registroForm)">
+  <div>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" [(ngModel)]="usuario.nombre" name="nombre" required #nombre="ngModel">
+    <div *ngIf="nombre.invalid && nombre.touched" class="error">
+      El nombre es obligatorio.
+    </div>
+  </div>
+
+  <div>
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos" [(ngModel)]="usuario.apellidos" name="apellidos" required #apellidos="ngModel">
+    <div *ngIf="apellidos.invalid && apellidos.touched" class="error">
+      Los apellidos son obligatorios.
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" [(ngModel)]="usuario.email" name="email" required email #email="ngModel">
+    <div *ngIf="email.invalid && email.touched" class="error">
+      El correo electrónico es obligatorio y debe ser válido.
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" [(ngModel)]="usuario.password" name="password" required minlength="6"
+      #password="ngModel">
+    <div *ngIf="password.invalid && password.touched" class="error">
+      La contraseña es obligatoria y debe tener al menos 6 caracteres.
+    </div>
+  </div>
+
+  <div>
+    <label for="pais">País:</label>
+    <input type="text" id="pais" [(ngModel)]="usuario.pais" name="pais" required #pais="ngModel">
+    <div *ngIf="pais.invalid && pais.touched" class="error">
+      El país es obligatorio.
+    </div>
+  </div>
+
+  <div>
+    <label for="sexo">Sexo:</label>
+    <select id="sexo" [(ngModel)]="usuario.sexo" name="sexo" required #sexo="ngModel">
+      <option value="">Selecciona...</option>
+      <option value="masculino">Masculino</option>
+      <option value="femenino">Femenino</option>
+      <option value="otro">Otro</option>
+    </select>
+    <div *ngIf="sexo.invalid && sexo.touched" class="error">
+      El sexo es obligatorio.
+    </div>
+  </div>
+
+  <div>
+    <label for="aficiones">Aficiones:</label>
+    <textarea id="aficiones" [(ngModel)]="usuario.aficiones" name="aficiones" required #aficiones="ngModel"></textarea>
+    <div *ngIf="aficiones.invalid && aficiones.touched" class="error">
+      Las aficiones son obligatorias.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="registroForm.invalid">Registrar</button>
+</form>
