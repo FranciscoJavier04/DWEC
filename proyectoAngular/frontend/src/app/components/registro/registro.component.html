@@ -1,29 +1,73 @@
-<h2>Registro de Usuario</h2>
+<h2 class="my-4 text-center">Registro de Usuario</h2>
 
-<form (ngSubmit)="registrar()">
-  <label>Nombre:</label>
-  <input type="text" [(ngModel)]="usuario.nombre" name="nombre" required>
+<form [formGroup]="registroForm" (ngSubmit)="registrar()" class="container p-4 border rounded shadow-sm">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre:</label>
+    <input type="text" formControlName="nombre" class="form-control" required>
+    <div *ngIf="registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched" class="text-danger">
+      Nombre es obligatorio y debe tener al menos 3 caracteres.
+    </div>
+  </div>
 
-  <label>Apellidos:</label>
-  <input type="text" [(ngModel)]="usuario.apellidos" name="apellidos" required>
+  <div class="mb-3">
+    <label for="apellidos" class="form-label">Apellidos:</label>
+    <input type="text" formControlName="apellidos" class="form-control" required>
+    <div *ngIf="registroForm.get('apellidos')?.invalid && registroForm.get('apellidos')?.touched" class="text-danger">
+      Apellidos son obligatorios y deben tener al menos 3 caracteres.
+    </div>
+  </div>
 
-  <label>Email:</label>
-  <input type="email" [(ngModel)]="usuario.email" name="email" required>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" formControlName="email" class="form-control" required>
+    <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched" class="text-danger">
+      Ingrese un email válido.
+    </div>
+  </div>
 
-  <label>Contraseña:</label>
-  <input type="password" [(ngModel)]="usuario.password" name="password" required>
+  <div class="mb-3">
+    <label for="password" class="form-label">Contraseña:</label>
+    <input type="password" formControlName="password" class="form-control" required>
+    <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched" class="text-danger">
+      La contraseña debe tener al menos 6 caracteres.
+    </div>
+  </div>
 
-  <label>País:</label>
-  <input type="text" [(ngModel)]="usuario.pais" name="pais">
+  <div class="mb-3">
+    <label for="pais" class="form-label">País:</label>
+    <select formControlName="pais" class="form-select">
+      <option value="España">España</option>
+      <option value="Alemania">Alemania</option>
+      <option value="Francia">Francia</option>
+      <option value="Italia">Italia</option>
+      <option value="Inglaterra">Inglaterra</option>
+    </select>
+    <div *ngIf="registroForm.get('pais')?.invalid && registroForm.get('pais')?.touched" class="text-danger">
+      Seleccione un país.
+    </div>
+  </div>
 
-  <label>Sexo:</label>
-  <select [(ngModel)]="usuario.sexo" name="sexo">
-    <option value="Masculino">Masculino</option>
-    <option value="Femenino">Femenino</option>
-  </select>
+  <div class="mb-3">
+    <label class="form-label">Sexo:</label>
+    <div class="form-check">
+      <input type="radio" id="masculino" value="Masculino" formControlName="sexo" class="form-check-input">
+      <label for="masculino" class="form-check-label">Masculino</label>
+    </div>
+    <div class="form-check">
+      <input type="radio" id="femenino" value="Femenino" formControlName="sexo" class="form-check-input">
+      <label for="femenino" class="form-check-label">Femenino</label>
+    </div>
+    <div *ngIf="registroForm.get('sexo')?.invalid && registroForm.get('sexo')?.touched" class="text-danger">
+      Seleccione un género.
+    </div>
+  </div>
 
-  <label>Aficiones:</label>
-  <input type="text" [(ngModel)]="usuario.aficiones" name="aficiones">
+  <div class="mb-3">
+    <label for="aficiones" class="form-label">Aficiones:</label>
+    <input type="text" formControlName="aficiones" class="form-control">
+  </div>
 
-  <button type="submit">Registrar</button>
+  <div class="d-flex justify-content-center">
+    <button type="submit" class="btn btn-primary" [disabled]="registroForm.invalid">Registrar</button>
+  </div>
 </form>
