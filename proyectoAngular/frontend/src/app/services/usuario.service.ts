@@ -14,7 +14,7 @@ export class UsuarioService {
   obtenerListaEmpleados(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.baseURL + '/obtener');
   }
-  anadirUsuario(usuario: DatosAltaUsuario): Observable<void> {
-    return this.http.post<void>(this.baseURL + '/anadirnuevo', usuario);
+  anadirUsuario(usuario: DatosAltaUsuario): Observable<any> {
+    return this.http.post(this.baseURL + '/anadirnuevo', usuario);
   }
 }

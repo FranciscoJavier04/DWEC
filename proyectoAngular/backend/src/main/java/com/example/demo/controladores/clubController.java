@@ -22,6 +22,7 @@ import com.example.demo.repositorios.clubRepositorio;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.xml.bind.DatatypeConverter;
 
 @CrossOrigin(origins = "http:localhost:4200")
 @RestController
@@ -44,6 +45,11 @@ public class clubController {
 			dtoClub.put("pais", c.getPais());
 			dtoClub.put("estadio", c.getEstadio());
 
+			if (c.getImagen() != null) {
+				dtoClub.put("imagen", DatatypeConverter.printBase64Binary(c.getImagen()));
+			} else {
+				dtoClub.put("imagen", "");
+			}
 			listaClubsDTO.add(dtoClub);
 		}
 
@@ -85,13 +91,13 @@ public class clubController {
 
 	@PostMapping(path = "/anadirnuevo")
 	public void anadirClub(@RequestBody DatosAltaClub clubData, HttpServletRequest request) {
-		Club nuevoClub = new Club(clubData.estadio, clubData.fundacion, clubData.nombre, clubData.pais);
+		Club nuevoClub = new Club(clubData.estadio, clubData.fundacion, clubData.nombre, clubData.pais,
+				DatatypeConverter.parseBase64Binary(clubData.imagen));
 
 		clubRep.save(nuevoClub);
 	}
 
 	static class DatosAltaClub {
-
 
 		String estadio;
 
@@ -101,16 +107,16 @@ public class clubController {
 
 		String pais;
 
+		String imagen;
 
-		public DatosAltaClub(String estadio, int fundacion, String nombre, String pais) {
+		public DatosAltaClub(String estadio, int fundacion, String nombre, String pais, String imagen) {
 			super();
 			this.estadio = estadio;
 			this.fundacion = fundacion;
 			this.nombre = nombre;
 			this.pais = pais;
+			this.imagen = imagen;
 		}
-
-		
 
 	}
 

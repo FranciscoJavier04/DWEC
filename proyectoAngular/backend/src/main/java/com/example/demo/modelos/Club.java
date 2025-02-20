@@ -4,39 +4,38 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the club database table.
- * 
  */
 @Entity
-@NamedQuery(name="Club.findAll", query="SELECT c FROM Club c")
+@NamedQuery(name = "Club.findAll", query = "SELECT c FROM Club c")
 public class Club implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	
 
-	public Club( String estadio, int fundacion, String nombre, String pais) {
+	public Club(String estadio, int fundacion, String nombre, String pais, byte[] imagen) {
 		super();
 		this.estadio = estadio;
 		this.fundacion = fundacion;
 		this.nombre = nombre;
 		this.pais = pais;
+		this.imagen = imagen;
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String estadio;
-
 	private int fundacion;
-
 	private String nombre;
-
 	private String pais;
 
-	//bi-directional many-to-one association to Futbolista
-	@OneToMany(mappedBy="club")
+	@Lob
+	@Column(columnDefinition = "LONGBLOB")
+	private byte[] imagen;
+
+	// bi-directional many-to-one association to Futbolista
+	@OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Futbolista> futbolistas;
 
 	public Club() {
@@ -82,6 +81,14 @@ public class Club implements Serializable {
 		this.pais = pais;
 	}
 
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+
 	public List<Futbolista> getFutbolistas() {
 		return this.futbolistas;
 	}
@@ -93,15 +100,12 @@ public class Club implements Serializable {
 	public Futbolista addFutbolista(Futbolista futbolista) {
 		getFutbolistas().add(futbolista);
 		futbolista.setClub(this);
-
 		return futbolista;
 	}
 
 	public Futbolista removeFutbolista(Futbolista futbolista) {
 		getFutbolistas().remove(futbolista);
 		futbolista.setClub(null);
-
 		return futbolista;
 	}
-
 }

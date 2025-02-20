@@ -4,4 +4,5 @@ export interface Club {
   fundacion: number;
   pais: string;
   estadio: string;
+  imagen: string;
 }

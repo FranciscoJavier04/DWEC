@@ -1,0 +1,29 @@
+<h2>Registro de Usuario</h2>
+
+<form (ngSubmit)="registrar()">
+  <label>Nombre:</label>
+  <input type="text" [(ngModel)]="usuario.nombre" name="nombre" required>
+
+  <label>Apellidos:</label>
+  <input type="text" [(ngModel)]="usuario.apellidos" name="apellidos" required>
+
+  <label>Email:</label>
+  <input type="email" [(ngModel)]="usuario.email" name="email" required>
+
+  <label>Contraseña:</label>
+  <input type="password" [(ngModel)]="usuario.password" name="password" required>
+
+  <label>País:</label>
+  <input type="text" [(ngModel)]="usuario.pais" name="pais">
+
+  <label>Sexo:</label>
+  <select [(ngModel)]="usuario.sexo" name="sexo">
+    <option value="Masculino">Masculino</option>
+    <option value="Femenino">Femenino</option>
+  </select>
+
+  <label>Aficiones:</label>
+  <input type="text" [(ngModel)]="usuario.aficiones" name="aficiones">
+
+  <button type="submit">Registrar</button>
+</form>

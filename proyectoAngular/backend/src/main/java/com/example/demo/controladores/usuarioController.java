@@ -93,64 +93,62 @@ public class usuarioController {
 		return dtoUsuario;
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(path = "/anadirnuevo")
 
 	public void anadirUsuario(@RequestBody DatosAltaUsuario u, HttpServletRequest request) {
-	    usuRep.save(new Usuario(
-	        u.admin,
-	        u.aficiones,
-	        u.apellidos,
-	        u.email,
-	        u.nombre,
-	        u.pais,
-	        u.password,
-	        u.sexo
-	    ));
+		usuRep.save(new Usuario(
+				u.admin,
+				u.aficiones,
+				u.apellidos,
+				u.email,
+				u.nombre,
+				u.pais,
+				u.password,
+				u.sexo));
 	}
-	@PostMapping(path = "/autentica", consumes =MediaType.APPLICATION_JSON_VALUE)
-	
-	public DTO autenticaUsuario(@RequestBody DatosAutenticaUsuario datos, HttpServletRequest request, HttpServletResponse response) {
+
+	@PostMapping(path = "/autentica", consumes = MediaType.APPLICATION_JSON_VALUE)
+
+	public DTO autenticaUsuario(@RequestBody DatosAutenticaUsuario datos, HttpServletRequest request,
+			HttpServletResponse response) {
 		DTO dto = new DTO();
 		dto.put("result", "fail");
-		Usuario usuarioAutenticado=usuRep.findByEmailAndPassword(datos.email, datos.password);
-		if(usuarioAutenticado!=null) {
-			dto.put("result","ok");
+		Usuario usuarioAutenticado = usuRep.findByEmailAndPassword(datos.email, datos.password);
+		if (usuarioAutenticado != null) {
+			dto.put("result", "ok");
 			dto.put("jwt", AutenticadorJWT.codificaJWT(usuarioAutenticado));
-			
+
 			Cookie cook = new Cookie("jwt", AutenticadorJWT.codificaJWT(usuarioAutenticado));
 			cook.setMaxAge(-1);
 			response.addCookie(cook);
 		}
-		
-		
+
 		return dto;
-	} 
+	}
+
 	@GetMapping(path = "/quieneres")
-	
+
 	public DTO getAutenticado(HttpServletRequest request) {
-		DTO dtoUsuario=new DTO();
-		dtoUsuario.put("result","fail");
-		Cookie[] c=request.getCookies();
-		int idUsuarioAutenticado=-1;
+		DTO dtoUsuario = new DTO();
+		dtoUsuario.put("result", "fail");
+		Cookie[] c = request.getCookies();
+		int idUsuarioAutenticado = -1;
 		for (Cookie co : c) {
 			if (co.getName().equals("jwt")) {
-				idUsuarioAutenticado=AutenticadorJWT.getIdUsuarioDesdeJWT(co.getValue());
-			
+				idUsuarioAutenticado = AutenticadorJWT.getIdUsuarioDesdeJWT(co.getValue());
+
 			}
-			
+
 		}
-		
-		Usuario u=usuRep.findById(idUsuarioAutenticado);
-		if(u!=null) {
+
+		Usuario u = usuRep.findById(idUsuarioAutenticado);
+		if (u != null) {
 			dtoUsuario.put("id", u.getId());
 			dtoUsuario.put("nombre", u.getNombre());
-			dtoUsuario.put("result","ok");
+			dtoUsuario.put("result", "ok");
 		}
-		
-		
-		
-		
-		
+
 		return dtoUsuario;
 	}
 

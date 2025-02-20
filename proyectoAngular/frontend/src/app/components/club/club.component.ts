@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Club } from '../interfaces/clubs';
-import { ClubService } from '../services/club.service';
+import { Club } from '../../interfaces/clubs';
+import { ClubService } from '../../services/club.service';
 import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-club',
-  imports: [NgFor,CommonModule],
+  imports: [NgFor, CommonModule],
   templateUrl: './club.component.html',
-  styleUrl: './club.component.css'
+  styleUrl: './club.component.css',
 })
 export class ClubComponent implements OnInit {
   clubs: Club[] = [];
