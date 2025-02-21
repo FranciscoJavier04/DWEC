@@ -108,6 +108,7 @@ public class usuarioController {
 				u.sexo));
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(path = "/autentica", consumes = MediaType.APPLICATION_JSON_VALUE)
 
 	public DTO autenticaUsuario(@RequestBody DatosAutenticaUsuario datos, HttpServletRequest request,
@@ -127,6 +128,7 @@ public class usuarioController {
 		return dto;
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(path = "/quieneres")
 
 	public DTO getAutenticado(HttpServletRequest request) {
