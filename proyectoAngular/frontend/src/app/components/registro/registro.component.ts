@@ -9,6 +9,7 @@ import { DatosAltaUsuario } from '../../interfaces/datosAltaUsuario';
 import { UsuarioService } from '../../services/usuario.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -29,7 +30,11 @@ export class RegistroComponent {
     admin: 0,
   };
 
-  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) {
     this.registroForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       apellidos: ['', [Validators.required, Validators.minLength(3)]],
@@ -43,12 +48,18 @@ export class RegistroComponent {
 
   registrar() {
     if (this.registroForm.valid) {
-      // Asignar los valores del formulario al objeto usuario
       this.usuario = { ...this.registroForm.value };
 
-      // Llamar al servicio para agregar el usuario
       this.usuarioService.anadirUsuario(this.usuario).subscribe({
-        next: () => alert('Usuario registrado con éxito'),
+        next: () => {
+          // Guardar usuario en sessionStorage
+          localStorage.setItem('usuario', JSON.stringify(this.usuario));
+
+          alert('Usuario registrado con éxito');
+
+          // Redirigir a la página de inicio o dashboard
+          this.router.navigate(['']);
+        },
         error: () => alert('Error en el registro'),
       });
     } else {
