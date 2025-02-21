@@ -4,6 +4,8 @@ import {
   FormGroup,
   ReactiveFormsModule,
   Validators,
+  AbstractControl,
+  ValidationErrors,
 } from '@angular/forms';
 import { DatosAltaUsuario } from '../../interfaces/datosAltaUsuario';
 import { UsuarioService } from '../../services/usuario.service';
@@ -35,24 +37,35 @@ export class RegistroComponent {
     private usuarioService: UsuarioService,
     private router: Router
   ) {
-    this.registroForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(3)]],
-      apellidos: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      pais: ['', Validators.required],
-      sexo: ['', Validators.required],
-      aficiones: [''],
-    });
+    this.registroForm = this.fb.group(
+      {
+        nombre: ['', [Validators.required, Validators.minLength(3)]],
+        apellidos: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmarPassword: ['', [Validators.required]],
+        pais: ['', Validators.required],
+        sexo: ['', Validators.required],
+        aficiones: [''],
+      },
+      { validators: this.passwordsIguales } // Validador personalizado
+    );
+  }
+
+  // Validador personalizado para comparar contraseñas
+  passwordsIguales(form: AbstractControl): ValidationErrors | null {
+    const password = form.get('password')?.value;
+    const confirmarPassword = form.get('confirmarPassword')?.value;
+    return password === confirmarPassword ? null : { passwordMismatch: true };
   }
 
   registrar() {
     if (this.registroForm.valid) {
-      this.usuario = { ...this.registroForm.value };
+      this.usuario = { ...this.registroForm.value }; // Eliminamos la confirmación antes de enviar
 
       this.usuarioService.anadirUsuario(this.usuario).subscribe({
         next: () => {
-          // Guardar usuario en sessionStorage
+          // Guardar usuario en localStorage
           localStorage.setItem('usuario', JSON.stringify(this.usuario));
 
           alert('Usuario registrado con éxito');

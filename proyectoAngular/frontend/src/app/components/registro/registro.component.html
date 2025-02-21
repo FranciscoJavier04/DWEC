@@ -34,6 +34,19 @@
   </div>
 
   <div class="mb-3">
+    <label for="confirmarPassword" class="form-label">Confirmar Contraseña:</label>
+    <input type="password" formControlName="confirmarPassword" class="form-control" required>
+    <div *ngIf="registroForm.get('confirmarPassword')?.invalid && registroForm.get('confirmarPassword')?.touched"
+      class="text-danger">
+      Debe confirmar la contraseña.
+    </div>
+    <div *ngIf="registroForm.hasError('passwordMismatch') && registroForm.get('confirmarPassword')?.touched"
+      class="text-danger">
+      Las contraseñas no coinciden.
+    </div>
+  </div>
+
+  <div class="mb-3">
     <label for="pais" class="form-label">País:</label>
     <select formControlName="pais" class="form-select">
       <option value="España">España</option>
