@@ -79,6 +79,7 @@ public class usuarioController {
 		return dtoUsuario;
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping(path = "/borrar1", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public DTO deleteUsuario(@RequestBody DTO soloid, HttpServletRequest request) {
 		DTO dtoUsuario = new DTO();

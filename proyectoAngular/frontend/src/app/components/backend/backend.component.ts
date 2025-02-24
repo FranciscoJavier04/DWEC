@@ -81,4 +81,84 @@ export class BackendComponent implements OnInit {
     );
   }
 
+  eliminarFutbolista(id: number): void {
+    this.futbolistaService.deleteFutbolista(id).subscribe(
+      (response) => {
+        if (response.borrado === 'ok') {
+          console.log('Futbolista eliminado con éxito');
+          this.futbolistas = this.futbolistas.filter(f => f.id !== id); // Elimina el futbolista del array local
+        } else {
+          console.log('Error al eliminar futbolista');
+        }
+      },
+      (error) => {
+        console.error('Error al intentar eliminar futbolista', error);
+      }
+    );
+
+  }
+  eliminarClub(id: number): void {
+    this.clubService.deleteClub(id).subscribe(
+      (response) => {
+        if (response.borrado === 'ok') {
+          console.log('Club eliminado con éxito');
+          this.clubs = this.clubs.filter(c => c.id !== id); // Elimina el club del array local
+        } else {
+          console.log('Error al eliminar club');
+        }
+      },
+      (error) => {
+        console.error('Error al intentar eliminar club', error);
+      }
+    );
+  }
+
+  eliminarPosicionAsignada(id: number): void {
+    this.posicionesService.deletePosicionAsignada(id).subscribe(
+      (response) => {
+        if (response.borrado === 'ok') {
+          console.log('Posición asignada eliminada con éxito');
+          this.posiciones = this.posiciones.filter(p => p.id !== id); // Elimina la posición asignada del array local
+        } else {
+          console.log('Error al eliminar posición asignada');
+        }
+      },
+      (error) => {
+        console.error('Error al intentar eliminar posición asignada', error);
+      }
+    );
+  }
+
+  eliminarPosicion(id: number): void {
+    this.posicionesService.deletePosiciones(id).subscribe(
+      (response) => {
+        if (response.borrado === 'ok') {
+          console.log('Posición eliminada con éxito');
+          this.posiciones2 = this.posiciones2.filter(p => p.id !== id); // Elimina la posición del array local
+        } else {
+          console.log('Error al eliminar posición');
+        }
+      },
+      (error) => {
+        console.error('Error al intentar eliminar posición', error);
+      }
+    );
+  }
+
+  eliminarUsuario(id: number): void {
+    this.usuarioService.deleteUsuario(id).subscribe(
+      (response) => {
+        if (response.borrado === 'ok') {
+          console.log('Usuario eliminado con éxito');
+          this.usuario = this.usuario.filter(u => u.id !== id); // Elimina el usuario del array local
+        } else {
+          console.log('Error al eliminar usuario');
+        }
+      },
+      (error) => {
+        console.error('Error al intentar eliminar usuario', error);
+      }
+    );
+  }
+
 }

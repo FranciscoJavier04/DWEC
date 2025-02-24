@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
@@ -17,4 +17,11 @@ export class UsuarioService {
   anadirUsuario(usuario: DatosAltaUsuario): Observable<any> {
     return this.http.post(this.baseURL + '/anadirnuevo', usuario);
   }
+  deleteUsuario(id: number): Observable<any> {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      return this.http.delete<any>(`${this.baseURL}/borrar1`, {
+        headers,
+        body: { id }, // Enviamos el ID en el cuerpo
+      });
+    }
 }

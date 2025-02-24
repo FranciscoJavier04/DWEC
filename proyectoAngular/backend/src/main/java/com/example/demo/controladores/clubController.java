@@ -74,6 +74,7 @@ public class clubController {
 		return dtoClub;
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping(path = "/borrar1", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public DTO deleteClub(@RequestBody DTO soloid, HttpServletRequest request) {
 		DTO dtoClub = new DTO();

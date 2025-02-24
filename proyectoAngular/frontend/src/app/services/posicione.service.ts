@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PosicionesAsignadas } from '../interfaces/posiciones_asignadas';
 import { Posiciones } from '../interfaces/posiciones';
@@ -19,4 +19,18 @@ export class PosicioneService {
   getPosiciones(): Observable<Posiciones[]> {
     return this.http.get<Posiciones[]>(this.baseURL2 + '/obt');
   }
+  deletePosiciones(id: number): Observable<any> {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      return this.http.delete<any>(`${this.baseURL}/borrar1`, {
+        headers,
+        body: { id }, // Enviamos el ID en el cuerpo
+      });
+    }
+    deletePosicionAsignada(id: number): Observable<any> {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      return this.http.delete<any>(`${this.baseURL}/borrar1`, {
+        headers,
+        body: { id }, // Enviamos el ID en el cuerpo
+      });
+    }
 }

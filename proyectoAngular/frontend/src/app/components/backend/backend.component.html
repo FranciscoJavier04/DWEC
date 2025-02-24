@@ -29,7 +29,7 @@
           </td>
           <td>
             <button class="btn btn-warning me-2">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
+            <button class="btn btn-danger" (click)="eliminarClub(club.id)">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -70,7 +70,7 @@
           </td>
           <td>
             <button class="btn btn-warning me-2">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
+            <button class="btn btn-danger" (click)="eliminarFutbolista(futbolista.id)">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -127,7 +127,7 @@
           <td>{{ posiciones2.Nombre }}</td>
           <td>
             <button class="btn btn-warning me-2">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
+            <button class="btn btn-danger" (click)="eliminarPosicion(posiciones2.id)">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -166,7 +166,7 @@
           <td>{{ usuario.admin ? 'Sí' : 'No' }}</td>
           <td>
             <button class="btn btn-warning me-2">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
+            <button class="btn btn-danger" (click)="eliminarUsuario(usuario.id)">Eliminar</button>
           </td>
         </tr>
       </tbody>
