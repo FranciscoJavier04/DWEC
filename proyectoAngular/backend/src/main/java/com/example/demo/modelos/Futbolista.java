@@ -3,52 +3,52 @@ package com.example.demo.modelos;
 import java.io.Serializable;
 import jakarta.persistence.*;
 import java.util.Date;
-import java.util.List;
-
-
-
 
 /**
  * The persistent class for the futbolista database table.
- * 
  */
 @Entity
-@NamedQuery(name="Futbolista.findAll", query="SELECT f FROM Futbolista f")
+@NamedQuery(name = "Futbolista.findAll", query = "SELECT f FROM Futbolista f")
 public class Futbolista implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	
 
-	public Futbolista(int edad, Date fechaNac, int idUsuario, String nacionalidad, String nombre, Club club) {
+	public Futbolista(int edad, Date fechaNac, Usuario usuario, String nacionalidad, String nombre, Club club,
+			byte[] imagen) {
 		super();
 		this.edad = edad;
 		this.fechaNac = fechaNac;
-		this.idUsuario = idUsuario;
+		this.usuario = usuario;
 		this.nacionalidad = nacionalidad;
 		this.nombre = nombre;
 		this.club = club;
+		this.imagen = imagen;
+
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private int edad;
-	
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="fecha_nac")
+	@Column(name = "fecha_nac")
 	private Date fechaNac;
-
-	@Column(name="id_usuario")
-	private int idUsuario;
 
 	private String nacionalidad;
 
 	private String nombre;
 
-	//bi-directional many-to-one association to Club
+	@Lob
+	@Column(columnDefinition = "LONGBLOB")
+	private byte[] imagen;
+
 	@ManyToOne
-	@JoinColumn(name="id_club")
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario; // Cambio de int a Usuario
+
+	@ManyToOne
+	@JoinColumn(name = "id_club")
 	private Club club;
 
 	public Futbolista() {
@@ -78,12 +78,12 @@ public class Futbolista implements Serializable {
 		this.fechaNac = fechaNac;
 	}
 
-	public int getIdUsuario() {
-		return this.idUsuario;
+	public Usuario getUsuario() {
+		return this.usuario;
 	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getNacionalidad() {
@@ -102,6 +102,14 @@ public class Futbolista implements Serializable {
 		this.nombre = nombre;
 	}
 
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+
 	public Club getClub() {
 		return this.club;
 	}
@@ -109,5 +117,4 @@ public class Futbolista implements Serializable {
 	public void setClub(Club club) {
 		this.club = club;
 	}
-
 }

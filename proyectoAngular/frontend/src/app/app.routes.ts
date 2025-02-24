@@ -3,6 +3,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { HomeComponent } from './components/home/home.component';
 import { ClubComponent } from './components/club/club.component';
 import { LoginComponent } from './components/login/login.component';
+import { BackendComponent } from './components/backend/backend.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,6 @@ export const routes: Routes = [
   {
     path: 'backend',
     title: 'Backend',
-    component: ClubComponent,
+    component: BackendComponent,
   },
 ];

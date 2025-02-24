@@ -1,1 +1,134 @@
-<p>backend works!</p>
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Lista de Clubes</h2>
+  <div class="mb-2 text-center">
+    <button class="btn btn-success">Insertar Club</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table text-center align-middle table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>País</th>
+          <th>Fundación</th>
+          <th>Estadio</th>
+          <th>Imagen</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let club of clubs">
+          <td>{{ club.id }}</td>
+          <td>{{ club.nombre }}</td>
+          <td>{{ club.pais }}</td>
+          <td>{{ club.fundacion }}</td>
+          <td>{{ club.estadio }}</td>
+          <td>
+            <img [src]="'data:image/png;base64,' + club.imagen" class="img-thumbnail"
+              style="width: 80px; height: 80px; object-fit: cover;" alt="Imagen de {{ club.nombre }}">
+          </td>
+          <td>
+            <button class="btn btn-warning me-2">Editar</button>
+            <button class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="my-4 text-center">Lista de Futbolistas</h2>
+  <div class="mb-2 text-center">
+    <button class="btn btn-success">Insertar Futbolista</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table text-center align-middle table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Fecha de Nacimiento</th>
+          <th>Edad</th>
+          <th>Nacionalidad</th>
+          <th>Usuario</th>
+          <th>Club</th>
+          <th>Imagen</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let futbolista of futbolistas">
+          <td>{{ futbolista.id }}</td>
+          <td>{{ futbolista.nombre }}</td>
+          <td>{{ futbolista.fecha_nac }}</td>
+          <td>{{ futbolista.edad }}</td>
+          <td>{{ futbolista.nacionalidad }}</td>
+          <td>{{ futbolista.Usuario }}</td>
+          <td>{{ futbolista.Club }}</td>
+          <td>
+            <img [src]="'data:image/png;base64,' + futbolista.imagen" class="img-thumbnail"
+              style="width: 80px; height: 80px; object-fit: cover;" alt="Imagen de {{ futbolista.nombre }}">
+          </td>
+          <td>
+            <button class="btn btn-warning me-2">Editar</button>
+            <button class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="my-4 text-center">Lista de Posiciones Asignadas</h2>
+  <div class="mb-2 text-center">
+    <button class="btn btn-success">Insertar Posición Asignada</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table text-center align-middle table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Futbolista</th>
+          <th>Posición</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let posicion of posiciones">
+          <td>{{ posicion.id }}</td>
+          <td>{{ posicion.Futbolista }}</td>
+          <td>{{ posicion.Posicion }}</td>
+          <td>
+            <button class="btn btn-warning me-2">Editar</button>
+            <button class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <h2 class="my-4 text-center">Lista de Posiciones</h2>
+  <div class="mb-2 text-center">
+    <button class="btn btn-success">Insertar Posición</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table text-center align-middle table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let posiciones2 of posiciones2">
+          <td>{{ posiciones2.id }}</td>
+          <td>{{ posiciones2.Nombre }}</td>
+          <td>
+            <button class="btn btn-warning me-2">Editar</button>
+            <button class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

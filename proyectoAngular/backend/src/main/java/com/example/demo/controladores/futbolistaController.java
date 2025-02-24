@@ -26,6 +26,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.xml.bind.DatatypeConverter;
 
 @CrossOrigin(origins = "http:localhost:4200")
 @RestController
@@ -37,7 +38,7 @@ public class futbolistaController {
 
 	@GetMapping("/obtener")
 	public List<DTO> getFutbolistas() {
-		List<DTO> listaFutbolistasDTO = new ArrayList<DTO>();
+		List<DTO> listaFutbolistasDTO = new ArrayList<>();
 		List<Futbolista> futbolistas = futRep.findAll();
 
 		for (Futbolista f : futbolistas) {
@@ -47,6 +48,14 @@ public class futbolistaController {
 			dtoFutbolista.put("fecha_nac", f.getFechaNac().toString());
 			dtoFutbolista.put("nacionalidad", f.getNacionalidad());
 			dtoFutbolista.put("edad", f.getEdad());
+			dtoFutbolista.put("Club", f.getClub().getNombre());
+			dtoFutbolista.put("Usuario", f.getUsuario().getNombre());
+
+			if (f.getImagen() != null) {
+				dtoFutbolista.put("imagen", DatatypeConverter.printBase64Binary(f.getImagen()));
+			} else {
+				dtoFutbolista.put("imagen", "");
+			}
 
 			listaFutbolistasDTO.add(dtoFutbolista);
 		}
@@ -90,39 +99,36 @@ public class futbolistaController {
 	@PostMapping(path = "/anadirnuevo")
 
 	public void anadirFutbolista(@RequestBody DatosAltaFutbolista f, HttpServletRequest request) {
-		futRep.save(new Futbolista(f.edad, f.fechaNac, f.idUsuario, f.nacionalidad, f.nombre,f.club));
+		futRep.save(new Futbolista(f.edad, f.fechaNac, f.usuario, f.nacionalidad, f.nombre, f.club,
+				DatatypeConverter.parseBase64Binary(f.imagen)));
 	}
 
 	static class DatosAltaFutbolista {
 
 		int edad;
 
-
-
 		Date fechaNac;
-
-		int idUsuario;
 
 		String nacionalidad;
 
 		String nombre;
-		
+
+		Usuario usuario;
+
 		Club club;
 
+		String imagen;
 
-
-		public DatosAltaFutbolista(int edad, Date fechaNac, int idUsuario, String nacionalidad, String nombre,
-				Club club) {
+		public DatosAltaFutbolista(int edad, Date fechaNac, String nacionalidad, String nombre,
+				String imagen, Club club, Usuario usuario) {
 			super();
 			this.edad = edad;
 			this.fechaNac = fechaNac;
-			this.idUsuario = idUsuario;
 			this.nacionalidad = nacionalidad;
 			this.nombre = nombre;
+			this.imagen = imagen;
 			this.club = club;
 		}
-
-		
 
 	}
 }
