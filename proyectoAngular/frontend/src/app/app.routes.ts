@@ -25,4 +25,9 @@ export const routes: Routes = [
     title: 'Login',
     component: LoginComponent,
   },
+  {
+    path: 'backend',
+    title: 'Backend',
+    component: ClubComponent,
+  },
 ];
