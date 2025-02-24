@@ -7,6 +7,8 @@ import { FutbolistaService } from '../../services/futbolista.service';
 import { PosicionesAsignadas } from '../../interfaces/posiciones_asignadas';
 import { PosicioneService } from '../../services/posicione.service';
 import { Posiciones } from '../../interfaces/posiciones';
+import { Usuario } from '../../interfaces/usuario';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-backend',
@@ -19,11 +21,15 @@ export class BackendComponent implements OnInit {
   futbolistas: Futbolista[] = [];
   posiciones: PosicionesAsignadas[] = [];
   posiciones2: Posiciones[] = [];
+  usuario: Usuario[] = [];
+  futbolistaAEliminarId: number | null = null;
 
   constructor(
     private clubService: ClubService,
     private futbolistaService: FutbolistaService,
-    private posicionesService: PosicioneService
+    private posicionesService: PosicioneService,
+    private usuarioService: UsuarioService,
+
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +54,7 @@ export class BackendComponent implements OnInit {
     this.posicionesService.getPosicionesAsignadas().subscribe(
       (data) => {
         this.posiciones = data;
-        console.log(this.posiciones);
+
       },
       (error) => {
         console.error('Error al obtener las posiciones', error);
@@ -57,11 +63,22 @@ export class BackendComponent implements OnInit {
     this.posicionesService.getPosiciones().subscribe(
       (data) => {
         this.posiciones2 = data;
-        console.log(this.posiciones2);
+
       },
       (error) => {
         console.error('Error al obtener las posiciones', error);
       }
     );
+
+    this.usuarioService.obtenerUsuarios().subscribe(
+      (data) => {
+        this.usuario = data;
+
+      },
+      (error) => {
+        console.error('Error al obtener los usuarios', error);
+      }
+    );
   }
+
 }

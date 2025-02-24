@@ -46,9 +46,9 @@ export class RegistroComponent {
         confirmarPassword: ['', [Validators.required]],
         pais: ['', Validators.required],
         sexo: ['', Validators.required],
-        aficiones: [''],
+        aficiones: [[]], // Se inicializa como un array vacío
       },
-      { validators: this.passwordsIguales } // Validador personalizado
+      { validators: this.passwordsIguales }
     );
   }
 
@@ -61,16 +61,20 @@ export class RegistroComponent {
 
   registrar() {
     if (this.registroForm.valid) {
-      this.usuario = { ...this.registroForm.value }; // Eliminamos la confirmación antes de enviar
+      const formValue = this.registroForm.value;
+
+      // Convertir array de aficiones a string separado por comas
+      const aficionesString = formValue.aficiones.join(', ');
+
+      this.usuario = {
+        ...formValue,
+        aficiones: aficionesString, // Guardamos aficiones como string
+      };
 
       this.usuarioService.anadirUsuario(this.usuario).subscribe({
         next: () => {
-          // Guardar usuario en localStorage
           localStorage.setItem('usuario', JSON.stringify(this.usuario));
-
           alert('Usuario registrado con éxito');
-
-          // Redirigir a la página de inicio o dashboard
           this.router.navigate(['']);
         },
         error: () => alert('Error en el registro'),

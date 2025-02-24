@@ -77,8 +77,16 @@
 
   <div class="mb-3">
     <label for="aficiones" class="form-label">Aficiones:</label>
-    <input type="text" formControlName="aficiones" class="form-control">
+    <select formControlName="aficiones" class="form-control" multiple>
+      <option value="deporte">Deporte</option>
+      <option value="musica">Música</option>
+      <option value="lectura">Lectura</option>
+      <option value="viajes">Viajes</option>
+      <option value="cine">Cine</option>
+      <option value="videojuegos">Videojuegos</option>
+    </select>
   </div>
+
 
   <div class="d-flex justify-content-center">
     <button type="submit" class="btn btn-primary" [disabled]="registroForm.invalid">Registrar</button>

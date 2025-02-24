@@ -49,6 +49,7 @@ public class usuarioController {
 			dtoUsuario.put("sexo", u.getSexo());
 			dtoUsuario.put("pais", u.getPais());
 			dtoUsuario.put("aficiones", u.getAficiones());
+			dtoUsuario.put("admin", u.getAdmin());
 
 			listaUsuariosDTO.add(dtoUsuario);
 		}

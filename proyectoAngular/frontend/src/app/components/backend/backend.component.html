@@ -77,6 +77,8 @@
     </table>
   </div>
 
+
+
   <h2 class="my-4 text-center">Lista de Posiciones Asignadas</h2>
   <div class="mb-2 text-center">
     <button class="btn btn-success">Insertar Posición Asignada</button>
@@ -123,6 +125,45 @@
         <tr *ngFor="let posiciones2 of posiciones2">
           <td>{{ posiciones2.id }}</td>
           <td>{{ posiciones2.Nombre }}</td>
+          <td>
+            <button class="btn btn-warning me-2">Editar</button>
+            <button class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Lista de Usuarios</h2>
+  <div class="mb-2 text-center">
+    <button class="btn btn-success">Insertar Usuario</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table text-center align-middle table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Sexo</th>
+          <th>País</th>
+          <th>Aficiones</th>
+          <th>Admin</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuario">
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.apellidos }}</td>
+          <td>{{ usuario.sexo }}</td>
+          <td>{{ usuario.pais }}</td>
+          <td>{{ usuario.aficiones }}</td>
+          <td>{{ usuario.admin ? 'Sí' : 'No' }}</td>
           <td>
             <button class="btn btn-warning me-2">Editar</button>
             <button class="btn btn-danger">Eliminar</button>

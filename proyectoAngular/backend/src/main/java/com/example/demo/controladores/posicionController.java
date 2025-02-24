@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.modelos.Posicione;
-import com.example.demo.modelos.PosicionesAsignada;
+
 import com.example.demo.repositorios.futbolistaRepositorio;
 import com.example.demo.repositorios.posicionRepositorio;
 
@@ -25,6 +25,7 @@ public class posicionController {
     @Autowired
     posicionRepositorio posRep;
 
+    @CrossOrigin(origins = "http:localhost:4200")
     @GetMapping("/obt")
     public List<DTO> getPosiciones() {
         List<DTO> listaPosDTO = new ArrayList<DTO>();

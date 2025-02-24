@@ -11,7 +11,7 @@ export class UsuarioService {
   private baseURL = 'http://localhost:9090/usuario';
   constructor(private http: HttpClient) {}
   //metodo para obtener los empleados
-  obtenerListaEmpleados(): Observable<Usuario[]> {
+  obtenerUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.baseURL + '/obtener');
   }
   anadirUsuario(usuario: DatosAltaUsuario): Observable<any> {

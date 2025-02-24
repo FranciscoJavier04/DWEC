@@ -14,17 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.controladores.usuarioController.DatosAltaUsuario;
 import com.example.demo.modelos.Club;
 import com.example.demo.modelos.Futbolista;
-import com.example.demo.modelos.Posicione;
+
 import com.example.demo.modelos.Usuario;
 import com.example.demo.repositorios.futbolistaRepositorio;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.xml.bind.DatatypeConverter;
 
