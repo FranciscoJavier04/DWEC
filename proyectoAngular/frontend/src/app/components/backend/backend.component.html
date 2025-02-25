@@ -165,7 +165,7 @@
           <td>{{ usuario.aficiones }}</td>
           <td>{{ usuario.admin ? 'Sí' : 'No' }}</td>
           <td>
-            <button class="btn btn-warning me-2">Editar</button>
+            <a class="btn btn-warning me-2" (click)="editarUsuario(usuario.id)">Editar</a>
             <button class="btn btn-danger" (click)="eliminarUsuario(usuario.id)">Eliminar</button>
           </td>
         </tr>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -200,6 +201,56 @@ public class usuarioController {
 			this.sexo = sexo;
 		}
 
+	}
+
+	static class DatosAltaUsuario2 {
+		int id;
+		byte admin;
+		String aficiones;
+		String apellidos;
+		String email;
+		String nombre;
+		String pais;
+		String password;
+		String sexo;
+
+		public DatosAltaUsuario2(int id, byte admin, String aficiones, String apellidos, String email, String nombre,
+				String pais, String password, String sexo) {
+			this.id = id;
+			this.admin = admin;
+			this.aficiones = aficiones;
+			this.apellidos = apellidos;
+			this.email = email;
+			this.nombre = nombre;
+			this.pais = pais;
+			this.password = password;
+			this.sexo = sexo;
+		}
+	}
+
+	@CrossOrigin(origins = "http://localhost:4200")
+	@PutMapping(path = "/editar", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public DTO editarUsuario(@RequestBody DatosAltaUsuario2 datos, HttpServletRequest request) {
+		DTO dtoUsuario = new DTO();
+		Usuario usuarioExistente = usuRep.findById(datos.id);
+
+		if (usuarioExistente != null) {
+			usuarioExistente.setNombre(datos.nombre);
+			usuarioExistente.setApellidos(datos.apellidos);
+			usuarioExistente.setEmail(datos.email);
+			usuarioExistente.setPassword(datos.password);
+			usuarioExistente.setSexo(datos.sexo);
+			usuarioExistente.setPais(datos.pais);
+			usuarioExistente.setAficiones(datos.aficiones);
+			usuarioExistente.setAdmin(datos.admin);
+
+			usuRep.save(usuarioExistente);
+			dtoUsuario.put("result", "ok");
+		} else {
+			dtoUsuario.put("result", "fail");
+		}
+
+		return dtoUsuario;
 	}
 
 }

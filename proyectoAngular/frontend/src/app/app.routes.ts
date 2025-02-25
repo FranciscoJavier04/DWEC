@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ClubComponent } from './components/club/club.component';
 import { LoginComponent } from './components/login/login.component';
 import { BackendComponent } from './components/backend/backend.component';
+import { EditarUsuarioComponent } from './components/editComponents/editar-usuario/editar-usuario.component';
 
 export const routes: Routes = [
   {
@@ -30,5 +31,10 @@ export const routes: Routes = [
     path: 'backend',
     title: 'Backend',
     component: BackendComponent,
+  },
+  {
+    path: 'editar',
+    title: 'Editar',
+    component: EditarUsuarioComponent,
   },
 ];

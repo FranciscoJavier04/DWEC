@@ -1,8 +1,13 @@
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
 import { DatosAltaUsuario } from '../interfaces/datosAltaUsuario';
+import { DatosAltaUsuario2 } from '../interfaces/datosAltaUsuario2';
 @Injectable({
   providedIn: 'root',
 })
@@ -18,10 +23,14 @@ export class UsuarioService {
     return this.http.post(this.baseURL + '/anadirnuevo', usuario);
   }
   deleteUsuario(id: number): Observable<any> {
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      return this.http.delete<any>(`${this.baseURL}/borrar1`, {
-        headers,
-        body: { id }, // Enviamos el ID en el cuerpo
-      });
-    }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.delete<any>(`${this.baseURL}/borrar1`, {
+      headers,
+      body: { id }, // Enviamos el ID en el cuerpo
+    });
+  }
+  editarUsuario(datos: DatosAltaUsuario2): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put<any>(`${this.baseURL}/editar`, datos, { headers });
+  }
 }
