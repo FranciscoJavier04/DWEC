@@ -20,17 +20,17 @@ export class PosicioneService {
     return this.http.get<Posiciones[]>(this.baseURL2 + '/obt');
   }
   deletePosiciones(id: number): Observable<any> {
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      return this.http.delete<any>(`${this.baseURL}/borrar1`, {
-        headers,
-        body: { id }, // Enviamos el ID en el cuerpo
-      });
-    }
-    deletePosicionAsignada(id: number): Observable<any> {
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      return this.http.delete<any>(`${this.baseURL}/borrar1`, {
-        headers,
-        body: { id }, // Enviamos el ID en el cuerpo
-      });
-    }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.delete<any>(`${this.baseURL2}/borrar`, {
+      headers,
+      body: { id }, // Enviamos el ID en el cuerpo
+    });
+  }
+  deletePosicionAsignada(id: number): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.delete<any>(`${this.baseURL}/borrar`, {
+      headers,
+      body: { id }, // Enviamos el ID en el cuerpo
+    });
+  }
 }

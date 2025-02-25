@@ -94,13 +94,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let posicion of posiciones">
-          <td>{{ posicion.id }}</td>
-          <td>{{ posicion.Futbolista }}</td>
-          <td>{{ posicion.Posicion }}</td>
+        <tr *ngFor="let posiciones of posiciones">
+          <td>{{ posiciones.id }}</td>
+          <td>{{ posiciones.Futbolista }}</td>
+          <td>{{ posiciones.Posicion }}</td>
           <td>
             <button class="btn btn-warning me-2">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
+            <button class="btn btn-danger" (click)="eliminarPosicion(posiciones.id)">Eliminar</button>
           </td>
         </tr>
       </tbody>
