@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,13 +20,10 @@ import com.example.demo.JwtSecurity.AutenticadorJWT;
 import com.example.demo.modelos.Usuario;
 import com.example.demo.repositorios.usuarioRepositorio;
 
-import jakarta.persistence.Id;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.xml.bind.DatatypeConverter;
 
-@CrossOrigin(origins = "http:localhost:4200")
 @RestController
 @RequestMapping("/usuario")
 
@@ -80,7 +77,6 @@ public class usuarioController {
 		return dtoUsuario;
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping(path = "/borrar1", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public DTO deleteUsuario(@RequestBody DTO soloid, HttpServletRequest request) {
 		DTO dtoUsuario = new DTO();
@@ -96,7 +92,6 @@ public class usuarioController {
 		return dtoUsuario;
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(path = "/anadirnuevo")
 
 	public void anadirUsuario(@RequestBody DatosAltaUsuario u, HttpServletRequest request) {
@@ -111,7 +106,6 @@ public class usuarioController {
 				u.sexo));
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(path = "/autentica", consumes = MediaType.APPLICATION_JSON_VALUE)
 
 	public DTO autenticaUsuario(@RequestBody DatosAutenticaUsuario datos, HttpServletRequest request,
@@ -131,7 +125,6 @@ public class usuarioController {
 		return dto;
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(path = "/quieneres")
 
 	public DTO getAutenticado(HttpServletRequest request) {
@@ -228,7 +221,6 @@ public class usuarioController {
 		}
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping(path = "/editar", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public DTO editarUsuario(@RequestBody DatosAltaUsuario2 datos, HttpServletRequest request) {
 		DTO dtoUsuario = new DTO();

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +19,6 @@ import com.example.demo.repositorios.posicionRepositorio;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@CrossOrigin(origins = "http:localhost:4200")
 @RestController
 @RequestMapping("/posicion")
 public class posicionController {
@@ -30,7 +29,6 @@ public class posicionController {
     @Autowired
     posicionRepositorio posRep;
 
-    @CrossOrigin(origins = "http:localhost:4200")
     @GetMapping("/obt")
     public List<DTO> getPosiciones() {
         List<DTO> listaPosDTO = new ArrayList<DTO>();
@@ -47,7 +45,6 @@ public class posicionController {
         return listaPosDTO;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/borrar", consumes = MediaType.APPLICATION_JSON_VALUE)
     public DTO deletePosicion(@RequestBody DTO soloid, HttpServletRequest request) {
         DTO dtoRespuesta = new DTO();

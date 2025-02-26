@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,18 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.controladores.usuarioController.DatosAltaUsuario;
 import com.example.demo.modelos.Club;
-import com.example.demo.modelos.Futbolista;
-import com.example.demo.modelos.Usuario;
+
 import com.example.demo.repositorios.clubRepositorio;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.xml.bind.DatatypeConverter;
 
-@CrossOrigin(origins = "http:localhost:4200")
 @RestController
 @RequestMapping("/club")
 public class clubController {
@@ -74,7 +69,6 @@ public class clubController {
 		return dtoClub;
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping(path = "/borrar1", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public DTO deleteClub(@RequestBody DTO soloid, HttpServletRequest request) {
 		DTO dtoClub = new DTO();

@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +23,6 @@ import com.example.demo.repositorios.futbolistaRepositorio;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.xml.bind.DatatypeConverter;
 
-@CrossOrigin(origins = "http:localhost:4200")
 @RestController
 @RequestMapping("/futbolista")
 
@@ -76,7 +75,6 @@ public class futbolistaController {
 		return dtoFutbolista;
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping(path = "/borrar1", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public DTO deleteFutbolista(@RequestBody DTO soloid, HttpServletRequest request) {
 		DTO dtoFutbolista = new DTO();
