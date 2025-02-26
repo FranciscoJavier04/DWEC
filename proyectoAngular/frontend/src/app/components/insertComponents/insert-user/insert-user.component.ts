@@ -11,8 +11,9 @@ import {
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { DatosAltaUsuario } from '../../../interfaces/datosAltaUsuario';
+
 import { UsuarioService } from '../../../services/usuario.service';
+import { DatosAltaUsuario } from '../../../interfaces/datosInsert/datosAltaUsuario';
 
 @Component({
   selector: 'app-insert-user',

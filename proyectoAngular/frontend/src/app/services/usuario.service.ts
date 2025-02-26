@@ -6,8 +6,8 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
-import { DatosAltaUsuario } from '../interfaces/datosAltaUsuario';
-import { DatosAltaUsuario2 } from '../interfaces/datosAltaUsuario2';
+import { DatosAltaUsuario } from '../interfaces/datosInsert/datosAltaUsuario';
+import { DatosAltaUsuario2 } from '../interfaces/datosInsert/datosAltaUsuario2';
 @Injectable({
   providedIn: 'root',
 })

@@ -1,0 +1,40 @@
+<h2 class="my-4 text-center">Insertar Club</h2>
+
+<form [formGroup]="insertarClubForm" (ngSubmit)="insertarClub()" class="container p-4 border rounded shadow-sm"
+  enctype="multipart/form-data">
+
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre del Club:</label>
+    <input type="text" formControlName="nombre" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label for="estadio" class="form-label">Estadio:</label>
+    <input type="text" formControlName="estadio" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label for="fundacion" class="form-label">Año de Fundación:</label>
+    <input type="number" formControlName="fundacion" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label for="pais" class="form-label">País:</label>
+    <select formControlName="pais" class="form-select">
+      <option value="España">España</option>
+      <option value="Alemania">Alemania</option>
+      <option value="Francia">Francia</option>
+      <option value="Italia">Italia</option>
+      <option value="Inglaterra">Inglaterra</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="imagen" class="form-label">Imagen del Club:</label>
+    <input type="file" formControlName="imagen" class="form-control">
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <button type="submit" class="btn btn-primary" [disabled]="insertarClubForm.invalid">Insertar Club</button>
+  </div>
+</form>

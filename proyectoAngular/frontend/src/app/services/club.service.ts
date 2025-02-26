@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Club } from '../interfaces/clubs';
-
+import { DatosAltaClub } from '../interfaces/datosInsert/datosAltaClub';
 
 @Injectable({
   providedIn: 'root',
@@ -16,10 +16,13 @@ export class ClubService {
     return this.http.get<Club[]>(this.baseURL + '/obtener');
   }
   deleteClub(id: number): Observable<any> {
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      return this.http.delete<any>(`${this.baseURL}/borrar1`, {
-        headers,
-        body: { id }, // Enviamos el ID en el cuerpo
-      });
-    }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.delete<any>(`${this.baseURL}/borrar1`, {
+      headers,
+      body: { id }, // Enviamos el ID en el cuerpo
+    });
+  }
+  anadirClub(club: DatosAltaClub): Observable<any> {
+    return this.http.post(this.baseURL + '/anadirnuevo', club);
+  }
 }

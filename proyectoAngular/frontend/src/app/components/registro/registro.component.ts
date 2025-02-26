@@ -7,7 +7,7 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import { DatosAltaUsuario } from '../../interfaces/datosAltaUsuario';
+import { DatosAltaUsuario } from '../../interfaces/datosInsert/datosAltaUsuario';
 import { UsuarioService } from '../../services/usuario.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
