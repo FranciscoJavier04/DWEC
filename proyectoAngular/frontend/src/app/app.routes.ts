@@ -5,6 +5,7 @@ import { ClubComponent } from './components/club/club.component';
 import { LoginComponent } from './components/login/login.component';
 import { BackendComponent } from './components/backend/backend.component';
 import { EditarUsuarioComponent } from './components/editComponents/editar-usuario/editar-usuario.component';
+import { InsertUserComponent } from './components/insertComponents/insert-user/insert-user.component';
 
 export const routes: Routes = [
   {
@@ -36,5 +37,10 @@ export const routes: Routes = [
     path: 'editar',
     title: 'Editar',
     component: EditarUsuarioComponent,
+  },
+  {
+    path: 'insertarUser',
+    title: 'InsertarUser',
+    component: InsertUserComponent,
   },
 ];

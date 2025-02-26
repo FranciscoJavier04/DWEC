@@ -9,11 +9,11 @@ import { PosicioneService } from '../../services/posicione.service';
 import { Posiciones } from '../../interfaces/posiciones';
 import { Usuario } from '../../interfaces/usuario';
 import { UsuarioService } from '../../services/usuario.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-backend',
-  imports: [NgFor, CommonModule, Router],
+  imports: [NgFor, CommonModule, RouterModule],
   templateUrl: './backend.component.html',
   styleUrls: ['./backend.component.css'], // Cambio aquí
 })
@@ -160,5 +160,9 @@ export class BackendComponent implements OnInit {
 
   editarUsuario(id: number): void {
     this.router.navigate(['/editar', id]);
+  }
+
+  insertarUsuario(): void {
+    this.router.navigate(['/insertarUser']);
   }
 }
