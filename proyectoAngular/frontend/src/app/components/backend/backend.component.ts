@@ -168,4 +168,7 @@ export class BackendComponent implements OnInit {
   insertarClub(): void {
     this.router.navigate(['/insertarclub']);
   }
+  insertarFutbolista(): void {
+    this.router.navigate(['/insertarFutbolista']);
+  }
 }

@@ -3,13 +3,12 @@ package com.example.demo.modelos;
 import java.io.Serializable;
 import jakarta.persistence.*;
 
-
 /**
  * The persistent class for the usuario database table.
  * 
  */
 @Entity
-@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -45,16 +44,8 @@ public class Usuario implements Serializable {
 
 	private String sexo;
 
-	
-
-	
-
 	public Usuario() {
-		super();
 	}
-
-	
-
 
 	public byte getAdmin() {
 		return this.admin;

@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   templateUrl: './insert-club.component.html',
   styleUrls: ['./insert-club.component.css'],
 })
-export class InsertClubComponent implements OnInit {
+export class InsertClubComponent {
   insertarClubForm: FormGroup;
 
   constructor(
@@ -35,9 +35,7 @@ export class InsertClubComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    // Si necesitas inicializar algo más en ngOnInit, puedes hacerlo aquí
-  }
+
 
   insertarClub(): void {
     // Obtener los datos del formulario
@@ -47,7 +45,7 @@ export class InsertClubComponent implements OnInit {
     if (this.insertarClubForm.valid) {
       this.clubService.anadirClub(club).subscribe(
         (response) => {
-          console.log('Club insertado con éxito:', response);
+          alert('Club insertado con éxito: ' + response);
           // Redirigir a otra página después de la inserción exitosa
           this.router.navigate(['/backend']);
         },

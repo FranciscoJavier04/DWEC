@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Club } from '../interfaces/clubs';
 import { Futbolista } from '../interfaces/futbolista';
+import { DatosAltaFutbolista } from '../interfaces/datosInsert/datosAltaFutbolista';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +22,8 @@ export class FutbolistaService {
       headers,
       body: { id }, // Enviamos el ID en el cuerpo
     });
+  }
+  anadirFutbolista(futbolista: DatosAltaFutbolista): Observable<any> {
+    return this.http.post(this.baseURL + '/anadirnuevo', futbolista);
   }
 }
