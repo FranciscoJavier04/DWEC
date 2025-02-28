@@ -44,6 +44,8 @@ export class InsertFutbolistaComponent {
     // Obtener los datos del formulario
     const futbolista: any = this.insertarFutbolistaForm.value;
 
+    console.log('Datos del formulario:', futbolista);
+
     // Subir la imagen si es necesario, aqui estamos asumiendo que se subira en el backend
     if (this.insertarFutbolistaForm.valid) {
       this.futbolistaService.anadirFutbolista(futbolista).subscribe(

@@ -33,4 +33,11 @@ export class UsuarioService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put<any>(`${this.baseURL}/editar`, datos, { headers });
   }
+  login(email: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.baseURL}/autentica`, { email, password });
+  }
+
+  getAuthenticatedUser(): Observable<any> {
+    return this.http.get<any>(`${this.baseURL}/quieneres`);
+  }
 }

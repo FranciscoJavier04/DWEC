@@ -44,7 +44,7 @@ public class Futbolista implements Serializable {
 	private byte[] imagen;
 
 	@ManyToOne
-	@JoinColumn(name = "id_usuario")
+	@JoinColumn(name = "id_usuario", nullable = false)
 	private Usuario usuario; // Cambio de int a Usuario
 
 	@ManyToOne
