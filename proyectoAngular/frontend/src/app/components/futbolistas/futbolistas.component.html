@@ -1,1 +1,25 @@
-<p>futbolistas works!</p>
+<div *ngIf="futbolistas.length > 0; else noFutbolistas">
+  <h2>Mis Futbolistas</h2>
+  <ul>
+    <li *ngFor="let futbolista of futbolistas">
+      <strong>{{ futbolista.nombre }}</strong><br>
+      <span>Fecha de nacimiento: {{ futbolista.fecha_nac }}</span><br>
+      <span>Nacionalidad: {{ futbolista.nacionalidad }}</span><br>
+      <span>Edad: {{ futbolista.edad }}</span><br>
+      <span>Club: {{ futbolista.club }}</span><br>
+      <span>Usuario: {{ futbolista.usuario }}</span><br>
+
+      <img *ngIf="futbolista.imagen"
+           [src]="'data:image/jpeg;base64,' + futbolista.imagen"
+           alt="Imagen de {{ futbolista.nombre }}"
+           width="150"/>
+
+      <hr>
+    </li>
+  </ul>
+</div>
+
+<!-- Mostrar mensaje si no hay futbolistas -->
+<ng-template #noFutbolistas>
+  <p>No se encontraron futbolistas para este usuario.</p>
+</ng-template>

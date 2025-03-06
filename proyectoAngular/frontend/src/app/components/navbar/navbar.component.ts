@@ -19,7 +19,6 @@ export class NavbarComponent implements OnInit {
       if (localStorage.getItem('jwt')) {
         this.authService.getAuthenticatedUser().subscribe(
           (data) => {
-            console.log('Datos del usuario:', data);  // Aquí se verá la respuesta
             if (data.result === 'success') {
               this.usuario = data;
               this.esAdmin = this.usuario.admin;

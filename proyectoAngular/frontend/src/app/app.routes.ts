@@ -9,6 +9,7 @@ import { InsertUserComponent } from './components/insertComponents/insert-user/i
 import { InsertClubComponent } from './components/insertComponents/insert-club/insert-club.component';
 import { InsertFutbolistaComponent } from './components/insertComponents/insert-futbolista/insert-futbolista.component';
 import { AdminGuard } from './guards/is-admin.guard';
+import { FutbolistasComponent } from './components/futbolistas/futbolistas.component';
 
 export const routes: Routes = [
   {
@@ -56,5 +57,10 @@ export const routes: Routes = [
     path: 'insertarFutbolista',
     title: 'insertarFutbolista',
     component: InsertFutbolistaComponent,
+  },
+  {
+    path: 'misFutbolistas',
+    title: 'misFutbolistas',
+    component: FutbolistasComponent,
   },
 ];
