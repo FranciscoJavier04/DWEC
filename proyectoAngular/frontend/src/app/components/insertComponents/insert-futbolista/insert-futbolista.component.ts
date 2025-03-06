@@ -50,7 +50,7 @@ export class InsertFutbolistaComponent {
     if (this.insertarFutbolistaForm.valid) {
       this.futbolistaService.anadirFutbolista(futbolista).subscribe(
         (response) => {
-          alert('Futbolista insertado con éxito: ' + response);
+          alert('Futbolista insertado con éxito');
           // Redirigir a otra página luego de la inserción exitosa
           this.router.navigate(['/backend']);
         },

@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
 import { PosicioneService } from '../../services/posicione.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-futbolistas',
@@ -26,7 +27,8 @@ export class FutbolistasComponent implements OnInit {
     private futbolistaService: FutbolistaService,
     private cookieService: CookieService, // Servicio de cookies
     private authService: UsuarioService,
-    private posicionesService: PosicioneService
+    private posicionesService: PosicioneService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -85,6 +87,13 @@ export class FutbolistasComponent implements OnInit {
         console.error('Error al obtener posiciones del futbolista:', error);
       }
     );
+
   }
 
+  insertarFutbolista(): void {
+    this.router.navigate(['/insertarFutbolista']);
+  }
+  insertarPosicion(): void {
+    this.router.navigate(['/ipa']);
+  }
 }

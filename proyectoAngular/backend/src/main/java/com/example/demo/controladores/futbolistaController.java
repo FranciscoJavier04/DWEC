@@ -123,6 +123,7 @@ public class futbolistaController {
 			this.nombre = nombre;
 			this.imagen = imagen;
 			this.club = club;
+			this.usuario = usuario;
 		}
 
 	}
