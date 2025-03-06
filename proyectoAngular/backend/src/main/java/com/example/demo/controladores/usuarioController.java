@@ -144,7 +144,9 @@ public class usuarioController {
 		if (u != null) {
 			dtoUsuario.put("id", u.getId());
 			dtoUsuario.put("nombre", u.getNombre());
+			dtoUsuario.put("admin", u.getAdmin());
 			dtoUsuario.put("result", "ok");
+
 		}
 
 		return dtoUsuario;

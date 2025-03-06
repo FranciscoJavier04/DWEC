@@ -16,7 +16,6 @@ export class LoginComponent {
   errorMessage: string = '';
 
   constructor(private usuarioService: UsuarioService, private router: Router) {}
-
   onSubmit(): void {
     if (!this.email || !this.password) {
       this.errorMessage = 'El email y el password son necesarios';
@@ -26,7 +25,7 @@ export class LoginComponent {
     this.usuarioService.login(this.email, this.password).subscribe(
       response => {
         if (response && response.result === 'ok') {
-          localStorage.setItem('user', JSON.stringify(response.user));
+          localStorage.setItem('jwt', response.jwt);  // Guardar el token en localStorage
           this.router.navigate(['/backend']);
         } else {
           this.errorMessage = 'Login failed. Please check your credentials';
@@ -37,4 +36,19 @@ export class LoginComponent {
       }
     );
   }
+  getUserData(): void {
+    this.usuarioService.getAuthenticatedUser().subscribe(
+      response => {
+        if (response && response.result === 'ok') {
+          localStorage.setItem('user', JSON.stringify(response)); // Guardar datos del usuario
+        }
+      },
+      error => {
+        console.error('Error obteniendo datos del usuario');
+      }
+    );
+  }
+
+
+
 }
