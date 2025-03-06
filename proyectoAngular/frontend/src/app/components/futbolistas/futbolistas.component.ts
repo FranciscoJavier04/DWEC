@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service'; // Servicio para manejar coo
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
+import { PosicioneService } from '../../services/posicione.service';
 
 @Component({
   selector: 'app-futbolistas',
@@ -18,11 +19,14 @@ import { UsuarioService } from '../../services/usuario.service';
 export class FutbolistasComponent implements OnInit {
   futbolistas: any[] = []; // Almacena la lista de futbolistas
   usuarioId!: number; // ID del usuario autenticado
+  posicionesPorFutbolista: { [key: number]: any[] } = {}; // Almacena las posiciones por futbolista
+
 
   constructor(
     private futbolistaService: FutbolistaService,
     private cookieService: CookieService, // Servicio de cookies
-    private authService: UsuarioService
+    private authService: UsuarioService,
+    private posicionesService: PosicioneService
   ) {}
 
   ngOnInit() {
@@ -58,6 +62,11 @@ export class FutbolistasComponent implements OnInit {
         (data) => {
           this.futbolistas = data;
           console.log('Futbolistas obtenidos:', this.futbolistas);
+
+          // Ahora obtén las posiciones para cada futbolista
+          this.futbolistas.forEach(futbolista => {
+            this.obtenerPosicionesPorFutbolista(futbolista.id);
+          });
         },
         (error) => {
           console.error('Error al obtener futbolistas:', error);
@@ -65,4 +74,17 @@ export class FutbolistasComponent implements OnInit {
       );
     }
   }
+  obtenerPosicionesPorFutbolista(futbolistaId: number) {
+    this.posicionesService.getPosicionesPorFutbolista(futbolistaId).subscribe(
+      (data) => {
+        // Almacena las posiciones del futbolista por su ID
+        this.posicionesPorFutbolista[futbolistaId] = data;
+        console.log('Posiciones del futbolista ' + futbolistaId + ':', data);
+      },
+      (error) => {
+        console.error('Error al obtener posiciones del futbolista:', error);
+      }
+    );
+  }
+
 }

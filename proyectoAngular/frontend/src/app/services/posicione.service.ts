@@ -33,4 +33,7 @@ export class PosicioneService {
       body: { id }, // Enviamos el ID en el cuerpo
     });
   }
+  getPosicionesPorFutbolista(futbolista_id: number): Observable<Posiciones[]> {
+    return this.http.get<Posiciones[]>(`${this.baseURL}/posicionesPorFutbolista/${futbolista_id}`);
+  }
 }

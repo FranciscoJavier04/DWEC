@@ -18,6 +18,19 @@
             <strong>Club:</strong> {{ futbolista.Club }}<br>
             <strong>Usuario:</strong> {{ futbolista.Usuario }}
           </p>
+
+          <!-- Mostrar posiciones de este futbolista -->
+          <div *ngIf="posicionesPorFutbolista[futbolista.id] && posicionesPorFutbolista[futbolista.id].length > 0">
+            <strong>Posiciones:</strong>
+            <ul>
+              <li *ngFor="let posicion of posicionesPorFutbolista[futbolista.id]">
+                {{ posicion.Posicion }} <!-- Asumiendo que el atributo de posición es 'nombre' -->
+              </li>
+            </ul>
+          </div>
+          <div *ngIf="!posicionesPorFutbolista[futbolista.id] || posicionesPorFutbolista[futbolista.id].length === 0">
+            <p>No se encontraron posiciones para este futbolista.</p>
+          </div>
         </div>
       </div>
     </div>
