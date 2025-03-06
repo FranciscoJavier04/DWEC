@@ -8,7 +8,8 @@ import {
 
 import { CommonModule } from '@angular/common';
 
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 // 📌 Importaciones de Angular Material
 
@@ -49,8 +50,15 @@ export class LoginComponent implements OnInit {
       this.authService.login(datosUsuario).subscribe({
         next: (response) => {
           if (response.result === 'Succes') {
-            localStorage.setItem('jwt', response.jwt); // Guardar nombre en localStorage
-            window.location.reload();
+            localStorage.setItem('jwt', response.jwt);
+            this.router.navigate(['/clubs']);
+
+            // Escuchar el evento de navegación para saber cuándo terminó
+            this.router.events.pipe(
+              filter(event => event instanceof NavigationEnd)
+            ).subscribe(() => {
+              window.location.reload(); // Recargar la página después de la navegación
+            });
           }
         },
         error: (err) => console.error('Error en login:', err),
