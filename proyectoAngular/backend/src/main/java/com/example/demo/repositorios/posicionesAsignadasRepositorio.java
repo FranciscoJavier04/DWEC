@@ -11,15 +11,20 @@ import com.example.demo.modelos.Futbolista;
 import com.example.demo.modelos.Posicione;
 import com.example.demo.modelos.PosicionesAsignada;
 
-public interface posicionesAsignadasRepositorio extends JpaRepository<PosicionesAsignada, Serializable>{
+public interface posicionesAsignadasRepositorio extends JpaRepository<PosicionesAsignada, Serializable> {
 
 	@Bean
 	public abstract List<PosicionesAsignada> findAll();
+
 	public abstract PosicionesAsignada findById(int id);
-	public abstract List<PosicionesAsignada> findByFutbolista(Futbolista u);
+
+	public abstract List<PosicionesAsignada> findByFutbolistaId(int futbolista_id);
+
 	public abstract List<Futbolista> findByPosicion(Posicione p);
+
 	@Transactional
 	public abstract void deleteById(int id);
+
 	@Transactional
 	public abstract PosicionesAsignada save(PosicionesAsignada p);
 }

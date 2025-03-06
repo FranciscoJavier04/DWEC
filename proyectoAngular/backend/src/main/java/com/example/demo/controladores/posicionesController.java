@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,6 +60,27 @@ public class posicionesController {
 		}
 
 		return dtoRespuesta;
+	}
+
+	@GetMapping("/posicionesPorFutbolista/{futbolista_id}")
+	public List<DTO> getPosicionesByFutbolistaId(@PathVariable("futbolista_id") int futbolista_id) {
+		List<DTO> listaPosDTO = new ArrayList<DTO>();
+
+		// Buscar las posiciones asignadas para el futbolista
+		List<PosicionesAsignada> listaPos = posRep.findByFutbolistaId(futbolista_id);
+
+		if (listaPos != null) {
+			for (PosicionesAsignada h : listaPos) {
+				DTO dtoPos = new DTO();
+				dtoPos.put("id", h.getId());
+				dtoPos.put("Futbolista", h.getFutbolista().getNombre());
+				dtoPos.put("Posicion", h.getPosicion().getNombre());
+
+				listaPosDTO.add(dtoPos);
+			}
+		}
+
+		return listaPosDTO;
 	}
 
 }
