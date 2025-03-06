@@ -36,4 +36,13 @@ export class PosicioneService {
   getPosicionesPorFutbolista(futbolista_id: number): Observable<Posiciones[]> {
     return this.http.get<Posiciones[]>(`${this.baseURL}/posicionesPorFutbolista/${futbolista_id}`);
   }
+  agregarPosicion(futbolistaId: number, posicionId: number): Observable<any> {
+    const body = {
+      futbolista_id: futbolistaId,
+      posicion_id: posicionId
+    };
+
+    return this.http.post<any>(`${this.baseURL}/agregar`, body);
+
+  }
 }

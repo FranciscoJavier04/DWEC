@@ -10,6 +10,7 @@ import { InsertClubComponent } from './components/insertComponents/insert-club/i
 import { InsertFutbolistaComponent } from './components/insertComponents/insert-futbolista/insert-futbolista.component';
 import { AdminGuard } from './guards/is-admin.guard';
 import { FutbolistasComponent } from './components/futbolistas/futbolistas.component';
+import { InsertPosicionAsignadaComponent } from './components/insertComponents/insert-posicion-asignada/insert-posicion-asignada.component';
 
 export const routes: Routes = [
   {
@@ -63,4 +64,9 @@ export const routes: Routes = [
     title: 'misFutbolistas',
     component: FutbolistasComponent,
   },
+  {
+    path: 'ipa',
+    title: 'ipa',
+    component: InsertPosicionAsignadaComponent,
+  }
 ];

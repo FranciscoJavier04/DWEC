@@ -1,1 +1,31 @@
-<p>insert-posicion-asignada works!</p>
+<div class="container">
+  <h2>Asignar Posición al Futbolista</h2>
+
+  <!-- Formulario para asignar posición -->
+  <form (ngSubmit)="agregarPosicion()">
+    <div class="form-group">
+      <label for="futbolista">Futbolista:</label>
+      <select class="form-control" id="futbolista" [(ngModel)]="futbolistaId" name="futbolistaId" required>
+        <option *ngFor="let futbolista of futbolistas" [value]="futbolista.id">
+          {{ futbolista.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="posicion">Posición:</label>
+      <select class="form-control" id="posicion" [(ngModel)]="posicionId" name="posicionId" required>
+        <option *ngFor="let posicion of posiciones2" [value]="posicion.id">
+          {{ posicion.Nombre }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Asignar Posición</button>
+  </form>
+
+  <!-- Mensaje de respuesta -->
+  <div *ngIf="respuesta" class="mt-3">
+    <p>{{ respuesta }}</p>
+  </div>
+</div>
