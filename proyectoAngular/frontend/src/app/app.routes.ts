@@ -11,6 +11,7 @@ import { InsertFutbolistaComponent } from './components/insertComponents/insert-
 import { AdminGuard } from './guards/is-admin.guard';
 import { FutbolistasComponent } from './components/futbolistas/futbolistas.component';
 import { InsertPosicionAsignadaComponent } from './components/insertComponents/insert-posicion-asignada/insert-posicion-asignada.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -43,30 +44,36 @@ export const routes: Routes = [
     path: 'editar',
     title: 'Editar',
     component: EditarUsuarioComponent,
+    canActivate: [AdminGuard],
   },
   {
     path: 'insertarUser',
     title: 'InsertarUser',
     component: InsertUserComponent,
+    canActivate: [AdminGuard],
   },
   {
     path: 'insertarclub',
     title: 'insertarclub',
     component: InsertClubComponent,
+    canActivate: [AdminGuard],
   },
   {
     path: 'insertarFutbolista',
     title: 'insertarFutbolista',
     component: InsertFutbolistaComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'misFutbolistas',
     title: 'misFutbolistas',
     component: FutbolistasComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'ipa',
     title: 'ipa',
     component: InsertPosicionAsignadaComponent,
+    canActivate: [AuthGuard],
   }
 ];

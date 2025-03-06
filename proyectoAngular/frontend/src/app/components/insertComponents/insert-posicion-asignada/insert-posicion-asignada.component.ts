@@ -4,8 +4,9 @@ import { FutbolistaService } from '../../../services/futbolista.service';
 import { Posiciones } from '../../../interfaces/posiciones';
 import { Futbolista } from '../../../interfaces/futbolista';
 import { CommonModule, NgFor } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-insert-posicion-asignada',
@@ -22,7 +23,8 @@ export class InsertPosicionAsignadaComponent implements OnInit {
 
   constructor(
     private futbolistaService: PosicioneService,
-    private futbolistaS: FutbolistaService
+    private futbolistaS: FutbolistaService,
+    private router: Router
 
   ) {}
 
@@ -31,6 +33,14 @@ export class InsertPosicionAsignadaComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.respuesta = response.agregado === 'ok' ? 'Posición asignada correctamente.' : 'Error al agregar la posición.';
+          this.router.navigate(['/misFutbolistas']);
+
+                      // Escuchar el evento de navegación para saber cuándo terminó
+                      this.router.events.pipe(
+                        filter(event => event instanceof NavigationEnd)
+                      ).subscribe(() => {
+                        window.location.reload(); // Recargar la página después de la navegación
+                      });
         },
         error: (err) => {
           console.error(err);
