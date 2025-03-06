@@ -1,6 +1,5 @@
 package com.example.demo.controladores;
 
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,44 +111,49 @@ public class usuarioController {
 			HttpServletResponse response) {
 		DTO dto = new DTO();
 		dto.put("result", "fail");
-		Usuario usuarioAutenticado = usuRep.findByEmailAndPassword(datos.email, datos.password);
-		if (usuarioAutenticado != null) {
-			dto.put("result", "ok");
-			dto.put("jwt", AutenticadorJWT.codificaJWT(usuarioAutenticado));
-
-			Cookie cook = new Cookie("jwt", AutenticadorJWT.codificaJWT(usuarioAutenticado));
+		Usuario uAutentificado = usuRep.findByEmailAndPassword(datos.email, datos.password);
+		if (uAutentificado != null) {
+			dto.clear();
+			dto.put("result", "Succes");
+			dto.put("jwt", AutenticadorJWT.codificaJWT(uAutentificado));
+			Cookie cook = new Cookie("jwt", AutenticadorJWT.codificaJWT(uAutentificado));
 			cook.setMaxAge(-1);
 			response.addCookie(cook);
 		}
-
 		return dto;
 	}
 
 	@GetMapping(path = "/quieneres")
+	public DTO quienSoy(HttpServletRequest request) {
+		DTO dto = new DTO();
+		dto.put("result", "fail");
+		// Validar si existen cookies en la petición
+		Cookie[] cookies = request.getCookies();
+		if (cookies == null) {
+			return dto; // No hay cookies, el usuario no está autenticado
+		}
 
-	public DTO getAutenticado(HttpServletRequest request) {
-		DTO dtoUsuario = new DTO();
-		dtoUsuario.put("result", "fail");
-		Cookie[] c = request.getCookies();
-		int idUsuarioAutenticado = -1;
-		for (Cookie co : c) {
-			if (co.getName().equals("jwt")) {
-				idUsuarioAutenticado = AutenticadorJWT.getIdUsuarioDesdeJWT(co.getValue());
-
+		int idUserAutenticado = -1;
+		// Buscar la cookie con el token JWT
+		for (Cookie cook : cookies) {
+			if ("jwt".equals(cook.getName())) {
+				idUserAutenticado = AutenticadorJWT.getIdUsuarioDesdeJWT(cook.getValue());
+				break;
 			}
-
 		}
-
-		Usuario u = usuRep.findById(idUsuarioAutenticado);
+		// Verificar si se obtuvo un ID válido
+		if (idUserAutenticado == -1) {
+			return dto; // No se pudo recuperar el usuario
+		}
+		// Buscar el usuario en la base de datos
+		Usuario u = usuRep.findById(idUserAutenticado);
 		if (u != null) {
-			dtoUsuario.put("id", u.getId());
-			dtoUsuario.put("nombre", u.getNombre());
-			dtoUsuario.put("admin", u.getAdmin());
-			dtoUsuario.put("result", "ok");
-
+			dto.put("result", "success");
+			dto.put("id", u.getId());
+			dto.put("nombre", u.getNombre());
+			dto.put("admin", u.getAdmin());
 		}
-
-		return dtoUsuario;
+		return dto;
 	}
 
 	static class DatosAutenticaUsuario {

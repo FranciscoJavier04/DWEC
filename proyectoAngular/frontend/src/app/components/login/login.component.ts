@@ -1,54 +1,60 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { UsuarioService } from '../../services/usuario.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+
 import { CommonModule } from '@angular/common';
+
+import { Router } from '@angular/router';
+
+// 📌 Importaciones de Angular Material
+
+import { DatosAutenticaUsuario } from '../../interfaces/datosAutenticaUsuario';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    ReactiveFormsModule,
+
+  ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrl: './login.component.css',
 })
-export class LoginComponent {
-  email: string = '';
-  password: string = '';
-  errorMessage: string = '';
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
-  onSubmit(): void {
-    if (!this.email || !this.password) {
-      this.errorMessage = 'El email y el password son necesarios';
-      return;
+  constructor(
+    private fb: FormBuilder,
+    private authService: UsuarioService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
+  }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const datosUsuario: DatosAutenticaUsuario = this.loginForm.value;
+
+      this.authService.login(datosUsuario).subscribe({
+        next: (response) => {
+          if (response.result === 'Succes') {
+            localStorage.setItem('jwt', response.jwt); // Guardar nombre en localStorage
+            window.location.reload();
+          }
+        },
+        error: (err) => console.error('Error en login:', err),
+      });
     }
-
-    this.usuarioService.login(this.email, this.password).subscribe(
-      response => {
-        if (response && response.result === 'ok') {
-          localStorage.setItem('jwt', response.jwt);  // Guardar el token en localStorage
-          this.router.navigate(['/backend']);
-        } else {
-          this.errorMessage = 'Login failed. Please check your credentials';
-        }
-      },
-      error => {
-        this.errorMessage = 'An error occurred. Please try again later';
-      }
-    );
   }
-  getUserData(): void {
-    this.usuarioService.getAuthenticatedUser().subscribe(
-      response => {
-        if (response && response.result === 'ok') {
-          localStorage.setItem('user', JSON.stringify(response)); // Guardar datos del usuario
-        }
-      },
-      error => {
-        console.error('Error obteniendo datos del usuario');
-      }
-    );
-  }
-
-
-
 }
