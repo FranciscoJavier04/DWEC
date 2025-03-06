@@ -5,8 +5,11 @@
       <img src="/assets/logo.png" alt="Logo" width="60" height="60" class="me-2">
     </a>
     <a class="navbar-brand text-light fw-semibold" routerLink="/clubs">Clubes</a>
-    <a class="navbar-brand text-light fw-semibold" routerLink="/misFutbolistas">Mis Futbolistas</a>
-    <a class="navbar-brand text-light fw-semibold" routerLink="/backend">Backend</a>
+    <a class="navbar-brand text-light fw-semibold" routerLink="/misFutbolistas">Futbolistas</a>
+    <div *ngIf="esAdmin">
+      <a class="navbar-brand text-light fw-semibold" routerLink="/backend">Backend</a>
+    </div>
+
 
 
     <!-- Botón para móviles -->

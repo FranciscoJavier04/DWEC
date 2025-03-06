@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
 import { PosicioneService } from '../../services/posicione.service';
 import { Router } from '@angular/router';
+import { Futbolista } from '../../interfaces/futbolista';
 
 @Component({
   selector: 'app-futbolistas',
@@ -21,6 +22,7 @@ export class FutbolistasComponent implements OnInit {
   futbolistas: any[] = []; // Almacena la lista de futbolistas
   usuarioId!: number; // ID del usuario autenticado
   posicionesPorFutbolista: { [key: number]: any[] } = {}; // Almacena las posiciones por futbolista
+    futbolistas2: Futbolista[] = [];
 
 
   constructor(
@@ -33,6 +35,15 @@ export class FutbolistasComponent implements OnInit {
 
   ngOnInit() {
     this.obtenerUsuarioId();
+
+    this.futbolistaService.getFutbolista().subscribe(
+      (data) => {
+        this.futbolistas2 = data;
+      },
+      (error) => {
+        console.error('Error al obtener los futbolistas', error);
+      }
+    );
   }
 
   obtenerUsuarioId() {

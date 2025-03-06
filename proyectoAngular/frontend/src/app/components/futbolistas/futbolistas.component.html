@@ -1,16 +1,25 @@
 <div *ngIf="futbolistas.length > 0; else noFutbolistas">
-  <h2 class="text-center text-white">Mis Futbolistas</h2>
-  <div class="mb-4 row justify-content-center">
-    <div class="col-auto">
-      <button class="btn btn-success" (click)="insertarFutbolista()">Insertar Futbolista</button>
+
+  <h1 class="mb-4 text-center text-dark">Futbolistas</h1>
+  <div class="mb-4 text-center row justify-content-center">
+    <div class="col-12">
+      <p class="mb-4 fs-4 text-dark">
+        "Agrega futbolistas y sus posiciones a los usuarios que quieras, ¡para que nos echemos unas buenas risas viendo cómo algunos 'jugadores estrella' no tienen ni idea de en qué posición deberían estar! ¡Que comience la diversión y que el fútbol no pare!"
+      </p>
     </div>
+
     <div class="col-auto">
-      <button class="btn btn-primary" (click)="insertarPosicion()">Insertar Posicion Aleatoria</button>
+      <button class="shadow-lg btn btn-success btn-lg" (click)="insertarFutbolista()">Insertar Futbolista Aleatorio</button>
+    </div>
+
+    <div class="col-auto mt-3 mt-sm-0">
+      <button class="shadow-lg btn btn-primary btn-lg" (click)="insertarPosicion()">Insertar Posición Aleatoria</button>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-4" *ngFor="let futbolista of futbolistas">
-      <div class="mb-4 text-white shadow-sm card bg-dark d-flex flex-column align-items-center">
+  <h2 class="mb-4 text-center text-dark">Mis Futbolistas</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let futbolista of futbolistas">
+      <div class="text-white shadow-sm card bg-dark d-flex flex-column align-items-center">
         <div class="card-img-top-container d-flex justify-content-center">
           <img *ngIf="futbolista.imagen"
                [src]="'data:image/png;base64,' + futbolista.imagen"
@@ -49,3 +58,39 @@
 <ng-template #noFutbolistas>
   <p class="text-center text-white">No se encontraron futbolistas para este usuario.</p>
 </ng-template>
+<h2 class="mb-4 text-center text-dark">Todos los Futbolistas</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col" *ngFor="let futbolista of futbolistas2">
+    <div class="text-white shadow-sm card bg-dark d-flex flex-column align-items-center">
+      <div class="card-img-top-container d-flex justify-content-center">
+        <img *ngIf="futbolista.imagen"
+             [src]="'data:image/png;base64,' + futbolista.imagen"
+             class="fixed-size"
+             alt="Imagen de {{ futbolista.nombre }}">
+      </div>
+      <div class="text-center card-body">
+        <h5 class="card-title">{{ futbolista.nombre }}</h5>
+        <p class="card-text">
+          <strong>Fecha de nacimiento:</strong> {{ futbolista.fecha_nac }}<br>
+          <strong>Nacionalidad:</strong> {{ futbolista.nacionalidad }}<br>
+          <strong>Edad:</strong> {{ futbolista.edad }}<br>
+          <strong>Club:</strong> {{ futbolista.Club }}<br>
+          <strong>Usuario:</strong> {{ futbolista.Usuario }}
+        </p>
+      </div>
+
+      <!-- Mostrar posiciones de este futbolista -->
+      <div *ngIf="posicionesPorFutbolista[futbolista.id] && posicionesPorFutbolista[futbolista.id].length > 0">
+        <strong>Posiciones:</strong>
+        <ul>
+          <li *ngFor="let posicion of posicionesPorFutbolista[futbolista.id]">
+            {{ posicion.Posicion }}
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="!posicionesPorFutbolista[futbolista.id] || posicionesPorFutbolista[futbolista.id].length === 0">
+        <p>No se encontraron posiciones para este futbolista.</p>
+      </div>
+    </div>
+  </div>
+</div>
