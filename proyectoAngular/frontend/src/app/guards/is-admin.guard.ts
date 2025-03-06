@@ -27,13 +27,13 @@ export class AdminGuard implements CanActivate {
           if (data.result === 'success' && data.admin === 1) {
             return true; // Si es administrador, permite el acceso
           } else {
-            this.router.navigate(['/home']); // Redirige si no es admin
+            this.router.navigate(['']); // Redirige si no es admin
             return false; // Deniega el acceso
           }
         }),
         catchError((error) => {
           console.error('Error obteniendo usuario', error);
-          this.router.navigate(['/home']); // Redirige en caso de error
+          this.router.navigate(['']); // Redirige en caso de error
           return [false]; // Deniega el acceso
         })
       );

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.modelos.Club;
@@ -125,4 +126,32 @@ public class futbolistaController {
 		}
 
 	}
+
+	@GetMapping("/obtenerPorUsuario")
+	public List<DTO> getFutbolistasPorUsuario(@RequestParam int usuarioId) {
+		List<DTO> listaFutbolistasDTO = new ArrayList<>();
+		List<Futbolista> futbolistas = futRep.findByUsuarioId(usuarioId);
+
+		for (Futbolista f : futbolistas) {
+			DTO dtoFutbolista = new DTO();
+			dtoFutbolista.put("id", f.getId());
+			dtoFutbolista.put("nombre", f.getNombre());
+			dtoFutbolista.put("fecha_nac", f.getFechaNac().toString());
+			dtoFutbolista.put("nacionalidad", f.getNacionalidad());
+			dtoFutbolista.put("edad", f.getEdad());
+			dtoFutbolista.put("Club", f.getClub().getNombre());
+			dtoFutbolista.put("Usuario", f.getUsuario().getNombre());
+
+			if (f.getImagen() != null) {
+				dtoFutbolista.put("imagen", DatatypeConverter.printBase64Binary(f.getImagen()));
+			} else {
+				dtoFutbolista.put("imagen", "");
+			}
+
+			listaFutbolistasDTO.add(dtoFutbolista);
+		}
+
+		return listaFutbolistasDTO;
+	}
+
 }
