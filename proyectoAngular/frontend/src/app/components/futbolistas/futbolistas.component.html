@@ -1,25 +1,30 @@
 <div *ngIf="futbolistas.length > 0; else noFutbolistas">
-  <h2>Mis Futbolistas</h2>
-  <ul>
-    <li *ngFor="let futbolista of futbolistas">
-      <strong>{{ futbolista.nombre }}</strong><br>
-      <span>Fecha de nacimiento: {{ futbolista.fecha_nac }}</span><br>
-      <span>Nacionalidad: {{ futbolista.nacionalidad }}</span><br>
-      <span>Edad: {{ futbolista.edad }}</span><br>
-      <span>Club: {{ futbolista.club }}</span><br>
-      <span>Usuario: {{ futbolista.usuario }}</span><br>
-
-      <img *ngIf="futbolista.imagen"
-           [src]="'data:image/jpeg;base64,' + futbolista.imagen"
-           alt="Imagen de {{ futbolista.nombre }}"
-           width="150"/>
-
-      <hr>
-    </li>
-  </ul>
+  <h2 class="text-center text-white">Mis Futbolistas</h2>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let futbolista of futbolistas">
+      <div class="mb-4 text-white shadow-sm card bg-dark d-flex flex-column align-items-center">
+        <div class="card-img-top-container d-flex justify-content-center">
+          <img *ngIf="futbolista.imagen"
+               [src]="'data:image/png;base64,' + futbolista.imagen"
+               class="fixed-size"
+               alt="Imagen de {{ futbolista.nombre }}">
+        </div>
+        <div class="text-center card-body">
+          <h5 class="card-title">{{ futbolista.nombre }}</h5>
+          <p class="card-text">
+            <strong>Fecha de nacimiento:</strong> {{ futbolista.fecha_nac }}<br>
+            <strong>Nacionalidad:</strong> {{ futbolista.nacionalidad }}<br>
+            <strong>Edad:</strong> {{ futbolista.edad }}<br>
+            <strong>Club:</strong> {{ futbolista.Club }}<br>
+            <strong>Usuario:</strong> {{ futbolista.Usuario }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Mostrar mensaje si no hay futbolistas -->
 <ng-template #noFutbolistas>
-  <p>No se encontraron futbolistas para este usuario.</p>
+  <p class="text-center text-white">No se encontraron futbolistas para este usuario.</p>
 </ng-template>
