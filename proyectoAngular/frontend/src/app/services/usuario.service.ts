@@ -37,7 +37,7 @@ export class UsuarioService {
     return this.http.post<any>(`${this.baseURL}/autentica`, { email, password });
   }
 
-  getAuthenticatedUser() {
+  getAuthenticatedUser(): Observable<any>  {
     return this.http.get<any>(`${this.baseURL}/quieneres`, { withCredentials: true });
 }
 
