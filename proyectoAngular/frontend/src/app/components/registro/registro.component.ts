@@ -11,7 +11,10 @@ import { DatosAltaUsuario } from '../../interfaces/datosInsert/datosAltaUsuario'
 import { UsuarioService } from '../../services/usuario.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { DatosAutenticaUsuario } from '../../interfaces/datosAutenticaUsuario';
+import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-registro',
@@ -70,12 +73,29 @@ export class RegistroComponent {
         ...formValue,
         aficiones: aficionesString, // Guardamos aficiones como string
       };
+      const datosUsuario: DatosAutenticaUsuario = {
+        email:formValue.email,
+        password: formValue.password,
+      };
 
       this.usuarioService.anadirUsuario(this.usuario).subscribe({
         next: () => {
-          localStorage.setItem('usuario', JSON.stringify(this.usuario));
           alert('Usuario registrado con éxito');
-          this.router.navigate(['']);
+          this.usuarioService.login(datosUsuario).subscribe({
+            next: (response) => {
+              if (response.result === 'Succes') {
+                localStorage.setItem('jwt', response.jwt);
+                this.router.navigate(['']);
+                this.router.events.pipe(
+                              filter(event => event instanceof NavigationEnd)
+                            ).subscribe(() => {
+                              window.location.reload(); // Recargar la página después de la navegación
+                            });;
+              }
+            },
+            error: (err) => console.error('Error en login:', err),
+          });
+
         },
         error: () => alert('Error en el registro'),
       });
