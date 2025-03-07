@@ -104,32 +104,6 @@
     </table>
   </div>
 
-
-  <h2 class="my-4 text-center">Lista de Posiciones</h2>
-  <div class="mb-2 text-center">
-    <button class="btn btn-success">Insertar Posición</button>
-  </div>
-  <div class="table-responsive">
-    <table class="table text-center align-middle table-striped table-bordered">
-      <thead class="table-dark">
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let posiciones2 of posiciones2">
-          <td>{{ posiciones2.id }}</td>
-          <td>{{ posiciones2.Nombre }}</td>
-          <td>
-            <button class="btn btn-danger" (click)="eliminarPosicion(posiciones2.id)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
 <div class="container mt-4">
   <h2 class="mb-4 text-center">Lista de Usuarios</h2>
   <div class="mb-2 text-center">
