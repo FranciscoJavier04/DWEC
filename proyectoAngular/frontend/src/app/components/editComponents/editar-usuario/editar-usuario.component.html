@@ -1,31 +1,47 @@
-<h2>Editar Usuario</h2>
-<form [formGroup]="usuarioForm" (ngSubmit)="guardarCambios()">
-  <label>Nombre:</label>
-  <input type="text" formControlName="nombre">
+<h2 class="mb-4 text-center">Editar Usuario</h2>
+<form [formGroup]="usuarioForm" (ngSubmit)="guardarCambios()" class="container p-4 border rounded shadow-sm bg-light">
+  <div class="mb-3">
+    <label class="form-label">Nombre:</label>
+    <input type="text" class="form-control" formControlName="nombre">
+  </div>
 
-  <label>Apellidos:</label>
-  <input type="text" formControlName="apellidos">
+  <div class="mb-3">
+    <label class="form-label">Apellidos:</label>
+    <input type="text" class="form-control" formControlName="apellidos">
+  </div>
 
-  <label>Email:</label>
-  <input type="email" formControlName="email">
+  <div class="mb-3">
+    <label class="form-label">Email:</label>
+    <input type="email" class="form-control" formControlName="email">
+  </div>
 
-  <label>Contraseña:</label>
-  <input type="password" formControlName="password">
+  <div class="mb-3">
+    <label class="form-label">Contraseña:</label>
+    <input type="password" class="form-control" formControlName="password">
+  </div>
 
-  <label>Sexo:</label>
-  <select formControlName="sexo">
-    <option value="Masculino">Masculino</option>
-    <option value="Femenino">Femenino</option>
-  </select>
+  <div class="mb-3">
+    <label class="form-label">Sexo:</label>
+    <select class="form-select" formControlName="sexo">
+      <option value="Masculino">Masculino</option>
+      <option value="Femenino">Femenino</option>
+    </select>
+  </div>
 
-  <label>País:</label>
-  <input type="text" formControlName="pais">
+  <div class="mb-3">
+    <label class="form-label">País:</label>
+    <input type="text" class="form-control" formControlName="pais">
+  </div>
 
-  <label>Aficiones:</label>
-  <input type="text" formControlName="aficiones">
+  <div class="mb-3">
+    <label class="form-label">Aficiones:</label>
+    <input type="text" class="form-control" formControlName="aficiones">
+  </div>
 
-  <label>Admin:</label>
-  <input type="number" formControlName="admin">
+  <div class="mb-3">
+    <label class="form-label">Admin:</label>
+    <input type="number" class="form-control" formControlName="admin">
+  </div>
 
-  <button type="submit">Guardar Cambios</button>
+  <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
 </form>
