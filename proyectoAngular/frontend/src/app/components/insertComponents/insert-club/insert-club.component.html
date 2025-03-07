@@ -31,7 +31,12 @@
 
   <div class="mb-3">
     <label for="imagen" class="form-label">Imagen del Club:</label>
-    <input type="file" formControlName="imagen" class="form-control">
+    <input type="file" class="form-control" (change)="onFileSelected($event)">
+  </div>
+
+  <!-- Vista previa de la imagen -->
+  <div *ngIf="imagenPreview" class="mb-3 text-center">
+    <img [src]="imagenPreview" alt="Vista previa" class="img-thumbnail" width="200">
   </div>
 
   <div class="d-flex justify-content-center">

@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 })
 export class InsertClubComponent {
   insertarClubForm: FormGroup;
+  imagenPreview: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -45,7 +46,7 @@ export class InsertClubComponent {
     if (this.insertarClubForm.valid) {
       this.clubService.anadirClub(club).subscribe(
         (response) => {
-          alert('Club insertado con éxito: ' + response);
+          alert('Club insertado con éxito');
           // Redirigir a otra página después de la inserción exitosa
           this.router.navigate(['/backend']);
         },
@@ -53,6 +54,19 @@ export class InsertClubComponent {
           console.error('Error al insertar el club:', error);
         }
       );
+    }
+  }
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagenPreview = reader.result as string;
+        this.insertarClubForm.patchValue({
+          imagen: this.imagenPreview.split(',')[1] || '',
+        });
+      };
+      reader.readAsDataURL(file);
     }
   }
 }

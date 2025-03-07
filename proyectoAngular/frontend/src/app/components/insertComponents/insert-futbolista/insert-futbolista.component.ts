@@ -20,6 +20,7 @@ export class InsertFutbolistaComponent {
   insertarFutbolistaForm: FormGroup;
   clubs: Club[] = [];
   usuarios: Usuario[] = [];
+  imagenPreview: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -78,6 +79,19 @@ export class InsertFutbolistaComponent {
         console.error('Error al obtener los usuarios', error);
       }
     );
+  }
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagenPreview = reader.result as string;
+        this.insertarFutbolistaForm.patchValue({
+          imagen: this.imagenPreview.split(',')[1] || '',
+        });
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
 }
