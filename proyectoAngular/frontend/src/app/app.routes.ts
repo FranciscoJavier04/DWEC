@@ -41,7 +41,7 @@ export const routes: Routes = [
     canActivate: [AdminGuard],
   },
   {
-    path: 'editar',
+    path: 'editar/:id',
     title: 'Editar',
     component: EditarUsuarioComponent,
     canActivate: [AdminGuard],

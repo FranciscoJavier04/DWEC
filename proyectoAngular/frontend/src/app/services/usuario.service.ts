@@ -30,9 +30,11 @@ export class UsuarioService {
       body: { id }, // Enviamos el ID en el cuerpo
     });
   }
-  editarUsuario(datos: DatosAltaUsuario2): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put<any>(`${this.baseURL}/editar`, datos, { headers });
+  editarUsuario(id: number, usuario: any): Observable<any> {
+    return this.http.put(`${this.baseURL}/editar`, { id, ...usuario });
+  }
+  obtenerUsuario(id: number): Observable<any> {
+    return this.http.post(`${this.baseURL}/obtener1`, { id });
   }
   login(datosLogin: DatosAutenticaUsuario): Observable<any> {
     return this.http.post<any>(`${this.baseURL}/autentica`, datosLogin, {

@@ -1,0 +1,31 @@
+<h2>Editar Usuario</h2>
+<form [formGroup]="usuarioForm" (ngSubmit)="guardarCambios()">
+  <label>Nombre:</label>
+  <input type="text" formControlName="nombre">
+
+  <label>Apellidos:</label>
+  <input type="text" formControlName="apellidos">
+
+  <label>Email:</label>
+  <input type="email" formControlName="email">
+
+  <label>Contraseña:</label>
+  <input type="password" formControlName="password">
+
+  <label>Sexo:</label>
+  <select formControlName="sexo">
+    <option value="Masculino">Masculino</option>
+    <option value="Femenino">Femenino</option>
+  </select>
+
+  <label>País:</label>
+  <input type="text" formControlName="pais">
+
+  <label>Aficiones:</label>
+  <input type="text" formControlName="aficiones">
+
+  <label>Admin:</label>
+  <input type="number" formControlName="admin">
+
+  <button type="submit">Guardar Cambios</button>
+</form>
