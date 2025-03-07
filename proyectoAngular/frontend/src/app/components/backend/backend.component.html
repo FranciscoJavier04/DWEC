@@ -28,7 +28,6 @@
               style="width: 80px; height: 80px; object-fit: cover;" alt="Imagen de {{ club.nombre }}">
           </td>
           <td>
-            <button class="btn btn-warning me-2">Editar</button>
             <button class="btn btn-danger" (click)="eliminarClub(club.id)">Eliminar</button>
           </td>
         </tr>
@@ -69,7 +68,6 @@
               style="width: 80px; height: 80px; object-fit: cover;" alt="Imagen de {{ futbolista.nombre }}">
           </td>
           <td>
-            <button class="btn btn-warning me-2">Editar</button>
             <button class="btn btn-danger" (click)="eliminarFutbolista(futbolista.id)">Eliminar</button>
           </td>
         </tr>
@@ -81,7 +79,7 @@
 
   <h2 class="my-4 text-center">Lista de Posiciones Asignadas</h2>
   <div class="mb-2 text-center">
-    <button class="btn btn-success">Insertar Posición Asignada</button>
+    <button class="btn btn-success" (click)="insertarPosicion()">Insertar Posición Asignada</button>
   </div>
   <div class="table-responsive">
     <table class="table text-center align-middle table-striped table-bordered">
@@ -99,7 +97,6 @@
           <td>{{ posiciones.Futbolista }}</td>
           <td>{{ posiciones.Posicion }}</td>
           <td>
-            <button class="btn btn-warning me-2">Editar</button>
             <button class="btn btn-danger" (click)="eliminarPosicion(posiciones.id)">Eliminar</button>
           </td>
         </tr>
@@ -126,7 +123,6 @@
           <td>{{ posiciones2.id }}</td>
           <td>{{ posiciones2.Nombre }}</td>
           <td>
-            <button class="btn btn-warning me-2">Editar</button>
             <button class="btn btn-danger" (click)="eliminarPosicion(posiciones2.id)">Eliminar</button>
           </td>
         </tr>

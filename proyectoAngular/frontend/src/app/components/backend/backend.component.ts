@@ -171,4 +171,8 @@ export class BackendComponent implements OnInit {
   insertarFutbolista(): void {
     this.router.navigate(['/insertarFutbolista']);
   }
+  insertarPosicion(): void {
+    this.router.navigate(['/ipa']);
+  }
+
 }
