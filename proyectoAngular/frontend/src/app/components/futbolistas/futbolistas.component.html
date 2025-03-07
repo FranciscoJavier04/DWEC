@@ -1,6 +1,4 @@
-<div *ngIf="futbolistas.length > 0; else noFutbolistas">
-
-  <h1 class="mb-4 text-center text-dark">Futbolistas</h1>
+<h1 class="mb-4 text-center text-dark">Futbolistas</h1>
   <div class="mb-4 text-center row justify-content-center">
     <div class="col-12">
       <p class="mb-4 fs-4 text-dark">
@@ -16,6 +14,9 @@
       <button class="shadow-lg btn btn-primary btn-lg" (click)="insertarPosicion()">Insertar Posición Aleatoria</button>
     </div>
   </div>
+<div *ngIf="futbolistas.length > 0; else noFutbolistas">
+
+
   <h2 class="mb-4 text-center text-dark">Mis Futbolistas</h2>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col" *ngFor="let futbolista of futbolistas">
@@ -56,7 +57,7 @@
 
 <!-- Mostrar mensaje si no hay futbolistas -->
 <ng-template #noFutbolistas>
-  <p class="text-center text-white">No se encontraron futbolistas para este usuario.</p>
+  <p class="text-center text-dark">No se encontraron futbolistas para este usuario.</p>
 </ng-template>
 <h2 class="mb-4 text-center text-dark">Todos los Futbolistas</h2>
 <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -84,7 +85,7 @@
         <strong>Posiciones:</strong>
         <ul>
           <li *ngFor="let posicion of posicionesPorFutbolista[futbolista.id]">
-            {{ posicion.Posicion }}
+            {{ posicion.Posicion }} <!-- Asumiendo que el atributo de posición es 'nombre' -->
           </li>
         </ul>
       </div>
